@@ -6,10 +6,13 @@
     <title>سفاري - وكالة سفر</title>
     <!-- AOS CSS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- ربط ملف CSS -->
     <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
+    <!-- شريط التنقل -->
     <header>
         <nav class="navbar">
             <div class="logo">
@@ -32,6 +35,9 @@
             </div>
         </nav>
     </header>
+
+    <!-- زر العودة إلى الأعلى -->
+    <button class="back-to-top" id="backToTop" aria-label="العودة للأعلى">↑</button>
 
     <main>
         <!-- الهيرو -->
@@ -77,7 +83,7 @@
             </div>
         </section>
 
-        <!-- الباقات (تم تغيير العملة إلى درهم) -->
+        <!-- الباقات -->
         <section id="packages" class="packages">
             <div class="container">
                 <h2 class="section-title" data-aos="fade-up" data-i18n="packages_title">باقات سفر مميزة</h2>
@@ -86,7 +92,7 @@
                         <img src="package-paris.jpg" alt="باريس" width="300" height="200" loading="lazy">
                         <div class="package-info">
                             <h3>رحلة باريس</h3>
-                            <div class="price">799 <span class="currency">درهم</span></div>
+                            <div class="price">799 <span class="currency" data-currency="درهم">درهم</span></div>
                             <div class="duration" data-i18n="duration_paris">5 أيام / 4 ليالي</div>
                             <div class="rating">★★★★☆</div>
                             <a href="#" class="btn-secondary" data-i18n="book_now">احجز الآن</a>
@@ -96,7 +102,7 @@
                         <img src="package-bali.jpg" alt="بالي" width="300" height="200" loading="lazy">
                         <div class="package-info">
                             <h3>عطلة بالي</h3>
-                            <div class="price">649 <span class="currency">درهم</span></div>
+                            <div class="price">649 <span class="currency" data-currency="درهم">درهم</span></div>
                             <div class="duration" data-i18n="duration_bali">7 أيام / 6 ليالي</div>
                             <div class="rating">★★★★★</div>
                             <a href="#" class="btn-secondary" data-i18n="book_now">احجز الآن</a>
@@ -106,7 +112,7 @@
                         <img src="package-dubai.jpg" alt="دبي" width="300" height="200" loading="lazy">
                         <div class="package-info">
                             <h3>دبي الفاخرة</h3>
-                            <div class="price">999 <span class="currency">درهم</span></div>
+                            <div class="price">999 <span class="currency" data-currency="درهم">درهم</span></div>
                             <div class="duration" data-i18n="duration_dubai">4 أيام / 3 ليالي</div>
                             <div class="rating">★★★★★</div>
                             <a href="#" class="btn-secondary" data-i18n="book_now">احجز الآن</a>
@@ -116,7 +122,7 @@
                         <img src="package-morocco.jpg" alt="المغرب" width="300" height="200" loading="lazy">
                         <div class="package-info">
                             <h3>المغرب الساحر</h3>
-                            <div class="price">549 <span class="currency">درهم</span></div>
+                            <div class="price">549 <span class="currency" data-currency="درهم">درهم</span></div>
                             <div class="duration" data-i18n="duration_morocco">8 أيام / 7 ليالي</div>
                             <div class="rating">★★★★☆</div>
                             <a href="#" class="btn-secondary" data-i18n="book_now">احجز الآن</a>
@@ -228,9 +234,7 @@
         </section>
     </main>
 
-    <!-- زر العودة إلى الأعلى -->
-    <button class="back-to-top" id="backToTop" aria-label="العودة للأعلى">↑</button>
-
+    <!-- تذييل الصفحة -->
     <footer>
         <div class="container">
             <div class="footer-content">
@@ -265,6 +269,6 @@
 
     <!-- AOS JS -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="script.js" defer></script>
+    <script src="script.js"></script>
 </body>
 </html>
