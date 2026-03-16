@@ -4,197 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>سفاري - وكالة سفر</title>
-    <!-- CSS مصغر (ضع محتوى style.css بعد تصغيره) -->
-    <style>
-        /* متغيرات الوضع الليلي والنهاري */
-        :root {
-            --bg: #121212;
-            --bg-card: #1e1e1e;
-            --text: #ffffff;
-            --text-secondary: #b0b0b0;
-            --primary: #2a9d8f;
-            --secondary: #e76f51;
-            --border: #333;
-            --shadow: 0 5px 15px rgba(0,0,0,0.5);
-        }
-        [data-theme="light"] {
-            --bg: #f8f9fa;
-            --bg-card: #ffffff;
-            --text: #212529;
-            --text-secondary: #6c757d;
-            --primary: #2a9d8f;
-            --secondary: #e76f51;
-            --border: #dee2e6;
-            --shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, sans-serif;
-        }
-        body {
-            background: var(--bg);
-            color: var(--text);
-            transition: background 0.3s, color 0.2s;
-            line-height: 1.6;
-            direction: rtl;
-        }
-        /* شريط التنقل */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: var(--bg-card);
-            border-bottom: 1px solid var(--border);
-            z-index: 1000;
-            padding: 10px 20px;
-        }
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: auto;
-        }
-        .logo img {
-            height: 40px;
-            width: auto;
-        }
-        .nav-menu {
-            display: flex;
-            gap: 20px;
-            list-style: none;
-        }
-        .nav-menu a {
-            color: var(--text);
-            text-decoration: none;
-            font-weight: 500;
-        }
-        .nav-actions {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-        }
-        .theme-toggle, .lang-switch {
-            background: transparent;
-            border: 2px solid var(--primary);
-            color: var(--text);
-            padding: 5px 12px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-        .theme-toggle:hover, .lang-switch:hover {
-            background: var(--primary);
-            color: #fff;
-        }
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-        }
-        .hamburger span {
-            width: 25px;
-            height: 3px;
-            background: var(--text);
-            margin: 3px 0;
-        }
-        /* باقي الأنماط مكتفية بالمختصر */
-        .hero {
-            height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('hero-bg.jpg') center/cover no-repeat;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: #fff;
-            margin-top: 60px;
-        }
-        .hero h1 { font-size: 3rem; margin-bottom: 20px; }
-        .hero p { font-size: 1.2rem; margin-bottom: 30px; }
-        .btn-primary {
-            background: var(--primary);
-            color: #fff;
-            padding: 12px 30px;
-            border-radius: 30px;
-            text-decoration: none;
-            display: inline-block;
-            font-weight: bold;
-        }
-        .container {
-            max-width: 1200px;
-            margin: auto;
-            padding: 60px 20px;
-        }
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 40px;
-            color: var(--text);
-        }
-        .destinations-grid, .packages-grid, .testimonials-grid, .features-grid, .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-        .destination-card, .package-card, .testimonial-card, .feature {
-            background: var(--bg-card);
-            border-radius: 10px;
-            padding: 15px;
-            box-shadow: var(--shadow);
-            border: 1px solid var(--border);
-            text-align: center;
-        }
-        img {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-            object-fit: cover;
-        }
-        .rating { color: #ffc107; }
-        footer {
-            background: var(--bg-card);
-            padding: 40px 20px;
-            text-align: center;
-            border-top: 1px solid var(--border);
-        }
-        @media (max-width: 768px) {
-            .nav-menu {
-                display: none;
-                position: fixed;
-                top: 60px;
-                right: 0;
-                width: 70%;
-                height: 100vh;
-                background: var(--bg-card);
-                flex-direction: column;
-                padding-top: 30px;
-                border-left: 1px solid var(--border);
-            }
-            .nav-menu.active { display: flex; }
-            .hamburger { display: flex; }
-            .hero h1 { font-size: 2rem; }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <header>
         <nav class="navbar">
             <div class="logo">
-                <img src="logo.jpg" alt="سفاري" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+                <img src="logo.jpg" alt="سفاري" width="40" height="40" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                 <span style="display:none;">سفاري</span>
             </div>
             <ul class="nav-menu">
-                <li><a href="#home">الرئيسية</a></li>
-                <li><a href="#destinations">الوجهات</a></li>
-                <li><a href="#packages">الباقات</a></li>
-                <li><a href="#contact">اتصل بنا</a></li>
+                <li><a href="#home" data-i18n="home">الرئيسية</a></li>
+                <li><a href="#destinations" data-i18n="destinations">الوجهات</a></li>
+                <li><a href="#packages" data-i18n="packages">الباقات</a></li>
+                <li><a href="#contact" data-i18n="contact">اتصل بنا</a></li>
             </ul>
             <div class="nav-actions">
                 <button class="theme-toggle" id="themeToggle">🌙</button>
                 <button class="lang-switch" id="langToggle">EN</button>
-                <button class="btn-primary" style="padding:5px 15px;">احجز الآن</button>
+                <button class="book-now" data-i18n="book">احجز الآن</button>
             </div>
             <div class="hamburger">
                 <span></span><span></span><span></span>
@@ -203,134 +32,232 @@
     </header>
 
     <main>
+        <!-- الهيرو -->
         <section id="home" class="hero">
             <div class="hero-content">
-                <h1>اكتشف جمال العالم مع سفاري</h1>
-                <p>رحلات مخصصة، عروض حصرية، وتجارب لا تُنسى. احجز الآن وانطلق في مغامرتك القادمة.</p>
-                <a href="#packages" class="btn-primary">استكشف الباقات</a>
+                <h1 data-i18n="hero_title">اكتشف جمال العالم مع سفاري</h1>
+                <p data-i18n="hero_desc">رحلات مخصصة، عروض حصرية، وتجارب لا تُنسى. احجز الآن وانطلق في مغامرتك القادمة.</p>
+                <a href="#packages" class="btn-primary" data-i18n="hero_btn">استكشف الباقات</a>
             </div>
         </section>
 
-        <section id="destinations" class="container">
-            <h2 class="section-title">وجهات سياحية مميزة</h2>
-            <div class="destinations-grid">
-                <div class="destination-card"><img src="paris.jpg" alt="باريس" loading="lazy" width="300" height="200"><h3>باريس</h3><p>مدينة النور والرومانسية</p></div>
-                <div class="destination-card"><img src="bali.jpg" alt="بالي" loading="lazy" width="300" height="200"><h3>بالي</h3><p>جنة استوائية ساحرة</p></div>
-                <div class="destination-card"><img src="dubai.jpg" alt="دبي" loading="lazy" width="300" height="200"><h3>دبي</h3><p>مدينة المستقبل والتسوق</p></div>
-                <div class="destination-card"><img src="morocco.jpg" alt="المغرب" loading="lazy" width="300" height="200"><h3>المغرب</h3><p>ثقافة وأصالة وتنوع</p></div>
-                <div class="destination-card"><img src="newyork.jpg" alt="نيويورك" loading="lazy" width="300" height="200"><h3>نيويورك</h3><p>المدينة التي لا تنام</p></div>
+        <!-- الوجهات -->
+        <section id="destinations" class="destinations">
+            <div class="container">
+                <h2 class="section-title" data-i18n="destinations_title">وجهات سياحية مميزة</h2>
+                <div class="destinations-grid">
+                    <div class="destination-card">
+                        <img src="paris.jpg" alt="باريس" width="300" height="200" loading="lazy">
+                        <h3>باريس</h3>
+                        <p data-i18n="paris_desc">مدينة النور والرومانسية</p>
+                    </div>
+                    <div class="destination-card">
+                        <img src="bali.jpg" alt="بالي" width="300" height="200" loading="lazy">
+                        <h3>بالي</h3>
+                        <p data-i18n="bali_desc">جنة استوائية ساحرة</p>
+                    </div>
+                    <div class="destination-card">
+                        <img src="dubai.jpg" alt="دبي" width="300" height="200" loading="lazy">
+                        <h3>دبي</h3>
+                        <p data-i18n="dubai_desc">مدينة المستقبل والتسوق</p>
+                    </div>
+                    <div class="destination-card">
+                        <img src="morocco.jpg" alt="المغرب" width="300" height="200" loading="lazy">
+                        <h3>المغرب</h3>
+                        <p data-i18n="morocco_desc">ثقافة وأصالة وتنوع</p>
+                    </div>
+                    <div class="destination-card">
+                        <img src="newyork.jpg" alt="نيويورك" width="300" height="200" loading="lazy">
+                        <h3>نيويورك</h3>
+                        <p data-i18n="ny_desc">المدينة التي لا تنام</p>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <section id="packages" class="container">
-            <h2 class="section-title">باقات سفر مميزة</h2>
-            <div class="packages-grid">
-                <div class="package-card"><img src="package-paris.jpg" alt="باريس" loading="lazy" width="300" height="200"><h3>رحلة باريس</h3><div class="price">$799</div><div class="duration">5 أيام / 4 ليالي</div><div class="rating">★★★★☆</div><a href="#" class="btn-secondary">احجز الآن</a></div>
-                <div class="package-card"><img src="package-bali.jpg" alt="بالي" loading="lazy" width="300" height="200"><h3>عطلة بالي</h3><div class="price">$649</div><div class="duration">7 أيام / 6 ليالي</div><div class="rating">★★★★★</div><a href="#" class="btn-secondary">احجز الآن</a></div>
-                <div class="package-card"><img src="package-dubai.jpg" alt="دبي" loading="lazy" width="300" height="200"><h3>دبي الفاخرة</h3><div class="price">$999</div><div class="duration">4 أيام / 3 ليالي</div><div class="rating">★★★★★</div><a href="#" class="btn-secondary">احجز الآن</a></div>
-                <div class="package-card"><img src="package-morocco.jpg" alt="المغرب" loading="lazy" width="300" height="200"><h3>المغرب الساحر</h3><div class="price">$549</div><div class="duration">8 أيام / 7 ليالي</div><div class="rating">★★★★☆</div><a href="#" class="btn-secondary">احجز الآن</a></div>
+        <!-- الباقات -->
+        <section id="packages" class="packages">
+            <div class="container">
+                <h2 class="section-title" data-i18n="packages_title">باقات سفر مميزة</h2>
+                <div class="packages-grid">
+                    <div class="package-card">
+                        <img src="package-paris.jpg" alt="باريس" width="300" height="200" loading="lazy">
+                        <div class="package-info">
+                            <h3>رحلة باريس</h3>
+                            <div class="price">$799</div>
+                            <div class="duration" data-i18n="duration_paris">5 أيام / 4 ليالي</div>
+                            <div class="rating">★★★★☆</div>
+                            <a href="#" class="btn-secondary" data-i18n="book_now">احجز الآن</a>
+                        </div>
+                    </div>
+                    <div class="package-card">
+                        <img src="package-bali.jpg" alt="بالي" width="300" height="200" loading="lazy">
+                        <div class="package-info">
+                            <h3>عطلة بالي</h3>
+                            <div class="price">$649</div>
+                            <div class="duration" data-i18n="duration_bali">7 أيام / 6 ليالي</div>
+                            <div class="rating">★★★★★</div>
+                            <a href="#" class="btn-secondary" data-i18n="book_now">احجز الآن</a>
+                        </div>
+                    </div>
+                    <div class="package-card">
+                        <img src="package-dubai.jpg" alt="دبي" width="300" height="200" loading="lazy">
+                        <div class="package-info">
+                            <h3>دبي الفاخرة</h3>
+                            <div class="price">$999</div>
+                            <div class="duration" data-i18n="duration_dubai">4 أيام / 3 ليالي</div>
+                            <div class="rating">★★★★★</div>
+                            <a href="#" class="btn-secondary" data-i18n="book_now">احجز الآن</a>
+                        </div>
+                    </div>
+                    <div class="package-card">
+                        <img src="package-morocco.jpg" alt="المغرب" width="300" height="200" loading="lazy">
+                        <div class="package-info">
+                            <h3>المغرب الساحر</h3>
+                            <div class="price">$549</div>
+                            <div class="duration" data-i18n="duration_morocco">8 أيام / 7 ليالي</div>
+                            <div class="rating">★★★★☆</div>
+                            <a href="#" class="btn-secondary" data-i18n="book_now">احجز الآن</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <section class="container">
-            <h2 class="section-title">لماذا تختار سفاري؟</h2>
-            <div class="features-grid">
-                <div class="feature"><img src="why1.jpg" alt="أفضل سعر" loading="lazy" width="80" height="80"><h3>أفضل سعر مضمون</h3><p>نضمن لك أقل الأسعار في السوق</p></div>
-                <div class="feature"><img src="why2.jpg" alt="مرشدين" loading="lazy" width="80" height="80"><h3>مرشدين محترفين</h3><p>مرشدون محليون بخبرة عالية</p></div>
-                <div class="feature"><img src="why3.jpg" alt="دعم" loading="lazy" width="80" height="80"><h3>دعم 24/7</h3><p>فريق دعم متاح 24/7 لمساعدتك</p></div>
-                <div class="feature"><img src="why4.jpg" alt="حجز آمن" loading="lazy" width="80" height="80"><h3>حجز آمن وموثوق</h3><p>بياناتك آمنة مع تقنيات التشفير</p></div>
+        <!-- لماذا نحن -->
+        <section class="why-us">
+            <div class="container">
+                <h2 class="section-title" data-i18n="why_title">لماذا تختار سفاري؟</h2>
+                <div class="features-grid">
+                    <div class="feature">
+                        <img src="why1.jpg" alt="أفضل سعر" width="80" height="80" loading="lazy">
+                        <h3 data-i18n="why_price">أفضل سعر مضمون</h3>
+                        <p data-i18n="why_price_desc">نضمن لك أقل الأسعار في السوق</p>
+                    </div>
+                    <div class="feature">
+                        <img src="why2.jpg" alt="مرشدين" width="80" height="80" loading="lazy">
+                        <h3 data-i18n="why_guides">مرشدين محترفين</h3>
+                        <p data-i18n="why_guides_desc">مرشدون محليون بخبرة عالية</p>
+                    </div>
+                    <div class="feature">
+                        <img src="why3.jpg" alt="دعم" width="80" height="80" loading="lazy">
+                        <h3 data-i18n="why_support">دعم 24/7</h3>
+                        <p data-i18n="why_support_desc">فريق دعم متاح 24/7 لمساعدتك</p>
+                    </div>
+                    <div class="feature">
+                        <img src="why4.jpg" alt="حجز آمن" width="80" height="80" loading="lazy">
+                        <h3 data-i18n="why_secure">حجز آمن وموثوق</h3>
+                        <p data-i18n="why_secure_desc">بياناتك آمنة مع تقنيات التشفير</p>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <section class="container">
-            <h2 class="section-title">آراء المسافرين</h2>
-            <div class="testimonials-grid">
-                <div class="testimonial-card"><img src="testimonial1.jpg" alt="محمد" loading="lazy" width="100" height="100"><p>"أفضل وكالة سفر تعاملت معها. الرحلة كانت رائعة والتنظيم ممتاز."</p><h4>محمد علي</h4><div class="rating">★★★★★</div></div>
-                <div class="testimonial-card"><img src="testimonial2.jpg" alt="سارة" loading="lazy" width="100" height="100"><p>"باقات متنوعة وأسعار منافسة. سأكرر التجربة بالتأكيد."</p><h4>سارة أحمد</h4><div class="rating">★★★★★</div></div>
-                <div class="testimonial-card"><img src="testimonial3.jpg" alt="خالد" loading="lazy" width="100" height="100"><p>"الدعم الفوري والمرشدين المحترفين جعلوا الرحلة لا تنسى."</p><h4>خالد محمود</h4><div class="rating">★★★★☆</div></div>
+        <!-- آراء العملاء -->
+        <section class="testimonials">
+            <div class="container">
+                <h2 class="section-title" data-i18n="testimonials_title">آراء المسافرين</h2>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <img src="testimonial1.jpg" alt="محمد" width="100" height="100" loading="lazy">
+                        <div class="testimonial-content">
+                            <p data-i18n="testimonial1">"أفضل وكالة سفر تعاملت معها. الرحلة كانت رائعة والتنظيم ممتاز."</p>
+                            <h4>محمد علي</h4>
+                            <div class="rating">★★★★★</div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <img src="testimonial2.jpg" alt="سارة" width="100" height="100" loading="lazy">
+                        <div class="testimonial-content">
+                            <p data-i18n="testimonial2">"باقات متنوعة وأسعار منافسة. سأكرر التجربة بالتأكيد."</p>
+                            <h4>سارة أحمد</h4>
+                            <div class="rating">★★★★★</div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <img src="testimonial3.jpg" alt="خالد" width="100" height="100" loading="lazy">
+                        <div class="testimonial-content">
+                            <p data-i18n="testimonial3">"الدعم الفوري والمرشدين المحترفين جعلوا الرحلة لا تنسى."</p>
+                            <h4>خالد محمود</h4>
+                            <div class="rating">★★★★☆</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <section class="container">
-            <h2 class="section-title">معرض الصور</h2>
-            <div class="gallery-grid">
-                <img src="gallery1.jpg" alt="صورة 1" loading="lazy" width="400" height="250">
-                <img src="gallery2.jpg" alt="صورة 2" loading="lazy" width="400" height="250">
-                <img src="gallery3.jpg" alt="صورة 3" loading="lazy" width="400" height="250">
-                <img src="gallery4.jpg" alt="صورة 4" loading="lazy" width="400" height="250">
-                <img src="gallery5.jpg" alt="صورة 5" loading="lazy" width="400" height="250">
-                <img src="gallery6.jpg" alt="صورة 6" loading="lazy" width="400" height="250">
+        <!-- معرض الصور -->
+        <section class="gallery">
+            <div class="container">
+                <h2 class="section-title" data-i18n="gallery_title">معرض الصور</h2>
+                <div class="gallery-grid">
+                    <img src="gallery1.jpg" alt="صورة 1" width="400" height="250" loading="lazy">
+                    <img src="gallery2.jpg" alt="صورة 2" width="400" height="250" loading="lazy">
+                    <img src="gallery3.jpg" alt="صورة 3" width="400" height="250" loading="lazy">
+                    <img src="gallery4.jpg" alt="صورة 4" width="400" height="250" loading="lazy">
+                    <img src="gallery5.jpg" alt="صورة 5" width="400" height="250" loading="lazy">
+                    <img src="gallery6.jpg" alt="صورة 6" width="400" height="250" loading="lazy">
+                </div>
             </div>
         </section>
 
-        <section id="contact" class="container">
-            <h2 class="section-title">اتصل بنا</h2>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:30px;">
-                <form id="contactForm">
-                    <input type="text" id="name" placeholder="الاسم" style="width:100%;padding:10px;margin-bottom:10px;background:var(--bg-card);border:1px solid var(--border);color:var(--text);">
-                    <input type="email" id="email" placeholder="البريد الإلكتروني" style="width:100%;padding:10px;margin-bottom:10px;background:var(--bg-card);border:1px solid var(--border);color:var(--text);">
-                    <textarea id="message" rows="5" placeholder="رسالتك" style="width:100%;padding:10px;margin-bottom:10px;background:var(--bg-card);border:1px solid var(--border);color:var(--text);"></textarea>
-                    <button type="submit" class="btn-primary">إرسال</button>
-                </form>
-                <div>
-                    <h3>معلومات التواصل</h3>
-                    <p><i class="fas fa-phone"></i> +212 123 456 789</p>
-                    <p><i class="fas fa-envelope"></i> info@safari.ma</p>
-                    <p><i class="fas fa-map-marker-alt"></i> الدار البيضاء، المغرب</p>
+        <!-- الاتصال -->
+        <section id="contact" class="contact">
+            <div class="container">
+                <h2 class="section-title" data-i18n="contact_title">اتصل بنا</h2>
+                <div class="contact-wrapper">
+                    <form id="contactForm">
+                        <input type="text" id="name" placeholder=" " data-i18n-placeholder="name_placeholder">
+                        <label for="name" data-i18n="name">الاسم</label>
+                        <input type="email" id="email" placeholder=" " data-i18n-placeholder="email_placeholder">
+                        <label for="email" data-i18n="email">البريد الإلكتروني</label>
+                        <textarea id="message" rows="5" placeholder=" " data-i18n-placeholder="message_placeholder"></textarea>
+                        <label for="message" data-i18n="message">رسالتك</label>
+                        <button type="submit" class="btn-primary" data-i18n="send">إرسال</button>
+                    </form>
+                    <div class="contact-info">
+                        <h3 data-i18n="contact_info">معلومات التواصل</h3>
+                        <p><i class="fas fa-phone"></i> +212 123 456 789</p>
+                        <p><i class="fas fa-envelope"></i> info@safari.ma</p>
+                        <p><i class="fas fa-map-marker-alt"></i> الدار البيضاء، المغرب</p>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2025 سفاري. جميع الحقوق محفوظة</p>
-        <div style="margin-top:20px;">
-            <a href="#" style="color:var(--text);margin:0 10px;"><i class="fab fa-facebook"></i></a>
-            <a href="#" style="color:var(--text);margin:0 10px;"><i class="fab fa-instagram"></i></a>
-            <a href="#" style="color:var(--text);margin:0 10px;"><i class="fab fa-twitter"></i></a>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4 data-i18n="about">عن سفاري</h4>
+                    <p data-i18n="about_text">نحن وكالة سفر رائدة نقدم تجارب سياحية مخصصة بأفضل الأسعار.</p>
+                </div>
+                <div class="footer-section">
+                    <h4 data-i18n="quick_links">روابط سريعة</h4>
+                    <ul>
+                        <li><a href="#home" data-i18n="home">الرئيسية</a></li>
+                        <li><a href="#destinations" data-i18n="destinations">الوجهات</a></li>
+                        <li><a href="#packages" data-i18n="packages">الباقات</a></li>
+                        <li><a href="#contact" data-i18n="contact">اتصل بنا</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 data-i18n="follow_us">تابعنا</h4>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 سفاري. <span data-i18n="rights">جميع الحقوق محفوظة</span></p>
+            </div>
         </div>
     </footer>
 
-    <script>
-        // الوضع الليلي
-        (function() {
-            const themeToggle = document.getElementById('themeToggle');
-            const html = document.documentElement;
-            let theme = localStorage.getItem('theme') || 'dark';
-            html.setAttribute('data-theme', theme);
-            themeToggle.textContent = theme === 'dark' ? '☀️' : '🌙';
-
-            themeToggle.addEventListener('click', () => {
-                const current = html.getAttribute('data-theme');
-                const newTheme = current === 'dark' ? 'light' : 'dark';
-                html.setAttribute('data-theme', newTheme);
-                localStorage.setItem('theme', newTheme);
-                themeToggle.textContent = newTheme === 'dark' ? '☀️' : '🌙';
-            });
-        })();
-
-        // ترجمة بسيطة (اختياري)
-        const langToggle = document.getElementById('langToggle');
-        let currentLang = 'ar';
-        langToggle.addEventListener('click', () => {
-            currentLang = currentLang === 'ar' ? 'en' : 'ar';
-            document.documentElement.lang = currentLang;
-            document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
-            langToggle.textContent = currentLang === 'ar' ? 'EN' : 'AR';
-        });
-
-        // قائمة الهامبرغر
-        const hamburger = document.querySelector('.hamburger');
-        const navMenu = document.querySelector('.nav-menu');
-        hamburger.addEventListener('click', () => navMenu.classList.toggle('active'));
-
-        // منع إرسال النموذج
-        document.getElementById('contactForm').addEventListener('submit', e => {
-            e.preventDefault();
-            alert('تم إرسال رسالتك (محاكاة)');
-        });
-    </script>
-    <!-- Font Awesome للأيقونات (يُحمّل آخراً) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js" defer></script>
+    <script src="script.js" defer></script>
 </body>
 </html>
