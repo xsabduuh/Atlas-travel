@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سفاري - إتمام الحجز</title>
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- ربط ملف CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* تنسيقات إضافية خاصة بصفحة الحجز */
+        .booking-section {
+            padding: 120px 0 60px;
+            min-height: 100vh;
+        }
+        .booking-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+        }
+        .package-summary {
+            background: var(--bg);
+            border-radius: 15px;
+            padding: 30px;
+            border: 1px solid var(--border);
+        }
+        .package-summary img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .summary-title {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--text);
+        }
+        .summary-detail {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-secondary);
+        }
+        .summary-detail span:last-child {
+            color: var(--primary);
+            font-weight: bold;
+        }
+        .total-price {
+            font-size: 2rem;
+            color: var(--secondary);
+            margin-top: 20px;
+            text-align: left;
+        }
+        .booking-form {
+            background: var(--bg);
+            border-radius: 15px;
+            padding: 30px;
+            border: 1px solid var(--border);
+        }
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text);
+            font-weight: 500;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text);
+            font-size: 1rem;
+        }
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        .btn-booking {
+            width: 100%;
+            padding: 15px;
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 20px;
+        }
+        .btn-booking:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .back-link i {
+            margin-left: 5px;
+        }
+        @media (max-width: 768px) {
+            .booking-wrapper {
+                grid-template-columns: 1fr;
+                padding: 20px;
+            }
+            .booking-section {
+                padding: 100px 20px 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- شريط التنقل (مصغر) -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="logo.jpg" alt="سفاري" width="40" height="40" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <span style="display:none;">سفاري</span>
+            </div>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle">🌙</button>
+                <button class="lang-switch" id="langToggle">EN</button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="booking-section">
+            <div class="container">
+                <a href="index.html" class="back-link"><i class="fas fa-arrow-right"></i> العودة للرئيسية</a>
+                <div class="booking-wrapper" data-aos="fade-up">
+                    <!-- الجانب الأيسر: ملخص الرحلة -->
+                    <div class="package-summary" id="packageSummary">
+                        <img src="" alt="" id="packageImage">
+                        <h2 class="summary-title" id="packageName">جاري التحميل...</h2>
+                        <div class="summary-detail">
+                            <span>المدة</span>
+                            <span id="packageDuration"></span>
+                        </div>
+                        <div class="summary-detail">
+                            <span>عدد الأشخاص</span>
+                            <span id="packagePersons"></span>
+                        </div>
+                        <div class="summary-detail">
+                            <span>تاريخ المغادرة</span>
+                            <span id="packageDate"></span>
+                        </div>
+                        <div class="total-price" id="packagePrice"></div>
+                    </div>
+
+                    <!-- الجانب الأيمن: نموذج الحجز -->
+                    <div class="booking-form">
+                        <h2 style="margin-bottom: 20px; color: var(--text);">معلومات الحجز</h2>
+                        <form id="bookingForm">
+                            <div class="form-group">
+                                <label>الاسم الكامل</label>
+                                <input type="text" id="fullName" required>
+                            </div>
+                            <div class="form-group">
+                                <label>البريد الإلكتروني</label>
+                                <input type="email" id="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label>رقم الهاتف</label>
+                                <input type="tel" id="phone" required>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>عدد البالغين</label>
+                                    <select id="adults">
+                                        <option value="1">1</option>
+                                        <option value="2" selected>2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>عدد الأطفال</label>
+                                    <select id="children">
+                                        <option value="0">0</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>تاريخ المغادرة</label>
+                                <input type="date" id="departureDate" required>
+                            </div>
+                            <div class="form-group">
+                                <label>ملاحظات إضافية</label>
+                                <textarea id="notes" rows="3" placeholder="أي متطلبات خاصة..."></textarea>
+                            </div>
+                            <button type="submit" class="btn-booking">تأكيد الحجز</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // ===== إعدادات الصفحة =====
+        AOS.init({ duration: 800, once: true });
+
+        // ===== استرجاع بيانات الباقة من الرابط =====
+        const urlParams = new URLSearchParams(window.location.search);
+        const packageId = urlParams.get('id') || 'paris'; // افتراضي باريس
+
+        // بيانات الباقات (يمكن جلبها من API أو مصدر خارجي)
+        const packages = {
+            paris: {
+                name: 'رحلة باريس',
+                price: 799,
+                currency: 'درهم',
+                duration: '5 أيام / 4 ليالي',
+                image: 'package-paris.jpg',
+                persons: '2-4 أشخاص',
+                date: 'اختياري'
+            },
+            bali: {
+                name: 'عطلة بالي',
+                price: 649,
+                currency: 'درهم',
+                duration: '7 أيام / 6 ليالي',
+                image: 'package-bali.jpg',
+                persons: '2-5 أشخاص',
+                date: 'اختياري'
+            },
+            dubai: {
+                name: 'دبي الفاخرة',
+                price: 999,
+                currency: 'درهم',
+                duration: '4 أيام / 3 ليالي',
+                image: 'package-dubai.jpg',
+                persons: '2-3 أشخاص',
+                date: 'اختياري'
+            },
+            morocco: {
+                name: 'المغرب الساحر',
+                price: 549,
+                currency: 'درهم',
+                duration: '8 أيام / 7 ليالي',
+                image: 'package-morocco.jpg',
+                persons: '2-6 أشخاص',
+                date: 'اختياري'
+            }
+        };
+
+        const selectedPackage = packages[packageId] || packages.paris;
+
+        // عرض البيانات في الصفحة
+        document.getElementById('packageImage').src = selectedPackage.image;
+        document.getElementById('packageImage').alt = selectedPackage.name;
+        document.getElementById('packageName').textContent = selectedPackage.name;
+        document.getElementById('packageDuration').textContent = selectedPackage.duration;
+        document.getElementById('packagePersons').textContent = selectedPackage.persons;
+        document.getElementById('packageDate').textContent = 'مرن حسب توفرك';
+        document.getElementById('packagePrice').textContent = `${selectedPackage.price} ${selectedPackage.currency}`;
+
+        // ===== الوضع الليلي =====
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+        let theme = localStorage.getItem('theme') || 'dark';
+        html.setAttribute('data-theme', theme);
+        themeToggle.textContent = theme === 'dark' ? '☀️' : '🌙';
+        themeToggle.addEventListener('click', () => {
+            const newTheme = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            themeToggle.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+        });
+
+        // ===== الترجمة =====
+        const langToggle = document.getElementById('langToggle');
+        let currentLang = localStorage.getItem('lang') || 'ar';
+        function setLanguage(lang) {
+            currentLang = lang;
+            html.lang = lang;
+            document.body.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            langToggle.textContent = lang === 'ar' ? 'EN' : 'AR';
+            localStorage.setItem('lang', lang);
+            // تحديث العملة
+            const currencyEl = document.getElementById('packagePrice');
+            if (currencyEl) {
+                const price = selectedPackage.price;
+                currencyEl.textContent = lang === 'ar' ? `${price} درهم` : `${price} MAD`;
+            }
+        }
+        setLanguage(currentLang);
+        langToggle.addEventListener('click', () => {
+            setLanguage(currentLang === 'ar' ? 'en' : 'ar');
+        });
+
+        // ===== معالجة إرسال النموذج =====
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // جمع البيانات
+            const formData = {
+                package: selectedPackage.name,
+                name: document.getElementById('fullName').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                adults: document.getElementById('adults').value,
+                children: document.getElementById('children').value,
+                date: document.getElementById('departureDate').value,
+                notes: document.getElementById('notes').value
+            };
+            // هنا يمكن إرسال البيانات إلى الخادم أو عرض رسالة تأكيد
+            alert(currentLang === 'ar' ? 'تم إرسال طلب الحجز بنجاح! سنتواصل معك قريباً.' : 'Booking request sent successfully! We will contact you soon.');
+            // اختياري: إعادة التوجيه إلى صفحة شكر
+            // window.location.href = 'thankyou.html';
+        });
+    </script>
+</body>
+</html>
