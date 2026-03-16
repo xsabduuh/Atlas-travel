@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>سفاري - وكالة سفر</title>
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
@@ -15,10 +17,10 @@
                 <span style="display:none;">سفاري</span>
             </div>
             <ul class="nav-menu">
-                <li><a href="#home" data-i18n="home">الرئيسية</a></li>
-                <li><a href="#destinations" data-i18n="destinations">الوجهات</a></li>
-                <li><a href="#packages" data-i18n="packages">الباقات</a></li>
-                <li><a href="#contact" data-i18n="contact">اتصل بنا</a></li>
+                <li><a href="#home" class="nav-link" data-i18n="home">الرئيسية</a></li>
+                <li><a href="#destinations" class="nav-link" data-i18n="destinations">الوجهات</a></li>
+                <li><a href="#packages" class="nav-link" data-i18n="packages">الباقات</a></li>
+                <li><a href="#contact" class="nav-link" data-i18n="contact">اتصل بنا</a></li>
             </ul>
             <div class="nav-actions">
                 <button class="theme-toggle" id="themeToggle">🌙</button>
@@ -34,7 +36,7 @@
     <main>
         <!-- الهيرو -->
         <section id="home" class="hero">
-            <div class="hero-content">
+            <div class="hero-content" data-aos="fade-up">
                 <h1 data-i18n="hero_title">اكتشف جمال العالم مع سفاري</h1>
                 <p data-i18n="hero_desc">رحلات مخصصة، عروض حصرية، وتجارب لا تُنسى. احجز الآن وانطلق في مغامرتك القادمة.</p>
                 <a href="#packages" class="btn-primary" data-i18n="hero_btn">استكشف الباقات</a>
@@ -44,29 +46,29 @@
         <!-- الوجهات -->
         <section id="destinations" class="destinations">
             <div class="container">
-                <h2 class="section-title" data-i18n="destinations_title">وجهات سياحية مميزة</h2>
+                <h2 class="section-title" data-aos="fade-up" data-i18n="destinations_title">وجهات سياحية مميزة</h2>
                 <div class="destinations-grid">
-                    <div class="destination-card">
+                    <div class="destination-card" data-aos="zoom-in" data-aos-delay="100">
                         <img src="paris.jpg" alt="باريس" width="300" height="200" loading="lazy">
                         <h3>باريس</h3>
                         <p data-i18n="paris_desc">مدينة النور والرومانسية</p>
                     </div>
-                    <div class="destination-card">
+                    <div class="destination-card" data-aos="zoom-in" data-aos-delay="200">
                         <img src="bali.jpg" alt="بالي" width="300" height="200" loading="lazy">
                         <h3>بالي</h3>
                         <p data-i18n="bali_desc">جنة استوائية ساحرة</p>
                     </div>
-                    <div class="destination-card">
+                    <div class="destination-card" data-aos="zoom-in" data-aos-delay="300">
                         <img src="dubai.jpg" alt="دبي" width="300" height="200" loading="lazy">
                         <h3>دبي</h3>
                         <p data-i18n="dubai_desc">مدينة المستقبل والتسوق</p>
                     </div>
-                    <div class="destination-card">
+                    <div class="destination-card" data-aos="zoom-in" data-aos-delay="400">
                         <img src="morocco.jpg" alt="المغرب" width="300" height="200" loading="lazy">
                         <h3>المغرب</h3>
                         <p data-i18n="morocco_desc">ثقافة وأصالة وتنوع</p>
                     </div>
-                    <div class="destination-card">
+                    <div class="destination-card" data-aos="zoom-in" data-aos-delay="500">
                         <img src="newyork.jpg" alt="نيويورك" width="300" height="200" loading="lazy">
                         <h3>نيويورك</h3>
                         <p data-i18n="ny_desc">المدينة التي لا تنام</p>
@@ -75,46 +77,46 @@
             </div>
         </section>
 
-        <!-- الباقات -->
+        <!-- الباقات (تم تغيير العملة إلى درهم) -->
         <section id="packages" class="packages">
             <div class="container">
-                <h2 class="section-title" data-i18n="packages_title">باقات سفر مميزة</h2>
+                <h2 class="section-title" data-aos="fade-up" data-i18n="packages_title">باقات سفر مميزة</h2>
                 <div class="packages-grid">
-                    <div class="package-card">
+                    <div class="package-card" data-aos="flip-right">
                         <img src="package-paris.jpg" alt="باريس" width="300" height="200" loading="lazy">
                         <div class="package-info">
                             <h3>رحلة باريس</h3>
-                            <div class="price">$799</div>
+                            <div class="price">799 <span class="currency">درهم</span></div>
                             <div class="duration" data-i18n="duration_paris">5 أيام / 4 ليالي</div>
                             <div class="rating">★★★★☆</div>
                             <a href="#" class="btn-secondary" data-i18n="book_now">احجز الآن</a>
                         </div>
                     </div>
-                    <div class="package-card">
+                    <div class="package-card" data-aos="flip-right" data-aos-delay="100">
                         <img src="package-bali.jpg" alt="بالي" width="300" height="200" loading="lazy">
                         <div class="package-info">
                             <h3>عطلة بالي</h3>
-                            <div class="price">$649</div>
+                            <div class="price">649 <span class="currency">درهم</span></div>
                             <div class="duration" data-i18n="duration_bali">7 أيام / 6 ليالي</div>
                             <div class="rating">★★★★★</div>
                             <a href="#" class="btn-secondary" data-i18n="book_now">احجز الآن</a>
                         </div>
                     </div>
-                    <div class="package-card">
+                    <div class="package-card" data-aos="flip-right" data-aos-delay="200">
                         <img src="package-dubai.jpg" alt="دبي" width="300" height="200" loading="lazy">
                         <div class="package-info">
                             <h3>دبي الفاخرة</h3>
-                            <div class="price">$999</div>
+                            <div class="price">999 <span class="currency">درهم</span></div>
                             <div class="duration" data-i18n="duration_dubai">4 أيام / 3 ليالي</div>
                             <div class="rating">★★★★★</div>
                             <a href="#" class="btn-secondary" data-i18n="book_now">احجز الآن</a>
                         </div>
                     </div>
-                    <div class="package-card">
+                    <div class="package-card" data-aos="flip-right" data-aos-delay="300">
                         <img src="package-morocco.jpg" alt="المغرب" width="300" height="200" loading="lazy">
                         <div class="package-info">
                             <h3>المغرب الساحر</h3>
-                            <div class="price">$549</div>
+                            <div class="price">549 <span class="currency">درهم</span></div>
                             <div class="duration" data-i18n="duration_morocco">8 أيام / 7 ليالي</div>
                             <div class="rating">★★★★☆</div>
                             <a href="#" class="btn-secondary" data-i18n="book_now">احجز الآن</a>
@@ -127,24 +129,24 @@
         <!-- لماذا نحن -->
         <section class="why-us">
             <div class="container">
-                <h2 class="section-title" data-i18n="why_title">لماذا تختار سفاري؟</h2>
+                <h2 class="section-title" data-aos="fade-up" data-i18n="why_title">لماذا تختار سفاري؟</h2>
                 <div class="features-grid">
-                    <div class="feature">
+                    <div class="feature" data-aos="fade-up" data-aos-delay="100">
                         <img src="why1.jpg" alt="أفضل سعر" width="80" height="80" loading="lazy">
                         <h3 data-i18n="why_price">أفضل سعر مضمون</h3>
                         <p data-i18n="why_price_desc">نضمن لك أقل الأسعار في السوق</p>
                     </div>
-                    <div class="feature">
+                    <div class="feature" data-aos="fade-up" data-aos-delay="200">
                         <img src="why2.jpg" alt="مرشدين" width="80" height="80" loading="lazy">
                         <h3 data-i18n="why_guides">مرشدين محترفين</h3>
                         <p data-i18n="why_guides_desc">مرشدون محليون بخبرة عالية</p>
                     </div>
-                    <div class="feature">
+                    <div class="feature" data-aos="fade-up" data-aos-delay="300">
                         <img src="why3.jpg" alt="دعم" width="80" height="80" loading="lazy">
                         <h3 data-i18n="why_support">دعم 24/7</h3>
                         <p data-i18n="why_support_desc">فريق دعم متاح 24/7 لمساعدتك</p>
                     </div>
-                    <div class="feature">
+                    <div class="feature" data-aos="fade-up" data-aos-delay="400">
                         <img src="why4.jpg" alt="حجز آمن" width="80" height="80" loading="lazy">
                         <h3 data-i18n="why_secure">حجز آمن وموثوق</h3>
                         <p data-i18n="why_secure_desc">بياناتك آمنة مع تقنيات التشفير</p>
@@ -156,9 +158,9 @@
         <!-- آراء العملاء -->
         <section class="testimonials">
             <div class="container">
-                <h2 class="section-title" data-i18n="testimonials_title">آراء المسافرين</h2>
+                <h2 class="section-title" data-aos="fade-up" data-i18n="testimonials_title">آراء المسافرين</h2>
                 <div class="testimonials-grid">
-                    <div class="testimonial-card">
+                    <div class="testimonial-card" data-aos="zoom-in" data-aos-delay="100">
                         <img src="testimonial1.jpg" alt="محمد" width="100" height="100" loading="lazy">
                         <div class="testimonial-content">
                             <p data-i18n="testimonial1">"أفضل وكالة سفر تعاملت معها. الرحلة كانت رائعة والتنظيم ممتاز."</p>
@@ -166,7 +168,7 @@
                             <div class="rating">★★★★★</div>
                         </div>
                     </div>
-                    <div class="testimonial-card">
+                    <div class="testimonial-card" data-aos="zoom-in" data-aos-delay="200">
                         <img src="testimonial2.jpg" alt="سارة" width="100" height="100" loading="lazy">
                         <div class="testimonial-content">
                             <p data-i18n="testimonial2">"باقات متنوعة وأسعار منافسة. سأكرر التجربة بالتأكيد."</p>
@@ -174,7 +176,7 @@
                             <div class="rating">★★★★★</div>
                         </div>
                     </div>
-                    <div class="testimonial-card">
+                    <div class="testimonial-card" data-aos="zoom-in" data-aos-delay="300">
                         <img src="testimonial3.jpg" alt="خالد" width="100" height="100" loading="lazy">
                         <div class="testimonial-content">
                             <p data-i18n="testimonial3">"الدعم الفوري والمرشدين المحترفين جعلوا الرحلة لا تنسى."</p>
@@ -189,14 +191,14 @@
         <!-- معرض الصور -->
         <section class="gallery">
             <div class="container">
-                <h2 class="section-title" data-i18n="gallery_title">معرض الصور</h2>
+                <h2 class="section-title" data-aos="fade-up" data-i18n="gallery_title">معرض الصور</h2>
                 <div class="gallery-grid">
-                    <img src="gallery1.jpg" alt="صورة 1" width="400" height="250" loading="lazy">
-                    <img src="gallery2.jpg" alt="صورة 2" width="400" height="250" loading="lazy">
-                    <img src="gallery3.jpg" alt="صورة 3" width="400" height="250" loading="lazy">
-                    <img src="gallery4.jpg" alt="صورة 4" width="400" height="250" loading="lazy">
-                    <img src="gallery5.jpg" alt="صورة 5" width="400" height="250" loading="lazy">
-                    <img src="gallery6.jpg" alt="صورة 6" width="400" height="250" loading="lazy">
+                    <img src="gallery1.jpg" alt="صورة 1" data-aos="flip-left" width="400" height="250" loading="lazy">
+                    <img src="gallery2.jpg" alt="صورة 2" data-aos="flip-left" data-aos-delay="100" width="400" height="250" loading="lazy">
+                    <img src="gallery3.jpg" alt="صورة 3" data-aos="flip-left" data-aos-delay="200" width="400" height="250" loading="lazy">
+                    <img src="gallery4.jpg" alt="صورة 4" data-aos="flip-left" data-aos-delay="300" width="400" height="250" loading="lazy">
+                    <img src="gallery5.jpg" alt="صورة 5" data-aos="flip-left" data-aos-delay="400" width="400" height="250" loading="lazy">
+                    <img src="gallery6.jpg" alt="صورة 6" data-aos="flip-left" data-aos-delay="500" width="400" height="250" loading="lazy">
                 </div>
             </div>
         </section>
@@ -204,9 +206,9 @@
         <!-- الاتصال -->
         <section id="contact" class="contact">
             <div class="container">
-                <h2 class="section-title" data-i18n="contact_title">اتصل بنا</h2>
+                <h2 class="section-title" data-aos="fade-up" data-i18n="contact_title">اتصل بنا</h2>
                 <div class="contact-wrapper">
-                    <form id="contactForm">
+                    <form id="contactForm" data-aos="fade-left">
                         <input type="text" id="name" placeholder=" " data-i18n-placeholder="name_placeholder">
                         <label for="name" data-i18n="name">الاسم</label>
                         <input type="email" id="email" placeholder=" " data-i18n-placeholder="email_placeholder">
@@ -215,7 +217,7 @@
                         <label for="message" data-i18n="message">رسالتك</label>
                         <button type="submit" class="btn-primary" data-i18n="send">إرسال</button>
                     </form>
-                    <div class="contact-info">
+                    <div class="contact-info" data-aos="fade-right">
                         <h3 data-i18n="contact_info">معلومات التواصل</h3>
                         <p><i class="fas fa-phone"></i> +212 123 456 789</p>
                         <p><i class="fas fa-envelope"></i> info@safari.ma</p>
@@ -225,6 +227,9 @@
             </div>
         </section>
     </main>
+
+    <!-- زر العودة إلى الأعلى -->
+    <button class="back-to-top" id="backToTop" aria-label="العودة للأعلى">↑</button>
 
     <footer>
         <div class="container">
@@ -258,6 +263,8 @@
         </div>
     </footer>
 
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="script.js" defer></script>
 </body>
 </html>
