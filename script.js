@@ -138,7 +138,7 @@ function setLanguage(lang) {
     }
   });
 
-  // تحديث العملة في بطاقات الباقات
+  // تحديث العملة
   document.querySelectorAll('.currency').forEach(el => {
     el.textContent = lang === 'ar' ? 'درهم' : 'MAD';
   });
