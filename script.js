@@ -1,4 +1,4 @@
-// Language translations
+// قاموس الترجمة
 const translations = {
     ar: {
         home: 'الرئيسية',
@@ -104,19 +104,19 @@ const translations = {
 
 let currentLang = 'ar';
 
-// DOM Elements
+// عناصر DOM
 const langToggle = document.getElementById('langToggle');
 const html = document.documentElement;
 const body = document.body;
 
-// Function to update language
+// دالة تغيير اللغة
 function setLanguage(lang) {
     currentLang = lang;
     html.lang = lang;
     body.dir = lang === 'ar' ? 'rtl' : 'ltr';
     langToggle.textContent = lang === 'ar' ? 'EN' : 'AR';
 
-    // Update all elements with data-i18n
+    // تحديث جميع العناصر التي تحمل الخاصية data-i18n
     document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
         if (translations[lang][key]) {
@@ -124,7 +124,7 @@ function setLanguage(lang) {
         }
     });
 
-    // Update placeholders
+    // تحديث placeholders
     document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
         const key = el.getAttribute('data-i18n-placeholder');
         if (translations[lang][key]) {
@@ -133,12 +133,12 @@ function setLanguage(lang) {
     });
 }
 
-// Toggle language
+// تبديل اللغة عند النقر على الزر
 langToggle.addEventListener('click', () => {
     setLanguage(currentLang === 'ar' ? 'en' : 'ar');
 });
 
-// Mobile menu toggle
+// قائمة الهاتف المحمول
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
 
@@ -147,7 +147,7 @@ hamburger.addEventListener('click', () => {
     hamburger.classList.toggle('active');
 });
 
-// Close menu when clicking a link
+// إغلاق القائمة عند النقر على رابط
 document.querySelectorAll('.nav-menu a').forEach(link => {
     link.addEventListener('click', () => {
         navMenu.classList.remove('active');
@@ -155,7 +155,7 @@ document.querySelectorAll('.nav-menu a').forEach(link => {
     });
 });
 
-// Smooth scrolling for anchor links
+// تمرير سلس للروابط الداخلية
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
         e.preventDefault();
@@ -166,14 +166,14 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Contact form submission (prevent default)
+// معالجة إرسال نموذج الاتصال
 document.getElementById('contactForm').addEventListener('submit', function(e) {
     e.preventDefault();
     alert(currentLang === 'ar' ? 'تم إرسال رسالتك بنجاح!' : 'Your message has been sent!');
     this.reset();
 });
 
-// Navbar background on scroll
+// تغيير خلفية الشريط عند التمرير
 window.addEventListener('scroll', () => {
     const header = document.querySelector('header');
     if (window.scrollY > 50) {
