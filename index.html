@@ -4,737 +4,875 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CodeCraft Academy</title>
-<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<title>CodeCraft Academy - تعلم البرمجة من الصفر للاحتراف</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#070b14;--bg2:#0d1220;--bg3:#131926;--bg4:#1a2235;--bdr:rgba(255,255,255,.07);--bdr2:rgba(255,255,255,.12);--ac:#00d4ff;--ac2:#7c3aed;--ac3:#f59e0b;--gr:#10b981;--rd:#ef4444;--tx:#e2e8f0;--mu:#64748b;--mu2:#94a3b8;--sb:270px}
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{font-family:"Tajawal",sans-serif;background:var(--bg);color:var(--tx);overflow-x:hidden;min-height:100vh}
-button{cursor:pointer;font-family:"Tajawal",sans-serif;border:none;outline:none;background:none}
-code,pre{font-family:"JetBrains Mono",monospace}
-::-webkit-scrollbar{width:4px;height:4px}
-::-webkit-scrollbar-track{background:var(--bg2)}
-::-webkit-scrollbar-thumb{background:var(--ac2);border-radius:2px}
-#app{display:flex;min-height:100vh}
-#sb{width:var(--sb);flex-shrink:0;background:var(--bg2);border-left:1px solid var(--bdr);display:flex;flex-direction:column;height:100vh;position:sticky;top:0;overflow-y:auto;z-index:100}
-.sbl{padding:20px;border-bottom:1px solid var(--bdr);display:flex;align-items:center;gap:10px}
-.sbi{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--ac2),var(--ac));display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
-.sbt{font-size:16px;font-weight:800;color:#fff}
-.sbp{padding:14px 20px;border-bottom:1px solid var(--bdr)}
-.spl{display:flex;justify-content:space-between;font-size:12px;color:var(--mu2);margin-bottom:8px;font-weight:700}
-.spb{height:4px;background:var(--bg4);border-radius:99px;overflow:hidden}
-.spf{height:100%;background:linear-gradient(90deg,var(--ac2),var(--ac));border-radius:99px;transition:width .5s}
-.ni{display:flex;align-items:center;gap:10px;padding:9px 20px;cursor:pointer;font-size:13px;font-weight:600;color:var(--mu2);transition:all .2s;border-right:2px solid transparent}
-.ni:hover{color:var(--tx);background:rgba(255,255,255,.03)}
-.ni.act{color:var(--ac);background:rgba(0,212,255,.05);border-right-color:var(--ac)}
-.ni.dn{color:var(--gr)}
-.nc{width:16px;height:16px;border-radius:50%;border:1.5px solid var(--bdr2);display:flex;align-items:center;justify-content:center;font-size:9px;flex-shrink:0}
-.ni.dn .nc{background:var(--gr);border-color:var(--gr);color:#000}
-.pnh{display:flex;align-items:center;gap:8px;padding:10px 20px;font-size:12px;font-weight:800;color:var(--tx);background:var(--bg3);border-top:1px solid var(--bdr);border-bottom:1px solid var(--bdr)}
-#mn{flex:1;display:flex;flex-direction:column;overflow:hidden}
-#tb{height:60px;background:rgba(7,11,20,.9);backdrop-filter:blur(20px);border-bottom:1px solid var(--bdr);display:flex;align-items:center;justify-content:space-between;padding:0 28px;position:sticky;top:0;z-index:50;gap:16px}
-.tbt{font-size:14px;font-weight:700}
-.tbb{font-size:11px;color:var(--mu);margin-top:2px}
-#mb{display:none;width:36px;height:36px;border-radius:8px;background:var(--bg3);border:1px solid var(--bdr);align-items:center;justify-content:center;font-size:18px;cursor:pointer;flex-shrink:0}
-.btn{display:inline-flex;align-items:center;gap:6px;padding:8px 18px;border-radius:8px;font-size:13px;font-weight:700;transition:all .2s;cursor:pointer;white-space:nowrap;font-family:"Tajawal",sans-serif}
-.btnp{background:linear-gradient(135deg,var(--ac2),var(--ac));color:#fff;box-shadow:0 4px 20px rgba(124,58,237,.3);border:none}
-.btnp:hover{transform:translateY(-1px)}
-.btng{background:var(--bg3);border:1px solid var(--bdr2);color:var(--tx)}
-.btng:hover{border-color:var(--ac);color:var(--ac)}
-.btnsm{padding:6px 14px;font-size:12px}
-#ct{flex:1;overflow-y:auto;padding:36px 44px}
-.hero{background:linear-gradient(135deg,var(--bg2),var(--bg3));border:1px solid var(--bdr);border-radius:20px;padding:44px;margin-bottom:32px;position:relative;overflow:hidden}
-.hb{display:inline-flex;align-items:center;gap:6px;background:rgba(0,212,255,.1);border:1px solid rgba(0,212,255,.2);color:var(--ac);font-size:11px;font-weight:700;padding:4px 12px;border-radius:99px;letter-spacing:1px;margin-bottom:14px}
-.dot{width:6px;height:6px;border-radius:50%;background:var(--gr);animation:pu 2s infinite}
-@keyframes pu{50%{opacity:.2;transform:scale(.5)}}
-.hero h1{font-size:clamp(24px,4vw,40px);font-weight:900;line-height:1.15;margin-bottom:12px;background:linear-gradient(135deg,#fff 30%,var(--ac));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hero p{color:var(--mu2);font-size:14px;line-height:1.8;max-width:540px;margin-bottom:22px}
-.hst{display:flex;gap:24px;flex-wrap:wrap}
-.hst strong{font-size:20px;font-weight:900;color:var(--ac);display:block}
-.hst span{font-size:11px;color:var(--mu)}
-.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;margin-bottom:32px}
-.pc{background:var(--bg2);border:1px solid var(--bdr);border-radius:16px;padding:22px;cursor:pointer;transition:all .25s}
-.pc:hover{transform:translateY(-4px);border-color:var(--bdr2);box-shadow:0 12px 40px rgba(0,0,0,.3)}
-.pci{font-size:26px;margin-bottom:12px}
-.pcph{font-size:10px;font-weight:700;color:var(--mu);letter-spacing:2px;text-transform:uppercase;margin-bottom:4px}
-.pct{font-size:16px;font-weight:800;margin-bottom:5px}
-.pcd{font-size:12px;color:var(--mu2);line-height:1.6;margin-bottom:14px}
-.pcb{height:3px;background:var(--bg4);border-radius:99px;overflow:hidden;margin-bottom:7px}
-.pcbf{height:100%;border-radius:99px;transition:width .5s}
-.pcm{display:flex;justify-content:space-between;font-size:11px;color:var(--mu)}
-.lh{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:26px;padding-bottom:20px;border-bottom:1px solid var(--bdr);flex-wrap:wrap}
-.lbg{font-size:10px;font-weight:700;padding:3px 10px;border-radius:99px;background:rgba(124,58,237,.15);color:#a78bfa;border:1px solid rgba(124,58,237,.2);margin-bottom:7px;display:inline-block}
-.lh h2{font-size:clamp(18px,3vw,26px);font-weight:900;margin-bottom:5px}
-.bl{font-size:10px;font-weight:700;color:var(--ac);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px}
-.lt{font-size:14px;color:var(--mu2);line-height:1.9;margin-bottom:14px}
-.lt strong{color:var(--tx);font-weight:700}
-.lt em{color:var(--ac);font-style:normal}
-.cw{background:#0a0e1a;border:1px solid var(--bdr2);border-radius:12px;overflow:hidden;margin:14px 0}
-.ctop{display:flex;align-items:center;justify-content:space-between;padding:9px 14px;background:rgba(255,255,255,.03);border-bottom:1px solid var(--bdr)}
-.cdts{display:flex;gap:5px}
-.cdts span{width:10px;height:10px;border-radius:50%}
-.clng{font-size:10px;font-weight:700;color:var(--mu);letter-spacing:1px;text-transform:uppercase}
-.cpb{font-size:11px;font-weight:700;color:var(--mu);padding:3px 10px;border-radius:6px;border:1px solid var(--bdr);cursor:pointer;transition:all .2s;background:var(--bg3);font-family:"Tajawal",sans-serif}
-.cpb:hover{color:var(--ac);border-color:var(--ac)}
-.cpb.ok{color:var(--gr);border-color:var(--gr)}
-pre.cc{padding:18px;font-size:12px;line-height:1.8;overflow-x:auto;color:#abb2bf;white-space:pre}
-.ib{display:flex;gap:12px;padding:14px;border-radius:12px;margin:14px 0;font-size:13px;line-height:1.7}
-.itp{background:rgba(16,185,129,.07);border:1px solid rgba(16,185,129,.15);color:#6ee7b7}
-.iwr{background:rgba(245,158,11,.07);border:1px solid rgba(245,158,11,.15);color:#fcd34d}
-.int{background:rgba(0,212,255,.07);border:1px solid rgba(0,212,255,.15);color:#67e8f9}
-.sd{display:flex;align-items:center;gap:12px;margin:26px 0 18px}
-.sd h3{font-size:16px;font-weight:800;white-space:nowrap}
-.sd::after{content:"";flex:1;height:1px;background:var(--bdr)}
-.cb{display:flex;align-items:center;justify-content:center;gap:10px;padding:14px 28px;border-radius:12px;background:linear-gradient(135deg,var(--ac2),var(--ac));color:#fff;font-size:15px;font-weight:800;cursor:pointer;transition:all .25s;margin-top:26px;border:none;font-family:"Tajawal",sans-serif;width:100%}
-.cb:hover{transform:translateY(-2px)}
-.cb.dn{background:linear-gradient(135deg,var(--gr),#059669);cursor:default}
-.cb.dn:hover{transform:none}
-.qw{background:var(--bg2);border:1px solid var(--bdr);border-radius:16px;padding:28px;margin-top:32px}
-.qhd{display:flex;align-items:center;gap:12px;margin-bottom:22px}
-.qic{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,var(--ac3),#f97316);display:flex;align-items:center;justify-content:center;font-size:20px}
-.qtl{font-size:18px;font-weight:800}
-.qsb{font-size:12px;color:var(--mu);margin-top:2px}
-.qpb{height:3px;background:var(--bg4);border-radius:99px;overflow:hidden;margin-bottom:22px}
-.qpf{height:100%;background:linear-gradient(90deg,var(--ac3),#f97316);border-radius:99px;transition:width .4s}
-.qbl{margin-bottom:22px}
-.qn{font-size:11px;font-weight:700;color:var(--ac3);letter-spacing:1px;margin-bottom:5px}
-.qq{font-size:14px;font-weight:700;margin-bottom:12px;line-height:1.6}
-.ops{display:flex;flex-direction:column;gap:8px}
-.op{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:10px;border:1.5px solid var(--bdr);background:var(--bg3);cursor:pointer;transition:all .2s;font-size:13px;font-weight:600;font-family:"Tajawal",sans-serif;text-align:right;width:100%}
-.op:hover{border-color:var(--ac2);background:rgba(124,58,237,.07)}
-.op.sel{border-color:var(--ac2);background:rgba(124,58,237,.12);color:#a78bfa}
-.op.cor{border-color:var(--gr)!important;background:rgba(16,185,129,.1)!important;color:#6ee7b7!important}
-.op.wrg{border-color:var(--rd)!important;background:rgba(239,68,68,.1)!important;color:#fca5a5!important}
-.ol{width:24px;height:24px;border-radius:6px;background:var(--bg4);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;flex-shrink:0;font-family:"JetBrains Mono",monospace}
-.qsub{padding:12px 26px;border-radius:12px;background:linear-gradient(135deg,var(--ac3),#f97316);color:#fff;font-size:14px;font-weight:800;cursor:pointer;transition:all .25s;border:none;font-family:"Tajawal",sans-serif;margin-top:6px}
-.qsub:hover{transform:translateY(-1px)}
-.qsub:disabled{opacity:.5;cursor:not-allowed;transform:none}
-.qres{text-align:center;padding:26px;background:var(--bg3);border-radius:14px;margin-top:16px}
-.rsc{font-size:44px;font-weight:900;margin-bottom:8px}
-.rms{font-size:14px;color:var(--mu2);margin-bottom:14px}
-#toast{position:fixed;bottom:22px;right:22px;z-index:9999;background:var(--bg4);border:1px solid var(--bdr2);padding:12px 18px;border-radius:12px;font-size:13px;font-weight:700;color:var(--tx);box-shadow:0 8px 32px rgba(0,0,0,.4);transform:translateY(80px);opacity:0;transition:all .3s;pointer-events:none}
-#toast.show{transform:translateY(0);opacity:1}
-#ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:90}
-@keyframes fu{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
-.fu{animation:fu .35s ease forwards}
-@keyframes cf{0%{transform:translateY(-10px) rotate(0deg);opacity:1}100%{transform:translateY(100px) rotate(720deg);opacity:0}}
-.cfp{position:fixed;top:0;width:8px;height:8px;border-radius:2px;animation:cf 1s ease forwards;pointer-events:none;z-index:9998}
-@media(max-width:860px){#sb{position:fixed;right:0;top:0;height:100vh;transform:translateX(100%);transition:transform .3s;z-index:100}#sb.open{transform:translateX(0)}#mb{display:flex}#ov.show{display:block}#ct{padding:22px 18px}.hero{padding:24px}.pgrid{grid-template-columns:1fr}.lh{flex-direction:column}}
+/* ========================================
+   CODECRAFT ACADEMY - INDEX PAGE
+   Design: Dark futuristic, code-terminal aesthetic
+======================================== */
+:root {
+  --bg:       #060810;
+  --bg2:      #0c1018;
+  --bg3:      #111620;
+  --bg4:      #181f2e;
+  --bdr:      rgba(255,255,255,.06);
+  --bdr2:     rgba(255,255,255,.11);
+  --ac:       #00e5ff;
+  --ac2:      #7c3aed;
+  --ac3:      #f59e0b;
+  --gr:       #10b981;
+  --tx:       #dde4f0;
+  --mu:       #5a6a85;
+  --mu2:      #8896ae;
+  --font:     "Tajawal", sans-serif;
+  --mono:     "JetBrains Mono", monospace;
+}
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--tx);
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+::-webkit-scrollbar { width:4px; }
+::-webkit-scrollbar-track { background:var(--bg2); }
+::-webkit-scrollbar-thumb { background:var(--ac2); border-radius:2px; }
+
+/* –– ANIMATED BG –– */
+.bg-grid {
+position:fixed; inset:0; z-index:0; pointer-events:none;
+background-image:
+linear-gradient(rgba(0,229,255,.025) 1px, transparent 1px),
+linear-gradient(90deg, rgba(0,229,255,.025) 1px, transparent 1px);
+background-size: 60px 60px;
+animation: gridMove 20s linear infinite;
+}
+@keyframes gridMove {
+0%   { background-position: 0 0; }
+100% { background-position: 60px 60px; }
+}
+.bg-glow1 {
+position:fixed; top:-200px; right:-200px; width:600px; height:600px;
+background: radial-gradient(ellipse, rgba(124,58,237,.12) 0%, transparent 70%);
+pointer-events:none; z-index:0;
+}
+.bg-glow2 {
+position:fixed; bottom:-200px; left:-200px; width:500px; height:500px;
+background: radial-gradient(ellipse, rgba(0,229,255,.08) 0%, transparent 70%);
+pointer-events:none; z-index:0;
+}
+
+/* –– NAV –– */
+nav {
+position:sticky; top:0; z-index:100;
+background: rgba(6,8,16,.85);
+backdrop-filter: blur(20px);
+border-bottom: 1px solid var(–bdr);
+padding: 0 40px;
+height: 68px;
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: 20px;
+}
+.nav-logo {
+display:flex; align-items:center; gap:12px;
+text-decoration:none;
+}
+.nav-logo-icon {
+width:38px; height:38px; border-radius:10px;
+background: linear-gradient(135deg, var(–ac2), var(–ac));
+display:flex; align-items:center; justify-content:center;
+font-size:18px; font-weight:900; color:#fff;
+font-family: var(–mono);
+box-shadow: 0 4px 20px rgba(124,58,237,.4);
+}
+.nav-logo-text { font-size:18px; font-weight:900; color:#fff; }
+.nav-logo-sub { font-size:10px; color:var(–mu); letter-spacing:2px; text-transform:uppercase; }
+.nav-links { display:flex; align-items:center; gap:8px; }
+.nav-link {
+padding:7px 16px; border-radius:8px;
+font-size:13px; font-weight:700; color:var(–mu2);
+text-decoration:none; transition:all .2s;
+}
+.nav-link:hover { color:var(–tx); background:rgba(255,255,255,.05); }
+.nav-cta {
+padding:8px 20px; border-radius:9px;
+background: linear-gradient(135deg, var(–ac2), var(–ac));
+color:#fff; font-size:13px; font-weight:800;
+text-decoration:none; transition:all .2s;
+box-shadow: 0 3px 16px rgba(124,58,237,.35);
+}
+.nav-cta:hover { transform:translateY(-1px); box-shadow:0 5px 24px rgba(124,58,237,.5); }
+.hamburger {
+display:none; flex-direction:column; gap:5px;
+cursor:pointer; padding:8px;
+background:none; border:none;
+}
+.hamburger span {
+display:block; width:22px; height:2px;
+background:var(–tx); border-radius:1px; transition:all .3s;
+}
+
+/* –– HERO –– */
+.hero {
+position:relative; z-index:1;
+min-height: 92vh;
+display: flex; align-items: center; justify-content: center;
+text-align: center;
+padding: 80px 24px 60px;
+}
+.hero-inner { max-width: 780px; }
+.hero-tag {
+display:inline-flex; align-items:center; gap:8px;
+background: rgba(0,229,255,.08);
+border: 1px solid rgba(0,229,255,.2);
+color: var(–ac); font-size:11px; font-weight:800;
+padding:5px 16px; border-radius:99px;
+letter-spacing:1.5px; text-transform:uppercase;
+margin-bottom:24px;
+}
+.live-dot {
+width:7px; height:7px; border-radius:50%;
+background: var(–gr);
+box-shadow: 0 0 8px var(–gr);
+animation: livePulse 2s ease-in-out infinite;
+}
+@keyframes livePulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.3;transform:scale(.5)} }
+.hero h1 {
+font-size: clamp(32px, 6vw, 66px);
+font-weight:900;
+line-height:1.1;
+margin-bottom:20px;
+letter-spacing: -1px;
+}
+.hero h1 .line1 { display:block; color:#fff; }
+.hero h1 .line2 {
+display:block;
+background: linear-gradient(135deg, var(–ac) 0%, var(–ac2) 50%, var(–ac3) 100%);
+-webkit-background-clip:text; -webkit-text-fill-color:transparent;
+background-clip:text;
+animation: gradShift 4s ease infinite;
+background-size: 200% 200%;
+}
+@keyframes gradShift {
+0%   { background-position: 0% 50%; }
+50%  { background-position: 100% 50%; }
+100% { background-position: 0% 50%; }
+}
+.hero p {
+font-size: 17px; color:var(–mu2);
+line-height:1.85; max-width:580px; margin:0 auto 36px;
+font-weight:400;
+}
+.hero-btns { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-bottom:56px; }
+.btn-main {
+display:inline-flex; align-items:center; gap:8px;
+padding:15px 36px; border-radius:12px;
+background: linear-gradient(135deg, var(–ac2), var(–ac));
+color:#fff; font-size:16px; font-weight:800;
+text-decoration:none; transition:all .25s;
+box-shadow: 0 6px 28px rgba(124,58,237,.4);
+font-family: var(–font);
+}
+.btn-main:hover { transform:translateY(-3px); box-shadow:0 10px 36px rgba(124,58,237,.55); }
+.btn-secondary {
+display:inline-flex; align-items:center; gap:8px;
+padding:15px 32px; border-radius:12px;
+background: transparent;
+border: 1.5px solid var(–bdr2);
+color:var(–tx); font-size:16px; font-weight:700;
+text-decoration:none; transition:all .25s;
+font-family: var(–font);
+}
+.btn-secondary:hover { border-color:var(–ac); color:var(–ac); transform:translateY(-2px); }
+
+/* TERMINAL PREVIEW */
+.terminal {
+background:var(–bg2);
+border:1px solid var(–bdr2);
+border-radius:14px;
+overflow:hidden;
+max-width:540px;
+margin:0 auto 24px;
+text-align:right;
+box-shadow: 0 24px 64px rgba(0,0,0,.5);
+}
+.terminal-bar {
+display:flex; align-items:center; gap:7px;
+padding:10px 16px;
+background:var(–bg3);
+border-bottom:1px solid var(–bdr);
+}
+.terminal-bar .dot { width:11px; height:11px; border-radius:50%; }
+.terminal-body {
+padding:20px;
+font-family:var(–mono);
+font-size:13px;
+line-height:2;
+text-align:right;
+}
+.t-cm  { color:#5a6a85; }
+.t-kw  { color:#c678dd; }
+.t-fn  { color:#61afef; }
+.t-st  { color:#98c379; }
+.t-nm  { color:#d19a66; }
+.t-tx  { color:#abb2bf; }
+.t-cursor {
+display:inline-block; width:2px; height:14px;
+background:var(–ac); vertical-align:middle;
+animation:blink2 1s step-end infinite;
+}
+@keyframes blink2 { 0%,100%{opacity:1} 50%{opacity:0} }
+
+/* STATS BAR */
+.stats-bar {
+position:relative; z-index:1;
+display:flex; align-items:stretch; justify-content:center;
+flex-wrap:wrap; gap:0;
+border-top:1px solid var(–bdr);
+border-bottom:1px solid var(–bdr);
+background:rgba(12,16,24,.7);
+backdrop-filter:blur(12px);
+margin-bottom:80px;
+}
+.stat-item {
+flex:1; min-width:160px; max-width:220px;
+padding:28px 20px; text-align:center;
+border-left:1px solid var(–bdr);
+transition:background .2s;
+}
+.stat-item:last-child { border-left:none; }
+.stat-item:hover { background:rgba(124,58,237,.06); }
+.stat-num {
+font-family:var(–mono);
+font-size:32px; font-weight:700; color:var(–ac);
+display:block; margin-bottom:4px;
+}
+.stat-lbl { font-size:12px; color:var(–mu); font-weight:700; letter-spacing:.5px; }
+
+/* SECTION */
+.section { position:relative; z-index:1; padding:80px 40px; max-width:1140px; margin:0 auto; }
+.section-tag {
+display:inline-block;
+font-size:10px; font-weight:800; color:var(–ac2);
+letter-spacing:3px; text-transform:uppercase;
+margin-bottom:10px;
+background:rgba(124,58,237,.1);
+border:1px solid rgba(124,58,237,.2);
+padding:3px 12px; border-radius:99px;
+}
+.section-title { font-size:clamp(22px,4vw,38px); font-weight:900; margin-bottom:10px; color:#fff; }
+.section-sub { font-size:15px; color:var(–mu2); line-height:1.7; max-width:560px; }
+
+/* PHASES GRID */
+.phases { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:16px; margin-top:40px; }
+.phase-card {
+position:relative;
+background:var(–bg2);
+border:1px solid var(–bdr);
+border-radius:18px;
+padding:28px;
+text-decoration:none;
+color:inherit;
+transition:all .28s cubic-bezier(.25,.46,.45,.94);
+overflow:hidden;
+display:block;
+}
+.phase-card::before {
+content:””;
+position:absolute; inset:0;
+background:linear-gradient(135deg, var(–c1,#7c3aed), var(–c2,#00e5ff));
+opacity:0; transition:opacity .28s;
+}
+.phase-card:hover { transform:translateY(-5px); border-color:var(–bdr2); box-shadow:0 16px 50px rgba(0,0,0,.4); }
+.phase-card:hover::before { opacity:.05; }
+.pc-num {
+position:absolute; top:20px; left:20px;
+font-family:var(–mono); font-size:11px; font-weight:700;
+color:var(–mu); letter-spacing:1px;
+}
+.pc-icon { font-size:32px; margin-bottom:14px; }
+.pc-title { font-size:18px; font-weight:900; color:#fff; margin-bottom:6px; }
+.pc-desc { font-size:13px; color:var(–mu2); line-height:1.65; margin-bottom:18px; }
+.pc-lessons {
+display:flex; flex-wrap:wrap; gap:5px; margin-bottom:18px;
+}
+.pc-lesson-tag {
+font-size:10px; font-weight:700;
+padding:3px 9px; border-radius:6px;
+background:var(–bg3); border:1px solid var(–bdr2);
+color:var(–mu2);
+}
+.pc-footer {
+display:flex; align-items:center; justify-content:space-between;
+padding-top:16px; border-top:1px solid var(–bdr);
+}
+.pc-count { font-size:12px; color:var(–mu); font-weight:700; }
+.pc-arrow {
+width:34px; height:34px; border-radius:9px;
+background:linear-gradient(135deg, var(–c1,#7c3aed), var(–c2,#00e5ff));
+display:flex; align-items:center; justify-content:center;
+font-size:16px; color:#fff;
+box-shadow:0 3px 12px rgba(0,0,0,.3);
+}
+
+/* FEATURES */
+.features { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:14px; margin-top:40px; }
+.feat {
+background:var(–bg2); border:1px solid var(–bdr);
+border-radius:14px; padding:22px;
+transition:all .22s;
+}
+.feat:hover { border-color:var(–bdr2); transform:translateY(-3px); }
+.feat-icon { font-size:26px; margin-bottom:12px; }
+.feat-title { font-size:14px; font-weight:800; margin-bottom:5px; color:var(–tx); }
+.feat-desc { font-size:12px; color:var(–mu2); line-height:1.7; }
+
+/* ROADMAP */
+.roadmap { display:flex; flex-direction:column; gap:0; margin-top:40px; max-width:700px; }
+.rm-item {
+display:flex; gap:20px; align-items:flex-start;
+position:relative;
+}
+.rm-item:not(:last-child)::after {
+content:””; position:absolute;
+right:19px; top:44px; bottom:-24px;
+width:2px;
+background:linear-gradient(to bottom, var(–ac2), transparent);
+}
+.rm-dot {
+width:40px; height:40px; border-radius:12px; flex-shrink:0;
+display:flex; align-items:center; justify-content:center;
+font-size:18px; font-weight:900;
+background:var(–bg3); border:1.5px solid var(–bdr2);
+transition:all .2s; cursor:default;
+}
+.rm-item.active .rm-dot {
+background:linear-gradient(135deg,var(–ac2),var(–ac));
+border-color:var(–ac); color:#fff;
+box-shadow:0 4px 16px rgba(124,58,237,.4);
+}
+.rm-body { padding:8px 0 32px; flex:1; }
+.rm-title { font-size:16px; font-weight:800; margin-bottom:5px; color:#fff; }
+.rm-desc { font-size:13px; color:var(–mu2); line-height:1.65; }
+.rm-tags { display:flex; flex-wrap:wrap; gap:5px; margin-top:8px; }
+.rm-tag {
+font-size:10px; font-weight:700;
+padding:2px 9px; border-radius:5px;
+background:rgba(124,58,237,.12);
+border:1px solid rgba(124,58,237,.2);
+color:#a78bfa;
+}
+
+/* CTA SECTION */
+.cta-section {
+position:relative; z-index:1;
+background:linear-gradient(135deg, rgba(124,58,237,.12), rgba(0,229,255,.06));
+border-top:1px solid var(–bdr);
+border-bottom:1px solid var(–bdr);
+padding:80px 40px;
+text-align:center;
+}
+.cta-section h2 { font-size:clamp(24px,4vw,42px); font-weight:900; color:#fff; margin-bottom:12px; }
+.cta-section p { font-size:15px; color:var(–mu2); margin-bottom:32px; max-width:520px; margin-left:auto; margin-right:auto; }
+
+/* FOOTER */
+footer {
+position:relative; z-index:1;
+background:var(–bg2);
+border-top:1px solid var(–bdr);
+padding:40px;
+text-align:center;
+}
+.footer-logo { font-size:18px; font-weight:900; color:#fff; margin-bottom:8px; }
+.footer-sub { font-size:13px; color:var(–mu); }
+
+/* PROGRESS BANNER */
+.prog-banner {
+position:relative; z-index:1;
+background:rgba(16,185,129,.07);
+border:1px solid rgba(16,185,129,.18);
+border-radius:14px;
+padding:18px 24px;
+display:flex; align-items:center; gap:16px;
+margin:0 40px 0;
+flex-wrap:wrap;
+}
+.prog-banner-icon { font-size:24px; flex-shrink:0; }
+.prog-banner-text { flex:1; }
+.prog-banner-title { font-size:14px; font-weight:800; color:var(–gr); margin-bottom:3px; }
+.prog-banner-sub { font-size:12px; color:var(–mu2); }
+.prog-bar-wrap { width:200px; flex-shrink:0; }
+.prog-bar-bg { height:6px; background:var(–bg3); border-radius:99px; overflow:hidden; margin-bottom:4px; }
+.prog-bar-fill { height:100%; background:linear-gradient(90deg,var(–gr),var(–ac)); border-radius:99px; transition:width .5s; }
+.prog-bar-pct { font-size:11px; color:var(–mu); text-align:left; font-family:var(–mono); font-weight:700; }
+
+/* TOAST */
+#toast {
+position:fixed; bottom:22px; right:22px; z-index:9999;
+background:var(–bg4); border:1px solid var(–bdr2);
+padding:12px 18px; border-radius:12px;
+font-size:13px; font-weight:700; color:var(–tx);
+box-shadow:0 8px 32px rgba(0,0,0,.5);
+transform:translateY(80px); opacity:0;
+transition:all .3s cubic-bezier(.25,.46,.45,.94);
+pointer-events:none;
+}
+#toast.show { transform:translateY(0); opacity:1; }
+
+/* ANIMATIONS */
+@keyframes fadeUp {
+from { opacity:0; transform:translateY(24px); }
+to   { opacity:1; transform:translateY(0); }
+}
+.fu  { animation:fadeUp .4s ease forwards; }
+.fu2 { animation:fadeUp .4s .08s ease both; }
+.fu3 { animation:fadeUp .4s .16s ease both; }
+.fu4 { animation:fadeUp .4s .24s ease both; }
+
+/* SCROLL REVEAL */
+.reveal { opacity:0; transform:translateY(20px); transition:all .5s ease; }
+.reveal.visible { opacity:1; transform:translateY(0); }
+
+/* RESPONSIVE */
+@media(max-width:900px) {
+nav { padding:0 20px; }
+.nav-links { display:none; }
+.hamburger { display:flex; }
+.section { padding:60px 20px; }
+.stats-bar .stat-item { min-width:140px; }
+.prog-banner { margin:0 20px; }
+.cta-section { padding:60px 20px; }
+footer { padding:30px 20px; }
+}
+@media(max-width:600px) {
+.hero-btns { flex-direction:column; align-items:center; }
+.hero h1 { letter-spacing:-.5px; }
+.phases { grid-template-columns:1fr; }
+.features { grid-template-columns:1fr 1fr; }
+}
+@media(max-width:400px) {
+.features { grid-template-columns:1fr; }
+.stats-bar { flex-direction:column; }
+.stat-item { max-width:100%; border-left:none; border-bottom:1px solid var(–bdr); }
+}
 </style>
+
 </head>
 <body>
-<div id="ov" onclick="closeSB()"></div>
+
+<div class="bg-grid"></div>
+<div class="bg-glow1"></div>
+<div class="bg-glow2"></div>
 <div id="toast"></div>
-<div id="app">
-<nav id="sb">
-  <div class="sbl">
-    <div class="sbi">&#128640;</div>
-    <div><div class="sbt">CodeCraft</div><div style="font-size:10px;color:var(--mu);letter-spacing:1px">ACADEMY</div></div>
+
+<!-- NAV -->
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-icon">&lt;/&gt;</div>
+    <div>
+      <div class="nav-logo-text">CodeCraft</div>
+      <div class="nav-logo-sub">Academy</div>
+    </div>
+  </a>
+  <div class="nav-links">
+    <a href="#phases" class="nav-link">&#1575;&#1604;&#1605;&#1585;&#1575;&#1581;&#1604;</a>
+    <a href="#roadmap" class="nav-link">&#1582;&#1575;&#1585;&#1591;&#1577; &#1575;&#1604;&#1591;&#1585;&#1610;&#1602;</a>
+    <a href="#features" class="nav-link">&#1605;&#1605;&#1610;&#1586;&#1575;&#1578;</a>
+    <a href="phase1.html" class="nav-cta">&#1575;&#1576;&#1583;&#1571; &#1575;&#1604;&#1570;&#1606; &#8592;</a>
   </div>
-  <div class="sbp">
-    <div class="spl"><span>&#1578;&#1602;&#1583;&#1605;&#1603; &#1575;&#1604;&#1603;&#1604;&#1610;</span><span id="opct">0%</span></div>
-    <div class="spb"><div class="spf" id="obar" style="width:0%"></div></div>
-  </div>
-  <div id="snav"></div>
+  <button class="hamburger" onclick="toggleMenu()" id="hamburger" aria-label="menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
-<div id="mn">
-  <div id="tb">
-    <button id="mb" onclick="toggleSB()">&#9776;</button>
-    <div><div class="tbt" id="ttl">&#1575;&#1604;&#1589;&#1601;&#1581;&#1577; &#1575;&#1604;&#1585;&#1574;&#1610;&#1587;&#1610;&#1577;</div><div class="tbb" id="tbr">CodeCraft Academy</div></div>
-    <div style="display:flex;gap:8px">
-      <button class="btn btng btnsm" onclick="showHome()">&#127968;</button>
+
+<!-- HERO -->
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag fu">
+      <span class="live-dot"></span>
+      &#1583;&#1608;&#1585;&#1577; &#1605;&#1580;&#1575;&#1606;&#1610;&#1577; 100%
+    </div>
+
+```
+<!-- TERMINAL -->
+<div class="terminal fu2">
+  <div class="terminal-bar">
+    <div class="dot" style="background:#ff5f57"></div>
+    <div class="dot" style="background:#febc2e"></div>
+    <div class="dot" style="background:#28c840"></div>
+    <span style="margin-right:auto;font-family:var(--mono);font-size:11px;color:var(--mu)">codecraft ~ main</span>
+  </div>
+  <div class="terminal-body">
+    <div><span class="t-cm">// &#1605;&#1585;&#1581;&#1576;&#1575; &#1576;&#1603; &#1601;&#1610; CodeCraft Academy!</span></div>
+    <div><span class="t-kw">const</span> <span class="t-fn">dev</span> <span class="t-tx">= {</span></div>
+    <div>&nbsp;&nbsp;<span class="t-fn">name</span><span class="t-tx">:</span> <span class="t-st">"&#1571;&#1606;&#1578;"</span><span class="t-tx">,</span></div>
+    <div>&nbsp;&nbsp;<span class="t-fn">level</span><span class="t-tx">:</span> <span class="t-st">"&#1605;&#1576;&#1578;&#1583;&#1574;"</span><span class="t-tx">,</span></div>
+    <div>&nbsp;&nbsp;<span class="t-fn">goal</span><span class="t-tx">:</span> <span class="t-st">"&#1605;&#1591;&#1608;&#1585; &#1575;&#1581;&#1578;&#1585;&#1575;&#1601;&#1610;"</span><span class="t-tx">,</span></div>
+    <div>&nbsp;&nbsp;<span class="t-fn">daysToGoal</span><span class="t-tx">:</span> <span class="t-nm">90</span></div>
+    <div><span class="t-tx">};</span></div>
+    <div><span class="t-fn">startLearning</span><span class="t-tx">(dev);</span> <span class="t-cursor"></span></div>
+  </div>
+</div>
+
+<h1 class="fu3">
+  <span class="line1">&#1578;&#1593;&#1604;&#1617;&#1605; &#1575;&#1604;&#1576;&#1585;&#1605;&#1580;&#1577;</span>
+  <span class="line2">&#1605;&#1606; &#1575;&#1604;&#1589;&#1601;&#1585; &#1604;&#1604;&#1575;&#1581;&#1578;&#1585;&#1575;&#1601;</span>
+</h1>
+
+<p class="fu4">
+  &#1583;&#1608;&#1585;&#1577; &#1588;&#1575;&#1605;&#1604;&#1577; &#1608;&#1605;&#1578;&#1603;&#1575;&#1605;&#1604;&#1577; &#1578;&#1571;&#1582;&#1584;&#1603; &#1605;&#1606; &#1604;&#1575; &#1588;&#1610;&#1569; &#1573;&#1604;&#1609; &#1605;&#1591;&#1608;&#1585; &#1608;&#1610;&#1576; &#1602;&#1575;&#1583;&#1585; &#1593;&#1604;&#1609; &#1576;&#1606;&#1575;&#1569; &#1605;&#1608;&#1575;&#1602;&#1593; &#1575;&#1581;&#1578;&#1585;&#1575;&#1601;&#1610;&#1577;
+  &#1608;&#1576;&#1610;&#1593;&#1607;&#1575;. 7 &#1605;&#1585;&#1575;&#1581;&#1604; &#1605;&#1578;&#1583;&#1585;&#1580;&#1577;&#8201;&#183;&#8201;&#1571;&#1605;&#1579;&#1604;&#1577; &#1581;&#1602;&#1610;&#1602;&#1610;&#1577;&#8201;&#183;&#8201;&#1605;&#1588;&#1575;&#1585;&#1610;&#1593; &#1603;&#1575;&#1605;&#1604;&#1577;&#8201;&#183;&#8201;&#1575;&#1582;&#1578;&#1576;&#1575;&#1585;&#1575;&#1578; &#1578;&#1601;&#1575;&#1593;&#1604;&#1610;&#1577;.
+</p>
+
+<div class="hero-btns fu4">
+  <a href="phase1.html" class="btn-main">&#1575;&#1576;&#1583;&#1571; &#1575;&#1604;&#1570;&#1606; &#8592; &#1605;&#1580;&#1575;&#1606;&#1575;&#1611;</a>
+  <a href="#phases" class="btn-secondary">&#1588;&#1608;&#1601; &#1575;&#1604;&#1605;&#1606;&#1607;&#1580;</a>
+</div>
+```
+
+  </div>
+</section>
+
+<!-- STATS BAR -->
+
+<div class="stats-bar">
+  <div class="stat-item reveal">
+    <span class="stat-num" id="sLessons">0</span>
+    <span class="stat-lbl">&#1583;&#1585;&#1587; &#1605;&#1578;&#1603;&#1575;&#1605;&#1604;</span>
+  </div>
+  <div class="stat-item reveal">
+    <span class="stat-num">7</span>
+    <span class="stat-lbl">&#1605;&#1585;&#1575;&#1581;&#1604; &#1605;&#1578;&#1583;&#1585;&#1580;&#1577;</span>
+  </div>
+  <div class="stat-item reveal">
+    <span class="stat-num" id="sDone">0</span>
+    <span class="stat-lbl">&#1583;&#1585;&#1587; &#1571;&#1606;&#1580;&#1586;&#1578;&#1607;</span>
+  </div>
+  <div class="stat-item reveal">
+    <span class="stat-num" id="sPct">0%</span>
+    <span class="stat-lbl">&#1578;&#1602;&#1583;&#1605;&#1603; &#1575;&#1604;&#1603;&#1604;&#1610;</span>
+  </div>
+</div>
+
+<!-- PROGRESS BANNER (shown if has progress) -->
+
+<div class="prog-banner" id="progBanner" style="display:none; margin-top:32px;">
+  <div class="prog-banner-icon">&#128293;</div>
+  <div class="prog-banner-text">
+    <div class="prog-banner-title">&#1605;&#1578;&#1575;&#1576;&#1593;&#1577; &#1585;&#1581;&#1604;&#1578;&#1603;</div>
+    <div class="prog-banner-sub" id="progBannerSub"></div>
+  </div>
+  <div class="prog-bar-wrap">
+    <div class="prog-bar-bg"><div class="prog-bar-fill" id="progBarFill" style="width:0%"></div></div>
+    <div class="prog-bar-pct" id="progBarPct">0%</div>
+  </div>
+  <a href="#" id="progContinueBtn" class="nav-cta" style="text-decoration:none;white-space:nowrap">&#1605;&#1578;&#1575;&#1576;&#1593;&#1577; &#8592;</a>
+</div>
+
+<!-- PHASES -->
+
+<section class="section" id="phases">
+  <div class="reveal">
+    <span class="section-tag">&#1575;&#1604;&#1605;&#1606;&#1607;&#1580;</span>
+    <h2 class="section-title">7 &#1605;&#1585;&#1575;&#1581;&#1604; &#1578;&#1571;&#1582;&#1584;&#1603; &#1604;&#1604;&#1575;&#1581;&#1578;&#1585;&#1575;&#1601;</h2>
+    <p class="section-sub">&#1603;&#1604; &#1605;&#1585;&#1581;&#1604;&#1577; &#1605;&#1604;&#1601; HTML &#1605;&#1587;&#1578;&#1602;&#1604; &#1605;&#1588;&#1576;&#1593; &#1576;&#1575;&#1604;&#1605;&#1593;&#1604;&#1608;&#1605;&#1575;&#1578; &#8212; &#1575;&#1601;&#1578;&#1581;&#1607; &#1605;&#1606; &#1575;&#1604;&#1605;&#1578;&#1589;&#1601;&#1581; &#1605;&#1576;&#1575;&#1588;&#1585;&#1577;</p>
+  </div>
+  <div class="phases" id="phasesGrid"></div>
+</section>
+
+<!-- FEATURES -->
+
+<section class="section" id="features" style="padding-top:0">
+  <div class="reveal">
+    <span class="section-tag">&#1605;&#1610;&#1586;&#1575;&#1578;</span>
+    <h2 class="section-title">&#1604;&#1605;&#1575;&#1584;&#1575; CodeCraft&#8253;</h2>
+  </div>
+  <div class="features reveal">
+    <div class="feat">
+      <div class="feat-icon">&#128218;</div>
+      <div class="feat-title">&#1605;&#1581;&#1578;&#1608;&#1609; &#1590;&#1582;&#1605; &#1576;&#1575;&#1604;&#1593;&#1585;&#1576;&#1610;&#1577;</div>
+      <div class="feat-desc">&#1603;&#1604; &#1605;&#1590;&#1608;&#1593; &#1605;&#1588;&#1585;&#1608;&#1581; &#1576;&#1575;&#1604;&#1578;&#1601;&#1589;&#1610;&#1604; &#1605;&#1593; &#1571;&#1605;&#1579;&#1604;&#1577; &#1603;&#1608;&#1583; &#1581;&#1602;&#1610;&#1602;&#1610;&#1577;</div>
+    </div>
+    <div class="feat">
+      <div class="feat-icon">&#128187;</div>
+      <div class="feat-title">&#1578;&#1591;&#1576;&#1610;&#1602;&#1575;&#1578; &#1593;&#1605;&#1604;&#1610;&#1577;</div>
+      <div class="feat-desc">&#1605;&#1588;&#1575;&#1585;&#1610;&#1593; &#1581;&#1602;&#1610;&#1602;&#1610;&#1577; &#1603;&#1575;&#1605;&#1604;&#1577; &#1578;&#1602;&#1583;&#1585; &#1578;&#1590;&#1610;&#1601;&#1607;&#1575; &#1604; GitHub &#1605;&#1576;&#1575;&#1588;&#1585;&#1577;</div>
+    </div>
+    <div class="feat">
+      <div class="feat-icon">&#128203;</div>
+      <div class="feat-title">&#1575;&#1582;&#1578;&#1576;&#1575;&#1585;&#1575;&#1578; &#1578;&#1601;&#1575;&#1593;&#1604;&#1610;&#1577;</div>
+      <div class="feat-desc">&#1576;&#1593;&#1583; &#1603;&#1604; &#1583;&#1585;&#1587; &#1575;&#1582;&#1578;&#1576;&#1575;&#1585; &#1610;&#1602;&#1610;&#1587; &#1601;&#1607;&#1605;&#1603; &#1605;&#1593; &#1578;&#1594;&#1584;&#1610;&#1577; &#1585;&#1575;&#1580;&#1593;&#1577; &#1601;&#1608;&#1585;&#1610;&#1577;</div>
+    </div>
+    <div class="feat">
+      <div class="feat-icon">&#128190;</div>
+      <div class="feat-title">&#1581;&#1601;&#1592; &#1575;&#1604;&#1578;&#1602;&#1583;&#1605;</div>
+      <div class="feat-desc">&#1578;&#1602;&#1583;&#1605;&#1603; &#1610;&#1606;&#1581;&#1601;&#1592; &#1578;&#1604;&#1602;&#1575;&#1574;&#1610;&#1575;&#1611; &#8212; &#1593;&#1608;&#1583; &#1604;&#1571;&#1610; &#1583;&#1585;&#1587; &#1608;&#1602;&#1578; &#1578;&#1588;&#1575;&#1569;</div>
+    </div>
+    <div class="feat">
+      <div class="feat-icon">&#128241;</div>
+      <div class="feat-title">&#1578;&#1589;&#1605;&#1610;&#1605; &#1605;&#1578;&#1580;&#1575;&#1608;&#1576;</div>
+      <div class="feat-desc">&#1610;&#1588;&#1578;&#1594;&#1604; &#1593;&#1604;&#1609; &#1575;&#1604;&#1607;&#1575;&#1578;&#1601; &#1608;&#1575;&#1604;&#1578;&#1575;&#1576;&#1604;&#1578; &#1608;&#1575;&#1604;&#1603;&#1605;&#1576;&#1610;&#1608;&#1578;&#1585; &#1576;&#1603;&#1601;&#1575;&#1569;&#1577;</div>
+    </div>
+    <div class="feat">
+      <div class="feat-icon">&#128640;</div>
+      <div class="feat-title">&#1605;&#1580;&#1575;&#1606;&#1610; 100%</div>
+      <div class="feat-desc">&#1604;&#1575; &#1575;&#1588;&#1578;&#1585;&#1575;&#1603;&#1575;&#1578; &#8212; &#1603;&#1604; &#1575;&#1604;&#1605;&#1581;&#1578;&#1608;&#1609; &#1605;&#1578;&#1575;&#1581; &#1604;&#1604;&#1580;&#1605;&#1610;&#1593;</div>
     </div>
   </div>
-  <div id="ct"></div>
+</section>
+
+<!-- ROADMAP -->
+
+<section class="section" id="roadmap">
+  <div class="reveal">
+    <span class="section-tag">&#1582;&#1575;&#1585;&#1591;&#1577; &#1575;&#1604;&#1591;&#1585;&#1610;&#1602;</span>
+    <h2 class="section-title">&#1605;&#1606; &#1575;&#1604;&#1589;&#1601;&#1585; &#1573;&#1604;&#1609; &#1575;&#1604;&#1575;&#1581;&#1578;&#1585;&#1575;&#1601;</h2>
+    <p class="section-sub">&#1575;&#1578;&#1576;&#1593; &#1607;&#1584;&#1607; &#1575;&#1604;&#1582;&#1591;&#1608;&#1575;&#1578; &#1576;&#1575;&#1604;&#1578;&#1585;&#1578;&#1610;&#1576; &#8212; &#1603;&#1604; &#1605;&#1585;&#1581;&#1604;&#1577; &#1578;&#1576;&#1606;&#1610; &#1593;&#1604;&#1609; &#1575;&#1604;&#1587;&#1575;&#1576;&#1602;&#1577;</p>
+  </div>
+  <div class="roadmap reveal" id="roadmapList"></div>
+</section>
+
+<!-- CTA -->
+
+<div class="cta-section">
+  <h2 class="reveal">&#1605;&#1587;&#1578;&#1593;&#1583; &#1578;&#1576;&#1583;&#1571;&#8253; &#128640;</h2>
+  <p class="reveal">&#1575;&#1604;&#1583;&#1608;&#1585;&#1577; &#1605;&#1580;&#1575;&#1606;&#1610;&#1577; &#1576;&#1575;&#1604;&#1603;&#1575;&#1605;&#1604; &#8212; &#1601;&#1602;&#1591; &#1575;&#1601;&#1578;&#1581; &#1575;&#1604;&#1605;&#1604;&#1601; &#1608;&#1575;&#1576;&#1583;&#1571; &#1575;&#1604;&#1578;&#1593;&#1604;&#1605;</p>
+  <a href="phase1.html" class="btn-main reveal" style="display:inline-flex">
+    &#1575;&#1576;&#1583;&#1571; &#1575;&#1604;&#1605;&#1585;&#1581;&#1604;&#1577; &#1575;&#1604;&#1571;&#1608;&#1604;&#1609; &#8592;
+  </a>
 </div>
-</div>
+
+<!-- FOOTER -->
+
+<footer>
+  <div class="footer-logo">&#128640; CodeCraft Academy</div>
+  <div class="footer-sub">&#1578;&#1593;&#1604;&#1617;&#1605; &#1575;&#1604;&#1576;&#1585;&#1605;&#1580;&#1577; &#1576;&#1575;&#1604;&#1593;&#1585;&#1576;&#1610;&#1577; &#8212; &#1605;&#1580;&#1575;&#1606;&#1575;&#1611; &#1604;&#1604;&#1571;&#1576;&#1583;</div>
+</footer>
+
 <script>
-
-“use strict”;
-
-// ============================================================
-// DATA
-// ============================================================
-var C = { phases: [
-{ id:“p1”, icon:”🌐”, title:”\u0623\u0633\u0627\u0633\u064a\u0627\u062a \u0627\u0644\u0625\u0646\u062a\u0631\u0646\u062a”, c1:”#0ea5e9”, c2:”#06b6d4”,
-desc:”\u0641\u0647\u0645 \u0643\u064a\u0641 \u064a\u0639\u0645\u0644 \u0627\u0644\u0648\u064a\u0628 \u0648\u0627\u0644\u0625\u0646\u062a\u0631\u0646\u062a”,
-lessons: [
-{ id:“l11”, title:”\u0645\u0627 \u0647\u0648 \u0627\u0644\u0625\u0646\u062a\u0631\u0646\u062a\u061f”,
-content:[
-{t:“intro”,x:”\u0627\u0644\u0625\u0646\u062a\u0631\u0646\u062a \u0634\u0628\u0643\u0629 \u0639\u0627\u0644\u0645\u064a\u0629 \u062a\u0631\u0628\u0637 \u0645\u0644\u0627\u064a\u064a\u0646 \u0627\u0644\u0623\u062c\u0647\u0632\u0629 \u062d\u0648\u0644 \u0627\u0644\u0639\u0627\u0644\u0645.”},
-{t:“sec”,x:”\u0643\u064a\u0641 \u064a\u0639\u0645\u0644 \u0627\u0644\u0625\u0646\u062a\u0631\u0646\u062a\u061f”},
-{t:“txt”,x:”\u0639\u0646\u062f\u0645\u0627 \u062a\u0643\u062a\u0628 <strong>google.com</strong> \u0641\u064a \u0645\u062a\u0635\u0641\u062d\u0643:<br>1. \u0645\u062a\u0635\u0641\u062d\u0643 \u064a\u0633\u0623\u0644 <em>DNS</em> \u0639\u0646 \u0639\u0646\u0648\u0627\u0646 IP<br>2. \u064a\u062a\u0635\u0644 \u0628\u062e\u0627\u062f\u0645 Google \u0648\u064a\u0637\u0644\u0628 \u0627\u0644\u0635\u0641\u062d\u0629<br>3. \u0627\u0644\u062e\u0627\u062f\u0645 \u064a\u0631\u0633\u0644 HTML/CSS/JS<br>4. \u0627\u0644\u0645\u062a\u0635\u0641\u062d \u064a\u0639\u0631\u0636 \u0627\u0644\u0635\u0641\u062d\u0629”},
-{t:“tip”,x:“DNS \u064a\u0634\u0628\u0647 \u062f\u0644\u064a\u0644 \u0627\u0644\u0647\u0627\u062a\u0641 \u2014 \u064a\u062d\u0648\u0644 \u0627\u0644\u0623\u0633\u0645\u0627\u0621 \u0625\u0644\u0649 \u0623\u0631\u0642\u0627\u0645 IP.”}
-],
-quiz:[
-{q:”\u0645\u0627 \u0647\u0648 \u0627\u0644\u0625\u0646\u062a\u0631\u0646\u062a\u061f”, o:[”\u0634\u0628\u0643\u0629 \u0639\u0627\u0644\u0645\u064a\u0629 \u062a\u0631\u0628\u0637 \u0627\u0644\u0623\u062c\u0647\u0632\u0629”,”\u0628\u0631\u0646\u0627\u0645\u062c \u0639\u0644\u0649 \u0627\u0644\u0643\u0645\u0628\u064a\u0648\u062a\u0631”,”\u0646\u0648\u0639 \u0645\u0646 \u0627\u0644\u0645\u062a\u0635\u0641\u062d\u0627\u062a”,”\u0645\u0648\u0642\u0639 \u0625\u0644\u0643\u062a\u0631\u0648\u0646\u064a”], a:0},
-{q:”\u0645\u0627\u0630\u0627 \u064a\u0639\u0646\u064a DNS\u061f”, o:[”\u0641\u064a\u0631\u0648\u0633 \u062e\u0637\u064a\u0631”,”\u062e\u0627\u062f\u0645 \u0623\u0633\u0645\u0627\u0621 \u0627\u0644\u0646\u0637\u0627\u0642\u0627\u062a”,”\u0644\u063a\u0629 \u0628\u0631\u0645\u062c\u0629”,”\u0643\u0627\u0628\u0644 \u0625\u0646\u062a\u0631\u0646\u062a”], a:1}
-]
-},
-{ id:“l12”, title:”\u0643\u064a\u0641 \u062a\u0639\u0645\u0644 \u0627\u0644\u0645\u0648\u0627\u0642\u0639\u061f”,
-content:[
-{t:“intro”,x:”\u0627\u0644\u0645\u0648\u0627\u0642\u0639 \u062a\u062a\u0643\u0648\u0646 \u0645\u0646 \u062b\u0644\u0627\u062b\u0629 \u0639\u0646\u0627\u0635\u0631 \u0623\u0633\u0627\u0633\u064a\u0629.”},
-{t:“sec”,x:”\u0627\u0644\u0645\u062b\u0644\u062b \u0627\u0644\u0630\u0647\u0628\u064a \u0644\u0644\u0648\u064a\u0628”},
-{t:“txt”,x:”<strong>HTML</strong> \u2014 \u0627\u0644\u0647\u064a\u0643\u0644 \u0648\u0627\u0644\u0645\u062d\u062a\u0648\u0649<br><strong>CSS</strong> \u2014 \u0627\u0644\u062a\u0635\u0645\u064a\u0645 \u0648\u0627\u0644\u0623\u0644\u0648\u0627\u0646<br><strong>JavaScript</strong> \u2014 \u0627\u0644\u062a\u0641\u0627\u0639\u0644 \u0648\u0627\u0644\u062d\u0631\u0643\u0629”},
-{t:“code”,lang:“html”,lines:[”<!– HTML –>”,”<div class="card">”,”  <h1>مرحبا!</h1>”,”  <button onclick="hi()">اضغط</button>”,”</div>”,””,”/* CSS */”,”.card { background: #1a1a2e; padding: 24px; }”,””,”// JavaScript”,“function hi() { alert(’أهلا!’); }”]},
-{t:“tip”,x:”🎯 ركّز أولاً على HTML، ثم CSS، ثم JavaScript.”}
-],
-quiz:[
-{q:”ما وظيفة CSS\u061f”, o:[”الهيكل والمحتوى”,”التصميم والألوان”,”التفاعل والحركة”,”الاتصال بالخادم”], a:1}
-]
-}
-]
-},
-{ id:“p2”, icon:”📄”, title:“HTML”, c1:”#f59e0b”, c2:”#ef4444”,
-desc:”تعلم بناء هيكل صفحات الويب”,
-lessons: [
-{ id:“l21”, title:”الهيكل الأساسي لـ HTML”,
-content:[
-{t:“intro”,x:“HTML هي لغة الترميز الأساسية لبناء صفحات الويب.”},
-{t:“code”,lang:“html”,lines:[”<!DOCTYPE html>”,”<html lang="ar" dir="rtl">”,”<head>”,”  <meta charset="UTF-8">”,”  <title>اسم موقعي</title>”,”</head>”,”<body>”,”  <h1>مرحبا!</h1>”,”  <p>أول صفحة HTML</p>”,”</body>”,”</html>”]},
-{t:“tip”,x:”كل وسم HTML له وسم افتتاح <tag> ووسم إغلاق </tag>”}
-],
-quiz:[
-{q:”ماذا يعني DOCTYPE\u061f”, o:[”اسم الملف”,”يخبر المتصفح بنوع المستند”,”تعليق في الكود”,”عنوان الصفحة”], a:1},
-{q:”أين يوضع CSS\u061f”, o:[”داخل body”,”داخل head”,”في أي مكان”,”خارج html”], a:1}
-]
-},
-{ id:“l22”, title:”الروابط والصور والجداول”,
-content:[
-{t:“intro”,x:”الروابط والصور من أهم عناصر HTML.”},
-{t:“code”,lang:“html”,lines:[”<!– رابط عادي –>”,”<a href="https://google.com">Google</a>”,””,”<!– تاب جديد –>”,”<a href="#" target="_blank">فتح جديد</a>”,””,”<!– صورة –>”,”<img src="photo.jpg" alt="وصف الصورة">”,””,”<!– جدول –>”,”<table>”,”  <tr><th>اسم</th><th>عمر</th></tr>”,”  <tr><td>أحمد</td><td>25</td></tr>”,”</table>”]},
-{t:“tip”,x:”♿ داٚماً أضف alt للصور \u2014 يساعد المكفوفين وتحسين SEO!”}
-],
-quiz:[
-{q:”ما الخاصية لفتح رابط في تبويب جديد\u061f”, o:[“new-tab”,“target="_blank"”,“open="new"”,“window="new"”], a:1}
-]
-},
-{ id:“l23”, title:”النماذج \u2014 Forms”,
-content:[
-{t:“intro”,x:”النماذج تمكّن المستخدمين من إدخال البيانات.”},
-{t:“code”,lang:“html”,lines:[”<form action="/submit" method="POST">”,”  <input type="text" placeholder="الاسم" required>”,”  <input type="email" placeholder="الإيميل">”,”  <input type="password" placeholder="كلمة المرور">”,”  <select>”,”    <option>الدار البيضاء</option>”,”  </select>”,”  <textarea rows="4"></textarea>”,”  <button type="submit">إرسال</button>”,”</form>”]},
-{t:“note”,x:“required تجعل الحقل إجبارياً.”}
-],
-quiz:[
-{q:”ما نوع input لكلمة المرور\u061f”, o:[“text”,“secret”,“password”,“hidden”], a:2}
-]
-}
-]
-},
-{ id:“p3”, icon:”🎨”, title:“CSS \u2014 التصميم”, c1:”#8b5cf6”, c2:”#ec4899”,
-desc:”اجعل موقعك جميلاً ومتجاوباً”,
-lessons: [
-{ id:“l31”, title:”أساسيات CSS”,
-content:[
-{t:“intro”,x:“CSS تتحكم في الألوان والخطوط والأحجام.”},
-{t:“code”,lang:“css”,lines:[”/* محدد العنصر */”,“h1 { color: #1a1a2e; }”,””,”/* محدد class */”,”.card { background: white; border-radius: 12px; }”,””,”/* محدد id */”,”#header { height: 70px; }”,””,”/* Box Model */”,”.box {”,”  padding: 20px;   /* حشو داخلي */”,”  margin: 16px;    /* هامش خارجي */”,”  border: 2px solid #333;”,”  border-radius: 12px;”,”}”]},
-{t:“tip”,x:”🔑 class تبدأ بنقطة (.card) \u2014 id تبدأ ب# (#header)”}
-],
-quiz:[
-{q:”كيف نختار class في CSS\u061f”, o:[”#name”,”.name”,”@name”,”*name”], a:1},
-{q:”ما الفرق بين padding و margin\u061f”, o:[”لا فرق”,“padding خارجي margin داخلي”,“padding داخلي margin خارجي”,”كلاهما خارجي”], a:2}
-]
-},
-{ id:“l32”, title:“Flexbox”,
-content:[
-{t:“intro”,x:“Flexbox أقوى أداة لتوزيع العناصر \u2014 يحل 90% من مشاكل التخطيط.”},
-{t:“code”,lang:“css”,lines:[”.container {”,”  display: flex;”,”  flex-direction: row;         /* أفقي */”,”  justify-content: center;     /* توزيع */”,”  justify-content: space-between;”,”  align-items: center;         /* محاذاة */”,”  gap: 16px;”,”  flex-wrap: wrap;”,”}”,”.item { flex: 1; }”]},
-{t:“tip”,x:”🎯 Flexbox للتوزيع في صف أو عمود. Grid للشبكات ثنائية.”}
-],
-quiz:[
-{q:”ما الخاصية لتفعيل Flexbox\u061f”, o:[“flex: true”,“display: flex”,“flexbox: on”,“layout: flex”], a:1}
-]
-},
-{ id:“l33”, title:“Responsive \u2014 تصميم متجاوب”,
-content:[
-{t:“intro”,x:”التصميم المتجاوب يجعل موقعك جميلاً على كل الشاشات.”},
-{t:“code”,lang:“css”,lines:[”/* Mobile First */”,”.container { padding: 16px; }”,””,”@media (min-width: 768px) {”,”  .container { padding: 24px; grid-template-columns: 1fr 1fr; }”,”}”,””,”@media (min-width: 1024px) {”,”  .container { max-width: 1200px; margin: 0 auto; }”,”}”,””,”/* CSS Variables */”,”:root {”,”  –primary: #7c3aed;”,”  –text: #1a1a2e;”,”  –radius: 12px;”,”}”,””,”.btn { background: var(–primary); border-radius: var(–radius); }”]},
-{t:“tip”,x:”📱 Mobile First \u2014 صمّم للهاتف أولاً ثم وسّع للكمبيوتر.”}
-],
-quiz:[
-{q:”ما Mobile First\u061f”, o:[”تصميم للكمبيوتر أولاً”,”تصميم للهاتف أولاً ثم توسيع”,”تصغير الموقع”,”تطبيق موبايل”], a:1}
-]
-}
-]
-},
-{ id:“p4”, icon:”⚡”, title:“JavaScript”, c1:”#f59e0b”, c2:”#10b981”,
-desc:”اجعل موقعك حياً وتفاعلياً”,
-lessons: [
-{ id:“l41”, title:”المتغيرات والأنواع”,
-content:[
-{t:“intro”,x:“JavaScript تجعل صفحاتك تتفاعل مع المستخدم ديناميكياً.”},
-{t:“code”,lang:“javascript”,lines:[“var name    = ‘Ahmed’;  // String”,“var age     = 25;       // Number”,“var active  = true;     // Boolean”,“var list    = [1,2,3];  // Array”,“var obj     = {k:‘v’};  // Object”,””,”// Operations”,“var sum  = 10 + 5;  // 15”,“var mod  = 10 % 3;  // 1 (remainder)”,””,”// String”,“var hi   = ’Hello ’ + name;”,“var len  = name.length;”,“var up   = name.toUpperCase();”]},
-{t:“tip”,x:”💡 استخدم var للمتغيرات في هذه المرحلة.”}
-],
-quiz:[
-{q:”ما ناتج 10 % 3\u061f”, o:[“3”,“1”,“0”,“3.33”], a:1},
-{q:”ما نوع [1,2,3]\u061f”, o:[“Object”,“String”,“Array”,“Number”], a:2}
-]
-},
-{ id:“l42”, title:”الشروط والحلقات”,
-content:[
-{t:“intro”,x:”الشروط والحلقات هي أساس منطق البرمجة.”},
-{t:“code”,lang:“javascript”,lines:[“var age = 20;”,””,“if (age < 13) {”,”  console.log(‘child’);”,”} else if (age < 18) {”,”  console.log(‘teen’);”,”} else {”,”  console.log(‘adult’);”,”}”,””,”// Ternary”,“var msg = age >= 18 ? ‘allowed’ : ‘denied’;”,””,”// for loop”,“for (var i = 0; i < 5; i++) {”,”  console.log(‘step: ’ + (i+1));”,”}”,””,”// forEach”,“var fruits = [‘apple’,‘banana’];”,“fruits.forEach(function(fruit) {”,”  console.log(fruit);”,”});”]},
-{t:“tip”,x:”🎯 forEach للتكرار، map لتحويل البيانات، filter للتصفية.”}
-],
-quiz:[
-{q:”ما الفرق بين == و ===\u061f”, o:[”لا فرق”,”=== يقارن النوع والقيمة معاً”,”== أدق”,”لا يعمل ===”], a:1}
-]
-},
-{ id:“l43”, title:”الدوال والـ DOM”,
-content:[
-{t:“intro”,x:”الدوال تتيح إعادة استخدام الكود. DOM يمكّنك من التحكم في الصفحة.”},
-{t:“code”,lang:“javascript”,lines:[”// Functions”,“function greet(name) {”,”  return ‘Hello ’ + name + ‘!’;”,”}”,“console.log(greet(‘Ahmed’));”,””,”// DOM”,“var title = document.getElementById(‘title’);”,“var btns  = document.querySelectorAll(’.btn’);”,””,“title.textContent = ‘New Title’;”,“title.style.color = ‘red’;”,””,“title.classList.add(‘active’);”,“title.classList.remove(‘hidden’);”,“title.classList.toggle(‘dark’);”,””,”// Events”,“var btn = document.getElementById(‘btn’);”,“btn.addEventListener(‘click’, function() {”,”  alert(‘Clicked!’);”,”});”]},
-{t:“tip”,x:”🎯 querySelector يقبل أي محدّد CSS.”}
-],
-quiz:[
-{q:”كيف نضيف مستمع حدث\u061f”, o:[“btn.onClick()”,“btn.addEventListener(‘click’,fn)”,“btn.on(‘click’,fn)”,“onclick(btn,fn)”], a:1}
-]
-}
-]
-},
-{ id:“p5”, icon:”🐙”, title:“Git & GitHub”, c1:”#10b981”, c2:”#0ea5e9”,
-desc:”تحكّم في كودك وانشر مشاريعك”,
-lessons: [
-{ id:“l51”, title:“Git & GitHub”,
-content:[
-{t:“intro”,x:“Git نظام تتبع الإصدارات. GitHub منصة لاستضافة الكود.”},
-{t:“code”,lang:“bash”,lines:[”# تهيئة مشروع”,“git init”,””,”# ربط بـ GitHub”,“git remote add origin https://github.com/user/repo.git”,””,”# إضافة الملفات”,“git add .”,””,”# حفظ التغييرات”,“git commit -m ‘first commit’”,””,”# رفع على GitHub”,“git push origin main”,””,”# سحب ٖخر تحديثات”,“git pull origin main”]},
-{t:“tip”,x:”💡 اكتب رسائل commit واضحة: ‘add navbar’ أفضل من ‘changes’”}
-],
-quiz:[
-{q:”ما أمر حفظ التغييرات\u061f”, o:[“git save”,“git commit -m ‘…’”,“git push”,“git add”], a:1},
-{q:”ما أمر رفع الكود\u061f”, o:[“git upload”,“git send”,“git push”,“git sync”], a:2}
-]
-}
-]
-},
-{ id:“p6”, icon:”🏗”, title:”مشاريع حقيقية”, c1:”#ec4899”, c2:”#8b5cf6”,
-desc:”طبّق ما تعلّمته في مشاريع واقعية”,
-lessons: [
-{ id:“l61”, title:“Landing Page”,
-content:[
-{t:“intro”,x:“Landing Page صفحة تسويقية تهدف لتحويل الزوار لعملاء.”},
-{t:“txt”,x:”<strong>1. Hero</strong> عنوان + زر CTA<br><strong>2. Features</strong> 3-4 ميزات<br><strong>3. Testimonials</strong> آراء العملاء<br><strong>4. Footer</strong>”},
-{t:“code”,lang:“html”,lines:[”<section class="hero">”,”  <h1>أفضل خدمة 🚀</h1>”,”  <p>نساعدك على تحقيق أهدافك</p>”,”  <a href="#" class="cta">ابدأ مجاناً</a>”,”</section>”,””,”<style>”,”.hero {”,”  min-height: 100vh;”,”  background: linear-gradient(135deg, #0f0c29, #302b63);”,”  display: flex; align-items: center; text-align: center;”,”  color: white;”,”}.cta {”,”  background: #7c3aed; color: white;”,”  padding: 16px 40px; border-radius: 99px;”,”  font-weight: 800; text-decoration: none;”,”}”,”</style>”]},
-{t:“tip”,x:“CTA = Call To Action \u2014 الزر الذي تريد المستخدم ضغطه.”}
-],
-quiz:[
-{q:”ما CTA\u061f”, o:[”نوع خط”,”زر الدعوة للتصرف”,”نوع تصميم”,”ملف CSS”], a:1}
-]
-},
-{ id:“l62”, title:“Portfolio شخصي”,
-content:[
-{t:“intro”,x:“Portfolio موقعك الشخصي كمطور \u2014 يعرض مشاريعك ومهاراتك.”},
-{t:“txt”,x:”<strong>About</strong> \u2014 من أنت + صورتك<br><strong>Skills</strong> \u2014 مهاراتك<br><strong>Projects</strong> \u2014 3-6 مشاريع مع Screenshots<br><strong>Contact</strong> \u2014 إيميل + GitHub”},
-{t:“tip”,x:”⭐ 3 مشاريع مكتملة أفضل من 10 مشاريع ناقصة.”}
-],
-quiz:[
-{q:”ما أهم قسم في Portfolio\u061f”, o:[”الهواية”,”المشاريع مع روابط حية”,”الكتب”,”الصور”], a:1}
-]
-}
-]
-},
-{ id:“p7”, icon:”✨”, title:“UI/UX”, c1:”#06b6d4”, c2:”#3b82f6”,
-desc:”اصنع مواقع يحبها المستخدمون”,
-lessons: [
-{ id:“l71”, title:”مبادئ UI/UX”,
-content:[
-{t:“intro”,x:“UI = المظهر البصري. UX = تجربة الاستخدام.”},
-{t:“txt”,x:”<strong>1. التباين</strong> نص داكن على خلفية فاتحة<br><strong>2. الهرمية</strong> المهم أكبر<br><strong>3. المسافات</strong> اترك مساحة للتنفس<br><strong>4. الاتساق</strong> نفس الأزرار والألوان<br><strong>5. Mobile First</strong> 60%+ على الهاتف”},
-{t:“code”,lang:“css”,lines:[”:root {”,”  –primary:  #3b82f6;”,”  –text:     #1a1a2e;”,”  –text-sub: #64748b;”,”  –xs: 12px; –sm: 14px; –base: 16px;”,”  –lg: 18px; –xl: 24px; –2xl: 32px;”,”  –sp2: 8px; –sp4: 16px; –sp6: 24px;”,”}”]},
-{t:“tip”,x:”🎨 اختر 3 ألوان فقط: لون أساسي + ثانوي + محايد.”}
-],
-quiz:[
-{q:”ما UI\u061f”, o:[”الخادم”,”المظهر البصري”,”تجربة الاستخدام”,”لغة برمجة”], a:1},
-{q:”كم نسبة مستخدمي الهاتف\u061f”, o:[“20%”,“40%”,“60%+”,“90%”], a:2}
-]
-}
-]
-}
-]};
+"use strict";
 
 // ============================================================
-// STATE
+// COURSE DATA - matches the phase files
 // ============================================================
-var completed  = {};
-var qAns       = {};
-var curLesson  = null;
+const PHASES = [
+  {
+    id: "p1", file: "phase1.html", icon: "&#127760;",
+    title: "&#1575;&#1604;&#1573;&#1606;&#1578;&#1585;&#1606;&#1578; &#1608;&#1575;&#1604;&#1608;&#1610;&#1576;",
+    desc: "&#1603;&#1610;&#1601; &#1610;&#1593;&#1605;&#1604; &#1575;&#1604;&#1573;&#1606;&#1578;&#1585;&#1606;&#1578; - HTTP - DNS - &#1575;&#1604;&#1605;&#1578;&#1589;&#1601;&#1581;&#1575;&#1578; - &#1605;&#1581;&#1585;&#1603;&#1575;&#1578; JS",
+    c1: "#0ea5e9", c2: "#06b6d4",
+    topics: ["&#1575;&#1604;&#1573;&#1606;&#1578;&#1585;&#1606;&#1578; &#1608;&#1575;&#1604;&#1588;&#1576;&#1603;&#1577;", "HTTP/HTTPS", "DNS &#1608;&#1575;&#1604;&#1606;&#1591;&#1575;&#1602;&#1575;&#1578;", "&#1575;&#1604;&#1605;&#1578;&#1589;&#1601;&#1581;&#1575;&#1578;", "Frontend vs Backend"],
+    lessons: 8
+  },
+  {
+    id: "p2", file: "phase2.html", icon: "&#128196;",
+    title: "HTML &#1575;&#1604;&#1603;&#1575;&#1605;&#1604;",
+    desc: "&#1607;&#1610;&#1603;&#1604; &#1575;&#1604;&#1589;&#1601;&#1581;&#1575;&#1578; - &#1575;&#1604;&#1608;&#1587;&#1608;&#1605; - &#1575;&#1604;&#1606;&#1605;&#1575;&#1584;&#1580; - SEO - Accessibility",
+    c1: "#f59e0b", c2: "#ef4444",
+    topics: ["&#1608;&#1587;&#1608;&#1605; HTML5", "&#1575;&#1604;&#1606;&#1605;&#1575;&#1584;&#1580;", "&#1575;&#1604;&#1580;&#1583;&#1575;&#1608;&#1604;", "SEO", "Accessibility"],
+    lessons: 12
+  },
+  {
+    id: "p3", file: "phase3.html", icon: "&#127912;",
+    title: "CSS &#1575;&#1604;&#1603;&#1575;&#1605;&#1604;",
+    desc: "&#1578;&#1589;&#1605;&#1610;&#1605; - Flexbox - Grid - Animations - Responsive",
+    c1: "#8b5cf6", c2: "#ec4899",
+    topics: ["Flexbox", "Grid", "Animations", "Responsive", "Variables"],
+    lessons: 14
+  },
+  {
+    id: "p4", file: "phase4.html", icon: "&#9889;",
+    title: "JavaScript &#1575;&#1604;&#1603;&#1575;&#1605;&#1604;",
+    desc: "&#1605;&#1606; &#1575;&#1604;&#1571;&#1587;&#1575;&#1587;&#1610;&#1575;&#1578; &#1581;&#1578;&#1609; ES6+ - Async/Await - APIs - OOP",
+    c1: "#f59e0b", c2: "#10b981",
+    topics: ["ES6+", "DOM", "Async/Await", "Fetch API", "OOP"],
+    lessons: 16
+  },
+  {
+    id: "p5", file: "phase5.html", icon: "&#128025;",
+    title: "Git & GitHub &#1608;&#1575;&#1604;&#1606;&#1588;&#1585;",
+    desc: "&#1578;&#1578;&#1576;&#1593; &#1575;&#1604;&#1603;&#1608;&#1583; - &#1575;&#1604;&#1601;&#1585;&#1608;&#1593; - &#1575;&#1604;&#1606;&#1588;&#1585; &#1593;&#1604;&#1609; Vercel &#1608; Netlify",
+    c1: "#10b981", c2: "#0ea5e9",
+    topics: ["Git &#1571;&#1608;&#1575;&#1605;&#1585;", "&#1575;&#1604;&#1601;&#1585;&#1608;&#1593;", "GitHub", "Vercel", "Netlify"],
+    lessons: 8
+  },
+  {
+    id: "p6", file: "phase6.html", icon: "&#127959;",
+    title: "&#1605;&#1588;&#1575;&#1585;&#1610;&#1593; &#1581;&#1602;&#1610;&#1602;&#1610;&#1577; &#1603;&#1575;&#1605;&#1604;&#1577;",
+    desc: "Landing Page - Portfolio - &#1605;&#1578;&#1580;&#1585; &#1573;&#1604;&#1603;&#1578;&#1585;&#1608;&#1606;&#1610; - &#1571;&#1583;&#1608;&#1575;&#1578; AI",
+    c1: "#ec4899", c2: "#8b5cf6",
+    topics: ["Landing Page", "Portfolio", "&#1605;&#1578;&#1580;&#1585;", "&#1578;&#1603;&#1575;&#1605;&#1604; API", "&#1578;&#1589;&#1605;&#1610;&#1605; UI"],
+    lessons: 10
+  },
+  {
+    id: "p7", file: "phase7.html", icon: "&#10024;",
+    title: "UI/UX &#1608;&#1575;&#1604;&#1571;&#1583;&#1608;&#1575;&#1578;",
+    desc: "&#1578;&#1589;&#1605;&#1610;&#1605; &#1575;&#1581;&#1578;&#1585;&#1575;&#1601;&#1610; - Performance - &#1571;&#1583;&#1608;&#1575;&#1578; &#1575;&#1604;&#1605;&#1591;&#1608;&#1585;",
+    c1: "#06b6d4", c2: "#3b82f6",
+    topics: ["UI/UX", "Performance", "VS Code", "Chrome DevTools", "Figma"],
+    lessons: 10
+  }
+];
 
-try {
-var _sv = localStorage.getItem(“cc_prog”);
-if (_sv) { completed = JSON.parse(_sv).c || {}; }
-} catch (e) {}
+const TOTAL_LESSONS = PHASES.reduce(function(a, p) { return a + p.lessons; }, 0);
 
-function save() {
-try { localStorage.setItem(“cc_prog”, JSON.stringify({c: completed})); } catch (e) {}
+// ============================================================
+// PROGRESS (shared across all phase files via localStorage)
+// ============================================================
+function getProgress() {
+  try {
+    const raw = localStorage.getItem("cc_v2");
+    return raw ? JSON.parse(raw) : {};
+  } catch(e) { return {}; }
 }
 
-function totalL() {
-var n = 0;
-for (var i = 0; i < C.phases.length; i++) { n += C.phases[i].lessons.length; }
-return n;
-}
-function doneN() {
-var n = 0;
-var keys = Object.keys(completed);
-for (var i = 0; i < keys.length; i++) { if (completed[keys[i]]) n++; }
-return n;
-}
-function phProg(ph) {
-var tot = ph.lessons.length, dn = 0;
-for (var i = 0; i < ph.lessons.length; i++) { if (completed[ph.lessons[i].id]) dn++; }
-return {done: dn, total: tot, pct: tot ? Math.round(dn / tot * 100) : 0};
-}
-function findPhase(pid) {
-for (var i = 0; i < C.phases.length; i++) { if (C.phases[i].id === pid) return C.phases[i]; }
-return null;
-}
-function findLesson(ph, lid) {
-if (!ph) return null;
-for (var i = 0; i < ph.lessons.length; i++) { if (ph.lessons[i].id === lid) return ph.lessons[i]; }
-return null;
-}
-function getAllLessons() {
-var all = [];
-for (var i = 0; i < C.phases.length; i++) {
-for (var j = 0; j < C.phases[i].lessons.length; j++) {
-all.push({l: C.phases[i].lessons[j], pid: C.phases[i].id});
-}
-}
-return all;
+function countDone(prog) {
+  return Object.keys(prog).filter(function(k) { return prog[k]; }).length;
 }
 
 // ============================================================
-// SIDEBAR
+// RENDER PHASES GRID
 // ============================================================
-function renderSB() {
-var nav = document.getElementById(“snav”);
-var h = “”;
-for (var i = 0; i < C.phases.length; i++) {
-var ph = C.phases[i];
-var pg = phProg(ph);
-h += “<div class="pnh">”;
-h += “<span>” + ph.icon + “</span>”;
-h += “<span style="flex:1;font-size:12px">” + ph.title + “</span>”;
-h += “<span style="font-size:11px;color:var(–mu)">” + pg.done + “/” + pg.total + “</span>”;
-h += “</div>”;
-for (var j = 0; j < ph.lessons.length; j++) {
-var ls = ph.lessons[j];
-var isDn = completed[ls.id] ? “ dn” : “”;
-var isAct = (curLesson === ls.id) ? “ act” : “”;
-h += “<div class="ni” + isDn + isAct + “" onclick="openLesson(’” + ph.id + “’,’” + ls.id + “’)">”;
-h += “<span style="font-size:10px;color:var(–mu);width:18px">” + (i+1) + “.” + (j+1) + “</span>”;
-h += “<span style="flex:1">” + ls.title + “</span>”;
-h += “<div class="nc">” + (completed[ls.id] ? “✓” : “”) + “</div>”;
-h += “</div>”;
-}
-}
-nav.innerHTML = h;
-}
-
-function updProg() {
-var tot = totalL(), dn = doneN();
-var pct = tot ? Math.round(dn / tot * 100) : 0;
-document.getElementById(“opct”).textContent = pct + “%”;
-document.getElementById(“obar”).style.width = pct + “%”;
+function renderPhases() {
+  const prog = getProgress();
+  const grid = document.getElementById("phasesGrid");
+  let html = "";
+  PHASES.forEach(function(ph, i) {
+    const done = Object.keys(prog).filter(function(k) {
+      return k.startsWith(ph.id) && prog[k];
+    }).length;
+    const pct = Math.round((done / ph.lessons) * 100);
+    const tagsHtml = ph.topics.slice(0,4).map(function(t) {
+      return '<span class="pc-lesson-tag">' + t + '</span>';
+    }).join("");
+    html += '<a href="' + ph.file + '" class="phase-card reveal" style="--c1:' + ph.c1 + ';--c2:' + ph.c2 + '">';
+    html += '<div class="pc-num">0' + (i+1) + '</div>';
+    html += '<div class="pc-icon">' + ph.icon + '</div>';
+    html += '<div class="pc-title">' + ph.title + '</div>';
+    html += '<div class="pc-desc">' + ph.desc + '</div>';
+    html += '<div class="pc-lessons">' + tagsHtml + '</div>';
+    html += '<div style="height:3px;background:var(--bg4);border-radius:99px;overflow:hidden;margin-bottom:14px">';
+    html += '<div style="height:100%;width:' + pct + '%;background:linear-gradient(90deg,' + ph.c1 + ',' + ph.c2 + ');border-radius:99px;transition:width .5s"></div></div>';
+    html += '<div class="pc-footer">';
+    html += '<span class="pc-count">' + ph.lessons + ' &#1583;&#1585;&#1587; &nbsp;|&nbsp; ' + pct + '% &#1605;&#1603;&#1578;&#1605;&#1604;</span>';
+    html += '<div class="pc-arrow" style="background:linear-gradient(135deg,' + ph.c1 + ',' + ph.c2 + ')">&#8592;</div>';
+    html += '</div></a>';
+  });
+  grid.innerHTML = html;
+  // re-observe new elements
+  document.querySelectorAll(".reveal:not(.visible)").forEach(function(el) { observer.observe(el); });
 }
 
 // ============================================================
-// HOME
+// RENDER ROADMAP
 // ============================================================
-function showHome() {
-curLesson = null;
-closeSB();
-document.getElementById(“ttl”).textContent = “\u0627\u0644\u0635\u0641\u062d\u0629 \u0627\u0644\u0631\u0626\u064a\u0633\u064a\u0629”;
-document.getElementById(“tbr”).textContent = “CodeCraft Academy”;
-renderSB();
-var tot = totalL(), dn = doneN();
-var pct = tot ? Math.round(dn / tot * 100) : 0;
-var h = “<div class="fu">”;
-h += “<div class="hero">”;
-h += “<div class="hb"><span class="dot"></span>\u0645\u0646\u0635\u0629 \u0645\u062c\u0627\u0646\u064a\u0629 100%</div>”;
-h += “<h1>\u062a\u0639\u0644\u0651\u0645 \u0627\u0644\u0628\u0631\u0645\u062c\u0629<br>\u0645\u0646 \u0627\u0644\u0635\u0641\u0631 \u0644\u0644\u0627\u062d\u062a\u0631\u0627\u0641</h1>”;
-h += “<p>\u062f\u0648\u0631\u0629 \u0634\u0627\u0645\u0644\u0629 \u062a\u0623\u062e\u0630\u0643 \u0645\u0646 \u0644\u0627 \u0634\u064a\u0621 \u0625\u0644\u0649 \u0645\u0637\u0648\u0631 \u0648\u064a\u0628 \u0642\u0627\u062f\u0631 \u0639\u0644\u0649 \u0625\u0646\u0634\u0627\u0621 \u0645\u0648\u0627\u0642\u0639 \u0627\u062d\u062a\u0631\u0627\u0641\u064a\u0629.</p>”;
-h += “<div class="hst">”;
-h += “<div class="hst"><strong>” + tot + “</strong><span>\u062f\u0631\u0633</span></div>”;
-h += “<div class="hst"><strong>7</strong><span>\u0645\u0631\u0627\u062d\u0644</span></div>”;
-h += “<div class="hst"><strong>” + dn + “/” + tot + “</strong><span>\u0623\u0646\u062c\u0632\u062a</span></div>”;
-h += “<div class="hst"><strong>” + pct + “%</strong><span>\u062a\u0642\u062f\u0645\u0643</span></div>”;
-h += “</div></div>”;
-h += “<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px">”;
-h += “<h2 style="font-size:20px;font-weight:800">\u0645\u0631\u0627\u062d\u0644 \u0627\u0644\u062f\u0648\u0631\u0629</h2>”;
-if (dn > 0) h += “<button class="btn btng btnsm" onclick="contLearn()">\u25b6 \u0645\u062a\u0627\u0628\u0639\u0629</button>”;
-h += “</div>”;
-h += “<div class="pgrid">”;
-for (var i = 0; i < C.phases.length; i++) {
-var ph = C.phases[i];
-var pg = phProg(ph);
-h += “<div class="pc" onclick="openPhase(’” + ph.id + “’)">”;
-h += “<div class="pci">” + ph.icon + “</div>”;
-h += “<div class="pcph">\u0627\u0644\u0645\u0631\u062d\u0644\u0629 “ + (i+1) + “</div>”;
-h += “<div class="pct">” + ph.title + “</div>”;
-h += “<div class="pcd">” + ph.desc + “</div>”;
-h += “<div class="pcb"><div class="pcbf" style="width:” + pg.pct + “%;background:linear-gradient(90deg,” + ph.c1 + “,” + ph.c2 + “)"></div></div>”;
-h += “<div class="pcm"><span>” + ph.lessons.length + “ \u062f\u0631\u0648\u0633</span><span>” + (pg.pct === 100 && pg.total > 0 ? “✓ \u0645\u0643\u062a\u0645\u0644” : pg.pct + “%”) + “</span></div>”;
-h += “</div>”;
-}
-h += “</div></div>”;
-document.getElementById(“ct”).innerHTML = h;
-}
-
-function openPhase(pid) {
-var ph = findPhase(pid);
-if (ph && ph.lessons.length > 0) openLesson(pid, ph.lessons[0].id);
-}
-
-function contLearn() {
-var all = getAllLessons();
-for (var i = 0; i < all.length; i++) {
-if (!completed[all[i].l.id]) { openLesson(all[i].pid, all[i].l.id); return; }
-}
-showToast(”\u0623\u0646\u062c\u0632\u062a \u062c\u0645\u064a\u0639 \u0627\u0644\u062f\u0631\u0648\u0633!”);
+function renderRoadmap() {
+  const prog = getProgress();
+  const list = document.getElementById("roadmapList");
+  let html = "";
+  PHASES.forEach(function(ph, i) {
+    const done = Object.keys(prog).filter(function(k) {
+      return k.startsWith(ph.id) && prog[k];
+    }).length;
+    const isActive = done > 0;
+    const tagsHtml = ph.topics.map(function(t) {
+      return '<span class="rm-tag">' + t + '</span>';
+    }).join("");
+    html += '<div class="rm-item' + (isActive ? " active" : "") + '">';
+    html += '<a href="' + ph.file + '" class="rm-dot" style="text-decoration:none">' + ph.icon + '</a>';
+    html += '<div class="rm-body">';
+    html += '<div class="rm-title">' + ph.title + '</div>';
+    html += '<div class="rm-desc">' + ph.desc + '</div>';
+    html += '<div class="rm-tags">' + tagsHtml + '</div>';
+    html += '</div></div>';
+  });
+  list.innerHTML = html;
 }
 
 // ============================================================
-// LESSON
+// UPDATE STATS
 // ============================================================
-function openLesson(pid, lid) {
-var ph = findPhase(pid);
-var ls = findLesson(ph, lid);
-if (!ph || !ls) return;
-curLesson = lid;
-closeSB();
-document.getElementById(“ttl”).textContent = ls.title;
-document.getElementById(“tbr”).textContent = ph.title;
-renderSB();
+function updateStats() {
+  const prog = getProgress();
+  const done = countDone(prog);
+  const pct = TOTAL_LESSONS > 0 ? Math.round((done / TOTAL_LESSONS) * 100) : 0;
 
-var all = getAllLessons();
-var idx = -1;
-for (var k = 0; k < all.length; k++) { if (all[k].l.id === lid) { idx = k; break; } }
-var prev = (idx > 0) ? all[idx - 1] : null;
-var next = (idx < all.length - 1) ? all[idx + 1] : null;
-var isDone = !!completed[lid];
+  // Animate numbers
+  animateNum("sLessons", TOTAL_LESSONS);
+  animateNum("sDone", done);
+  document.getElementById("sPct").textContent = pct + "%";
 
-var h = “<div class="fu">”;
-h += “<div class="lh">”;
-h += “<div><div class="lbg">” + ph.icon + “ “ + ph.title + “</div>”;
-h += “<h2>” + ls.title + “</h2>”;
-h += “<p style="color:var(–mu2);font-size:12px;margin-top:5px">” + (isDone ? “\u2705 \u0623\u0646\u062c\u0632\u062a \u0647\u0630\u0627 \u0627\u0644\u062f\u0631\u0633” : “\u0627\u0642\u0631\u0623 \u0628\u062a\u0645\u0639\u0646 \u062b\u0645 \u0623\u062c\u0628 \u0639\u0644\u0649 \u0627\u0644\u0627\u062e\u062a\u0628\u0627\u0631”) + “</p></div>”;
-h += “<div style="display:flex;gap:8px;flex-wrap:wrap">”;
-if (prev) h += “<button class="btn btng btnsm" onclick="openLesson(’” + prev.pid + “’,’” + prev.l.id + “’)">\u2192 \u0627\u0644\u0633\u0627\u0628\u0642</button>”;
-if (next) h += “<button class="btn btng btnsm" onclick="openLesson(’” + next.pid + “’,’” + next.l.id + “’)">\u0627\u0644\u062a\u0627\u0644\u064a \u2190</button>”;
-h += “</div></div>”;
-h += renderContent(ls);
-if (!isDone) {
-h += “<button class="cb" id="cbtn" onclick="completeLs(’” + lid + “’,’” + (next ? next.pid : “”) + “’,’” + (next ? next.l.id : “”) + “’)">\u2705 \u0623\u0646\u062c\u0632\u062a \u0627\u0644\u062f\u0631\u0633</button>”;
-} else {
-h += “<button class="cb dn">\u2705 \u062f\u0631\u0633 \u0645\u0643\u062a\u0645\u0644</button>”;
-}
-h += renderQuiz(ls);
-h += “</div>”;
-document.getElementById(“ct”).innerHTML = h;
-document.getElementById(“ct”).scrollTop = 0;
+  // Progress banner
+  if (done > 0) {
+    document.getElementById("progBanner").style.display = "flex";
+    document.getElementById("progBannerSub").textContent =
+      "&#1571;&#1606;&#1580;&#1586;&#1578; " + done + " &#1583;&#1585;&#1587; &#1605;&#1606; " + TOTAL_LESSONS + " &#8212; &#1578;&#1602;&#1583;&#1605; &#1585;&#1575;&#1574;&#1593;!";
+    document.getElementById("progBarFill").style.width = pct + "%";
+    document.getElementById("progBarPct").textContent = pct + "%";
+
+    // Find continue phase
+    for (let i = 0; i < PHASES.length; i++) {
+      const ph = PHASES[i];
+      const pDone = Object.keys(prog).filter(function(k) {
+        return k.startsWith(ph.id) && prog[k];
+      }).length;
+      if (pDone < ph.lessons) {
+        document.getElementById("progContinueBtn").href = ph.file;
+        break;
+      }
+    }
+  }
 }
 
-function renderContent(ls) {
-var h = “”;
-for (var i = 0; i < ls.content.length; i++) {
-var b = ls.content[i];
-if (b.t === “intro”) {
-h += “<div style="margin-bottom:22px"><div class="bl">\u0645\u0642\u062f\u0645\u0629</div>”;
-h += “<p class="lt" style="font-size:15px;color:var(–tx)">” + b.x + “</p></div>”;
-} else if (b.t === “sec”) {
-h += “<div class="sd"><h3>” + b.x + “</h3></div>”;
-} else if (b.t === “txt”) {
-h += “<p class="lt">” + b.x + “</p>”;
-} else if (b.t === “code”) {
-var cid = “c” + i + “_” + ls.id;
-h += “<div class="cw" id="” + cid + “">”;
-h += “<div class="ctop"><div class="cdts">”;
-h += “<span style="background:#ff5f57"></span>”;
-h += “<span style="background:#febc2e"></span>”;
-h += “<span style="background:#28c840"></span>”;
-h += “</div><span class="clng">” + b.lang + “</span>”;
-h += “<button class="cpb" onclick="copyC(’” + cid + “’,this)">\u0646\u0633\u062e</button></div>”;
-h += “<pre class="cc">” + b.lines.join(”\n”) + “</pre></div>”;
-} else if (b.t === “tip” || b.t === “note”) {
-var cls = b.t === “tip” ? “itp” : “int”;
-h += “<div class="ib “ + cls + “"><span style="font-size:18px;flex-shrink:0">💡</span><span>” + b.x + “</span></div>”;
-} else if (b.t === “warn”) {
-h += “<div class="ib iwr"><span style="font-size:18px;flex-shrink:0">⚠</span><span>” + b.x + “</span></div>”;
-}
-}
-return h;
-}
-
-function renderQuiz(ls) {
-if (!ls.quiz || ls.quiz.length === 0) return “”;
-var letters = [”\u0623”, “\u0628”, “\u062c”, “\u062f”];
-var h = “<div class="qw" id="qw_” + ls.id + “">”;
-h += “<div class="qhd"><div class="qic">📝</div>”;
-h += “<div><div class="qtl">\u0627\u062e\u062a\u0628\u0627\u0631 \u0633\u0631\u064a\u0639</div>”;
-h += “<div class="qsb">” + ls.quiz.length + “ \u0623\u0633\u0626\u0644\u0629</div></div></div>”;
-h += “<div class="qpb"><div class="qpf" id="qpf_” + ls.id + “" style="width:0%"></div></div>”;
-for (var qi = 0; qi < ls.quiz.length; qi++) {
-var q = ls.quiz[qi];
-h += “<div class="qbl">”;
-h += “<div class="qn">\u0627\u0644\u0633\u0624\u0627\u0644 “ + (qi+1) + “ \u0645\u0646 “ + ls.quiz.length + “</div>”;
-h += “<div class="qq">” + q.q + “</div>”;
-h += “<div class="ops">”;
-for (var oi = 0; oi < q.o.length; oi++) {
-h += “<button class="op" id="o_” + ls.id + “*” + qi + “*” + oi + “"”;
-h += “ onclick="selOpt(’” + ls.id + “’,” + qi + “,” + oi + “,” + q.a + “)">”;
-h += “<div class="ol">” + (letters[oi] || oi) + “</div>”;
-h += “<span>” + q.o[oi] + “</span></button>”;
-}
-h += “</div></div>”;
-}
-h += “<button class="qsub" id="qsub_” + ls.id + “" onclick="submitQuiz(’” + ls.id + “’)" disabled>”;
-h += “\u0625\u0631\u0633\u0627\u0644 \u0627\u0644\u0625\u062c\u0627\u0628\u0627\u062a</button>”;
-h += “<div id="qres_” + ls.id + “" style="display:none"></div>”;
-h += “</div>”;
-return h;
+function animateNum(id, target) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  let current = 0;
+  const step = Math.max(1, Math.round(target / 40));
+  const timer = setInterval(function() {
+    current = Math.min(current + step, target);
+    el.textContent = current;
+    if (current >= target) clearInterval(timer);
+  }, 30);
 }
 
 // ============================================================
-// QUIZ LOGIC
+// SCROLL REVEAL
 // ============================================================
-function selOpt(lid, qi, oi, ans) {
-var ph = null, ls = null;
-for (var i = 0; i < C.phases.length; i++) {
-for (var j = 0; j < C.phases[i].lessons.length; j++) {
-if (C.phases[i].lessons[j].id === lid) { ph = C.phases[i]; ls = C.phases[i].lessons[j]; }
-}
-}
-if (!ls) return;
-var q = ls.quiz[qi];
-for (var k = 0; k < q.o.length; k++) {
-var el = document.getElementById(“o_” + lid + “*” + qi + “*” + k);
-if (el) el.className = “op”;
-}
-var sel = document.getElementById(“o_” + lid + “*” + qi + “*” + oi);
-if (sel) sel.className = “op sel”;
-if (!qAns[lid]) qAns[lid] = {};
-qAns[lid][qi] = oi;
-var answered = 0;
-var keys = Object.keys(qAns[lid]);
-for (var m = 0; m < keys.length; m++) { answered++; }
-var pct = Math.round((answered / ls.quiz.length) * 100);
-var bar = document.getElementById(“qpf_” + lid);
-if (bar) bar.style.width = pct + “%”;
-if (answered === ls.quiz.length) {
-var sub = document.getElementById(“qsub_” + lid);
-if (sub) sub.disabled = false;
-}
-}
+const observer = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) {
+    if (e.isIntersecting) { e.target.classList.add("visible"); observer.unobserve(e.target); }
+  });
+}, { threshold: 0.1 });
 
-function submitQuiz(lid) {
-var ls = null;
-for (var i = 0; i < C.phases.length; i++) {
-for (var j = 0; j < C.phases[i].lessons.length; j++) {
-if (C.phases[i].lessons[j].id === lid) ls = C.phases[i].lessons[j];
-}
-}
-if (!ls) return;
-var score = 0;
-for (var qi = 0; qi < ls.quiz.length; qi++) {
-var q = ls.quiz[qi];
-var chosen = (qAns[lid] && qAns[lid][qi] !== undefined) ? qAns[lid][qi] : -1;
-for (var oi = 0; oi < q.o.length; oi++) {
-var el = document.getElementById(“o_” + lid + “*” + qi + “*” + oi);
-if (!el) continue;
-el.className = “op”;
-el.disabled = true;
-if (oi === q.a) el.className = “op cor”;
-else if (oi === chosen && chosen !== q.a) el.className = “op wrg”;
-}
-if (chosen === q.a) score++;
-}
-var pct = Math.round(score / ls.quiz.length * 100);
-var sub = document.getElementById(“qsub_” + lid);
-if (sub) sub.style.display = “none”;
-var emoji = pct === 100 ? “\u{1F3C6}” : pct >= 70 ? “\u{1F389}” : pct >= 50 ? “\u{1F44D}” : “\u{1F4AA}”;
-var msg = pct === 100 ? “\u0645\u0645\u062a\u0627\u0632!” : pct >= 70 ? “\u0623\u062d\u0633\u0646\u062a!” : pct >= 50 ? “\u062c\u064a\u062f \u2014 \u0631\u0627\u062c\u0639 \u0627\u0644\u062f\u0631\u0633” : “\u0631\u0627\u062c\u0639 \u0627\u0644\u062f\u0631\u0633 \u0645\u062c\u062f\u062f\u0627\u064b”;
-var color = pct >= 70 ? “var(–gr)” : pct >= 50 ? “var(–ac3)” : “var(–rd)”;
-var res = document.getElementById(“qres_” + lid);
-if (res) {
-res.style.display = “block”;
-res.innerHTML = “<div class="qres"><div class="rsc" style="color:” + color + “">” + emoji + “ “ + score + “/” + ls.quiz.length + “</div><div class="rms">” + msg + “</div></div>”;
-}
-showToast(emoji + “ “ + score + “/” + ls.quiz.length + “ (” + pct + “%)”);
-if (pct >= 70) celebrate();
-}
-
-function completeLs(lid, npid, nlid) {
-completed[lid] = true;
-save();
-renderSB();
-updProg();
-var btn = document.getElementById(“cbtn”);
-if (btn) { btn.className = “cb dn”; btn.textContent = “\u2705 \u062f\u0631\u0633 \u0645\u0643\u062a\u0645\u0644”; }
-showToast(”\u0623\u062d\u0633\u0646\u062a!”);
-celebrate();
-if (nlid && nlid !== “” && nlid !== “undefined”) {
-setTimeout(function() { openLesson(npid, nlid); }, 700);
-}
-}
+document.querySelectorAll(".reveal").forEach(function(el) { observer.observe(el); });
 
 // ============================================================
-// UTILS
+// MOBILE MENU
 // ============================================================
-function copyC(wid, btn) {
-var pre = document.querySelector(”#” + wid + “ pre”);
-if (!pre) return;
-var txt = pre.textContent || pre.innerText || “”;
-if (navigator.clipboard && navigator.clipboard.writeText) {
-navigator.clipboard.writeText(txt).then(function() {
-btn.textContent = “\u2713 \u062a\u0645”;
-btn.className = “cpb ok”;
-setTimeout(function() { btn.textContent = “\u0646\u0633\u062e”; btn.className = “cpb”; }, 2000);
-});
-}
-}
-
-var _tt = null;
-function showToast(msg) {
-var t = document.getElementById(“toast”);
-t.textContent = msg;
-t.className = “show”;
-if (_tt) clearTimeout(_tt);
-_tt = setTimeout(function() { t.className = “”; }, 3000);
-}
-
-function celebrate() {
-var colors = [”#7c3aed”,”#00d4ff”,”#10b981”,”#f59e0b”,”#ec4899”];
-for (var i = 0; i < 16; i++) {
-var el = document.createElement(“div”);
-el.className = “cfp”;
-el.style.left = Math.random() * 100 + “vw”;
-el.style.background = colors[Math.floor(Math.random() * colors.length)];
-el.style.animationDelay = (Math.random() * 0.4) + “s”;
-document.body.appendChild(el);
-(function(e) { setTimeout(function() { if (e.parentNode) e.parentNode.removeChild(e); }, 1400); })(el);
-}
-}
-
-function toggleSB() {
-document.getElementById(“sb”).classList.toggle(“open”);
-document.getElementById(“ov”).classList.toggle(“show”);
-}
-function closeSB() {
-document.getElementById(“sb”).classList.remove(“open”);
-document.getElementById(“ov”).classList.remove(“show”);
+function toggleMenu() {
+  const links = document.querySelector(".nav-links");
+  if (links.style.display === "flex") {
+    links.style.display = "none";
+  } else {
+    links.style.cssText = "display:flex;position:absolute;top:68px;right:0;left:0;flex-direction:column;background:var(--bg2);border-bottom:1px solid var(--bdr);padding:16px 20px;gap:6px;z-index:99";
+  }
 }
 
 // ============================================================
 // INIT
 // ============================================================
-renderSB();
-updProg();
-showHome();
-
+renderPhases();
+renderRoadmap();
+updateStats();
 </script>
+
 </body>
 </html>
