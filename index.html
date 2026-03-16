@@ -12,19 +12,22 @@
 <body>
     <!-- شريط التنقل الثابت -->
     <header>
-        <nav class="porn">
-            <div class="porn">
+        <nav class="navbar">
+            <div class="logo">
                 <!-- شعار بصيغة jpg (اختياري) مع fallback للنص -->
                 <img src="logo.jpg" alt="سفاري" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                 <span style="display:none;">سفاري</span>
             </div>
-            <ul class="porn">
-                <li><a href="#porn" data-i18n="home">الرئيسية</a></li>
+            <ul class="nav-menu">
+                <li><a href="#home" data-i18n="home">الرئيسية</a></li>
                 <li><a href="#destinations" data-i18n="destinations">الوجهات</a></li>
                 <li><a href="#packages" data-i18n="packages">الباقات</a></li>
                 <li><a href="#contact" data-i18n="contact">اتصل بنا</a></li>
             </ul>
             <div class="nav-actions">
+                <!-- زر تبديل الوضع (Dark/Light) -->
+                <button class="theme-toggle" id="themeToggle" aria-label="تبديل الوضع">🌙</button>
+                <!-- زر تبديل اللغة -->
                 <button class="lang-switch" id="langToggle">EN</button>
                 <button class="book-now" data-i18n="book">احجز الآن</button>
             </div>
@@ -82,7 +85,7 @@
 
         <!-- باقات السفر -->
         <section id="packages" class="packages">
-            <div class="porn">
+            <div class="container">
                 <h2 class="section-title" data-i18n="packages_title">باقات سفر مميزة</h2>
                 <div class="packages-grid">
                     <div class="package-card">
