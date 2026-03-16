@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>وكالة سفاري - رحلات لا تنسى</title>
-    <!-- ربط ملف CSS -->
-    <link rel="stylesheet" href="style.css">
+    <!-- ربط ملف CSS (مصغر) -->
+    <link rel="stylesheet" href="style.min.css">
     <!-- Font Awesome للأيقونات -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
@@ -14,8 +14,8 @@
     <header>
         <nav class="navbar">
             <div class="logo">
-                <!-- شعار بصيغة jpg (اختياري) مع fallback للنص -->
-                <img src="logo.jpg" alt="سفاري" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <!-- شعار مع lazy loading -->
+                <img src="logo.jpg" alt="سفاري" width="40" height="40" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                 <span style="display:none;">سفاري</span>
             </div>
             <ul class="nav-menu">
@@ -25,9 +25,7 @@
                 <li><a href="#contact" data-i18n="contact">اتصل بنا</a></li>
             </ul>
             <div class="nav-actions">
-                <!-- زر تبديل الوضع (Dark/Light) -->
                 <button class="theme-toggle" id="themeToggle" aria-label="تبديل الوضع">🌙</button>
-                <!-- زر تبديل اللغة -->
                 <button class="lang-switch" id="langToggle">EN</button>
                 <button class="book-now" data-i18n="book">احجز الآن</button>
             </div>
@@ -55,27 +53,27 @@
                 <h2 class="section-title" data-i18n="destinations_title">وجهات سياحية مميزة</h2>
                 <div class="destinations-grid">
                     <div class="destination-card">
-                        <img src="paris.jpg" alt="باريس">
+                        <img src="paris.jpg" alt="باريس" width="300" height="200" loading="lazy">
                         <h3>باريس</h3>
                         <p data-i18n="paris_desc">مدينة النور والرومانسية</p>
                     </div>
                     <div class="destination-card">
-                        <img src="bali.jpg" alt="بالي">
+                        <img src="bali.jpg" alt="بالي" width="300" height="200" loading="lazy">
                         <h3>بالي</h3>
                         <p data-i18n="bali_desc">جنة استوائية ساحرة</p>
                     </div>
                     <div class="destination-card">
-                        <img src="dubai.jpg" alt="دبي">
+                        <img src="dubai.jpg" alt="دبي" width="300" height="200" loading="lazy">
                         <h3>دبي</h3>
                         <p data-i18n="dubai_desc">مدينة المستقبل والتسوق</p>
                     </div>
                     <div class="destination-card">
-                        <img src="morocco.jpg" alt="المغرب">
+                        <img src="morocco.jpg" alt="المغرب" width="300" height="200" loading="lazy">
                         <h3>المغرب</h3>
                         <p data-i18n="morocco_desc">ثقافة وأصالة وتنوع</p>
                     </div>
                     <div class="destination-card">
-                        <img src="newyork.jpg" alt="نيويورك">
+                        <img src="newyork.jpg" alt="نيويورك" width="300" height="200" loading="lazy">
                         <h3>نيويورك</h3>
                         <p data-i18n="ny_desc">المدينة التي لا تنام</p>
                     </div>
@@ -89,7 +87,7 @@
                 <h2 class="section-title" data-i18n="packages_title">باقات سفر مميزة</h2>
                 <div class="packages-grid">
                     <div class="package-card">
-                        <img src="package-paris.jpg" alt="باريس">
+                        <img src="package-paris.jpg" alt="باريس" width="300" height="200" loading="lazy">
                         <div class="package-info">
                             <h3>رحلة باريس</h3>
                             <div class="price">$799</div>
@@ -101,7 +99,7 @@
                         </div>
                     </div>
                     <div class="package-card">
-                        <img src="package-bali.jpg" alt="بالي">
+                        <img src="package-bali.jpg" alt="بالي" width="300" height="200" loading="lazy">
                         <div class="package-info">
                             <h3>عطلة بالي</h3>
                             <div class="price">$649</div>
@@ -113,7 +111,7 @@
                         </div>
                     </div>
                     <div class="package-card">
-                        <img src="package-dubai.jpg" alt="دبي">
+                        <img src="package-dubai.jpg" alt="دبي" width="300" height="200" loading="lazy">
                         <div class="package-info">
                             <h3>دبي الفاخرة</h3>
                             <div class="price">$999</div>
@@ -125,7 +123,7 @@
                         </div>
                     </div>
                     <div class="package-card">
-                        <img src="package-morocco.jpg" alt="المغرب">
+                        <img src="package-morocco.jpg" alt="المغرب" width="300" height="200" loading="lazy">
                         <div class="package-info">
                             <h3>المغرب الساحر</h3>
                             <div class="price">$549</div>
@@ -146,22 +144,22 @@
                 <h2 class="section-title" data-i18n="why_title">لماذا تختار سفاري؟</h2>
                 <div class="features-grid">
                     <div class="feature">
-                        <img src="why1.jpg" alt="أفضل سعر">
+                        <img src="why1.jpg" alt="أفضل سعر" width="80" height="80" loading="lazy">
                         <h3 data-i18n="why_price">أفضل سعر مضمون</h3>
                         <p data-i18n="why_price_desc">نضمن لك أقل الأسعار في السوق</p>
                     </div>
                     <div class="feature">
-                        <img src="why2.jpg" alt="مرشدين محترفين">
+                        <img src="why2.jpg" alt="مرشدين محترفين" width="80" height="80" loading="lazy">
                         <h3 data-i18n="why_guides">مرشدين محترفين</h3>
                         <p data-i18n="why_guides_desc">مرشدون محليون بخبرة عالية</p>
                     </div>
                     <div class="feature">
-                        <img src="why3.jpg" alt="دعم 24/7">
+                        <img src="why3.jpg" alt="دعم 24/7" width="80" height="80" loading="lazy">
                         <h3 data-i18n="why_support">دعم على مدار الساعة</h3>
                         <p data-i18n="why_support_desc">فريق دعم متاح 24/7 لمساعدتك</p>
                     </div>
                     <div class="feature">
-                        <img src="why4.jpg" alt="حجز آمن">
+                        <img src="why4.jpg" alt="حجز آمن" width="80" height="80" loading="lazy">
                         <h3 data-i18n="why_secure">حجز آمن وموثوق</h3>
                         <p data-i18n="why_secure_desc">بياناتك آمنة مع تقنيات التشفير</p>
                     </div>
@@ -175,7 +173,7 @@
                 <h2 class="section-title" data-i18n="testimonials_title">آراء المسافرين</h2>
                 <div class="testimonials-grid">
                     <div class="testimonial-card">
-                        <img src="testimonial1.jpg" alt="محمد">
+                        <img src="testimonial1.jpg" alt="محمد" width="100" height="100" loading="lazy">
                         <div class="testimonial-content">
                             <p data-i18n="testimonial1">"أفضل وكالة سفر تعاملت معها. الرحلة كانت رائعة والتنظيم ممتاز."</p>
                             <h4>محمد علي</h4>
@@ -185,7 +183,7 @@
                         </div>
                     </div>
                     <div class="testimonial-card">
-                        <img src="testimonial2.jpg" alt="سارة">
+                        <img src="testimonial2.jpg" alt="سارة" width="100" height="100" loading="lazy">
                         <div class="testimonial-content">
                             <p data-i18n="testimonial2">"باقات متنوعة وأسعار منافسة. سأكرر التجربة بالتأكيد."</p>
                             <h4>سارة أحمد</h4>
@@ -195,7 +193,7 @@
                         </div>
                     </div>
                     <div class="testimonial-card">
-                        <img src="testimonial3.jpg" alt="خالد">
+                        <img src="testimonial3.jpg" alt="خالد" width="100" height="100" loading="lazy">
                         <div class="testimonial-content">
                             <p data-i18n="testimonial3">"الدعم الفوري والمرشدين المحترفين جعلوا الرحلة لا تنسى."</p>
                             <h4>خالد محمود</h4>
@@ -213,12 +211,12 @@
             <div class="container">
                 <h2 class="section-title" data-i18n="gallery_title">معرض الصور</h2>
                 <div class="gallery-grid">
-                    <img src="gallery1.jpg" alt="صورة 1">
-                    <img src="gallery2.jpg" alt="صورة 2">
-                    <img src="gallery3.jpg" alt="صورة 3">
-                    <img src="gallery4.jpg" alt="صورة 4">
-                    <img src="gallery5.jpg" alt="صورة 5">
-                    <img src="gallery6.jpg" alt="صورة 6">
+                    <img src="gallery1.jpg" alt="صورة 1" width="400" height="250" loading="lazy">
+                    <img src="gallery2.jpg" alt="صورة 2" width="400" height="250" loading="lazy">
+                    <img src="gallery3.jpg" alt="صورة 3" width="400" height="250" loading="lazy">
+                    <img src="gallery4.jpg" alt="صورة 4" width="400" height="250" loading="lazy">
+                    <img src="gallery5.jpg" alt="صورة 5" width="400" height="250" loading="lazy">
+                    <img src="gallery6.jpg" alt="صورة 6" width="400" height="250" loading="lazy">
                 </div>
             </div>
         </section>
@@ -281,7 +279,7 @@
         </div>
     </footer>
 
-    <!-- ربط ملف JavaScript -->
-    <script src="script.js"></script>
+    <!-- ربط ملف JavaScript مع خاصية defer لتحميله بعد HTML -->
+    <script src="script.min.js" defer></script>
 </body>
 </html>
