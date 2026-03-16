@@ -3,25 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>بورتفوليو احترافي</title>
+    <title>بورتفوليو احترافي | Ahmed</title>
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome للايقونات -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- ملف التنسيقات -->
+    <!-- AOS Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
-        /* متغيرات الألوان */
+        /* متغيرات الألوان للوضع الفاتح والداكن */
         :root {
-            --primary-color: #4f46e5;
-            --secondary-color: #818cf8;
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #8b5cf6;
+            --accent: #ec4899;
+            --bg-light: #ffffff;
             --bg-dark: #0f172a;
-            --bg-light: #f8fafc;
-            --text-dark: #1e293b;
-            --text-light: #f1f5f9;
-            --gray: #94a3b8;
-            --white: #ffffff;
-            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --text-light: #1e293b;
+            --text-dark: #f8fafc;
+            --card-light: #f8fafc;
+            --card-dark: #1e293b;
+            --shadow-light: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --shadow-dark: 0 10px 30px rgba(0, 0, 0, 0.3);
             --transition: all 0.3s ease;
+        }
+
+        /* الوضع الفاتح (افتراضي) */
+        body.light-mode {
+            --bg: var(--bg-light);
+            --text: var(--text-light);
+            --card-bg: var(--card-light);
+            --shadow: var(--shadow-light);
+            --nav-bg: rgba(255, 255, 255, 0.95);
+            --footer-bg: var(--text-light);
+            --footer-text: var(--bg-light);
+        }
+
+        /* الوضع الداكن */
+        body.dark-mode {
+            --bg: var(--bg-dark);
+            --text: var(--text-dark);
+            --card-bg: var(--card-dark);
+            --shadow: var(--shadow-dark);
+            --nav-bg: rgba(15, 23, 42, 0.95);
+            --footer-bg: #020617;
+            --footer-text: var(--text-dark);
         }
 
         * {
@@ -31,10 +57,11 @@
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--bg-light);
-            color: var(--text-dark);
+            font-family: 'Poppins', 'Cairo', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
             line-height: 1.6;
+            transition: background-color 0.3s, color 0.3s;
             overflow-x: hidden;
         }
 
@@ -44,7 +71,7 @@
             top: 0;
             left: 0;
             width: 100%;
-            background-color: rgba(255, 255, 255, 0.95);
+            background-color: var(--nav-bg);
             backdrop-filter: blur(10px);
             box-shadow: var(--shadow);
             z-index: 1000;
@@ -66,7 +93,10 @@
         .logo {
             font-size: 1.8rem;
             font-weight: 700;
-            color: var(--primary-color);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .nav-menu {
@@ -77,15 +107,10 @@
 
         .nav-menu a {
             text-decoration: none;
-            color: var(--text-dark);
+            color: var(--text);
             font-weight: 500;
             transition: var(--transition);
             position: relative;
-        }
-
-        .nav-menu a:hover,
-        .nav-menu a.active {
-            color: var(--primary-color);
         }
 
         .nav-menu a::after {
@@ -95,7 +120,7 @@
             left: 0;
             width: 0%;
             height: 2px;
-            background-color: var(--primary-color);
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
             transition: var(--transition);
         }
 
@@ -104,11 +129,56 @@
             width: 100%;
         }
 
+        .nav-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .theme-toggle,
+        .lang-toggle {
+            background: none;
+            border: none;
+            font-size: 1.3rem;
+            color: var(--text);
+            cursor: pointer;
+            transition: var(--transition);
+            padding: 0.5rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .theme-toggle:hover,
+        .lang-toggle:hover {
+            background-color: rgba(99, 102, 241, 0.1);
+            transform: rotate(15deg);
+        }
+
+        /* زر CTA في شريط التنقل */
+        .cta-btn {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 0.6rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.6);
+        }
+
         .hamburger {
             display: none;
             cursor: pointer;
             font-size: 1.5rem;
-            color: var(--text-dark);
+            color: var(--text);
         }
 
         /* قسم الهيرو */
@@ -116,8 +186,7 @@
             min-height: 100vh;
             display: flex;
             align-items: center;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: var(--white);
+            background: radial-gradient(circle at 10% 30%, rgba(99, 102, 241, 0.1) 0%, transparent 30%);
             padding-top: 80px;
         }
 
@@ -136,7 +205,10 @@
         }
 
         .hero-text h1 span {
-            color: #fbbf24;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .hero-text p {
@@ -148,28 +220,31 @@
         .btn {
             display: inline-block;
             padding: 0.8rem 2rem;
-            background-color: var(--primary-color);
-            color: var(--white);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
             border: none;
             border-radius: 50px;
             font-size: 1rem;
-            font-weight: 500;
+            font-weight: 600;
             text-decoration: none;
             transition: var(--transition);
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(79, 70, 229, 0.4);
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
         }
 
         .btn:hover {
-            background-color: var(--secondary-color);
             transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(79, 70, 229, 0.6);
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.6);
+        }
+
+        .hero-image {
+            position: relative;
         }
 
         .hero-image img {
             width: 100%;
             max-width: 400px;
-            border-radius: 20px;
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
             box-shadow: var(--shadow);
             animation: float 3s ease-in-out infinite;
         }
@@ -179,7 +254,7 @@
             50% { transform: translateY(-20px); }
         }
 
-        /* أقسام عامة */
+        /* الأقسام العامة */
         section {
             padding: 80px 0;
         }
@@ -189,18 +264,29 @@
             font-size: 2.5rem;
             font-weight: 700;
             margin-bottom: 3rem;
-            color: var(--text-dark);
+            position: relative;
         }
 
         .section-title span {
-            color: var(--primary-color);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        /* قسم الخدمات */
-        .services {
-            background-color: var(--white);
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
         }
 
+        /* بطاقات الخدمات */
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -208,39 +294,31 @@
         }
 
         .service-card {
-            background-color: var(--bg-light);
+            background-color: var(--card-bg);
             padding: 2rem;
-            border-radius: 15px;
+            border-radius: 20px;
             text-align: center;
             box-shadow: var(--shadow);
             transition: var(--transition);
+            border: 1px solid rgba(99, 102, 241, 0.1);
+            backdrop-filter: blur(5px);
         }
 
         .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+            transform: translateY(-10px) scale(1.02);
+            border-color: var(--primary);
         }
 
         .service-card i {
             font-size: 3rem;
-            color: var(--primary-color);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: 1rem;
-        }
-
-        .service-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .service-card p {
-            color: var(--gray);
         }
 
         /* قسم الأعمال */
-        .portfolio {
-            background-color: var(--bg-light);
-        }
-
         .portfolio-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -249,7 +327,7 @@
 
         .portfolio-item {
             position: relative;
-            border-radius: 15px;
+            border-radius: 20px;
             overflow: hidden;
             box-shadow: var(--shadow);
             cursor: pointer;
@@ -268,12 +346,12 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(79, 70, 229, 0.9);
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.9), rgba(139, 92, 246, 0.9));
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            color: var(--white);
+            color: white;
             opacity: 0;
             transition: var(--transition);
         }
@@ -286,16 +364,7 @@
             transform: scale(1.1);
         }
 
-        .portfolio-overlay h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-
         /* قسم المهارات */
-        .skills {
-            background-color: var(--white);
-        }
-
         .skills-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -322,14 +391,14 @@
         .progress-bar {
             width: 100%;
             height: 10px;
-            background-color: var(--gray);
+            background-color: rgba(99, 102, 241, 0.2);
             border-radius: 10px;
             overflow: hidden;
         }
 
         .progress {
             height: 100%;
-            background-color: var(--primary-color);
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
             border-radius: 10px;
             width: 0%;
             transition: width 1.5s ease;
@@ -342,10 +411,6 @@
         }
 
         /* قسم الشهادات */
-        .testimonials {
-            background-color: var(--bg-light);
-        }
-
         .testimonials-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -353,27 +418,23 @@
         }
 
         .testimonial-card {
-            background-color: var(--white);
+            background-color: var(--card-bg);
             padding: 2rem;
-            border-radius: 15px;
+            border-radius: 20px;
             box-shadow: var(--shadow);
             transition: var(--transition);
+            border: 1px solid rgba(99, 102, 241, 0.1);
         }
 
         .testimonial-card:hover {
             transform: translateY(-5px);
+            border-color: var(--primary);
         }
 
         .testimonial-card i {
             font-size: 2rem;
-            color: var(--primary-color);
+            color: var(--primary);
             margin-bottom: 1rem;
-        }
-
-        .testimonial-card p {
-            font-style: italic;
-            margin-bottom: 1.5rem;
-            color: var(--text-dark);
         }
 
         .client-info {
@@ -387,23 +448,10 @@
             height: 50px;
             border-radius: 50%;
             object-fit: cover;
-        }
-
-        .client-info h4 {
-            font-size: 1.1rem;
-        }
-
-        .client-info p {
-            font-size: 0.9rem;
-            color: var(--gray);
-            margin: 0;
+            border: 3px solid var(--primary);
         }
 
         /* قسم الاتصال */
-        .contact {
-            background-color: var(--white);
-        }
-
         .contact-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -420,11 +468,12 @@
             display: flex;
             align-items: center;
             gap: 1rem;
+            font-size: 1.2rem;
         }
 
         .contact-item i {
-            font-size: 1.5rem;
-            color: var(--primary-color);
+            font-size: 1.8rem;
+            color: var(--primary);
         }
 
         .contact-form {
@@ -436,8 +485,10 @@
         .contact-form input,
         .contact-form textarea {
             padding: 1rem;
-            border: 1px solid var(--gray);
+            border: 1px solid rgba(99, 102, 241, 0.3);
             border-radius: 10px;
+            background-color: var(--card-bg);
+            color: var(--text);
             font-family: inherit;
             font-size: 1rem;
             transition: var(--transition);
@@ -446,19 +497,14 @@
         .contact-form input:focus,
         .contact-form textarea:focus {
             outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
-        }
-
-        .contact-form textarea {
-            min-height: 150px;
-            resize: vertical;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
         }
 
         /* الفوتر */
         footer {
-            background-color: var(--bg-dark);
-            color: var(--text-light);
+            background-color: var(--footer-bg);
+            color: var(--footer-text);
             text-align: center;
             padding: 2rem 0;
         }
@@ -471,17 +517,34 @@
         }
 
         .social-links a {
-            color: var(--text-light);
+            color: var(--footer-text);
             font-size: 1.5rem;
             transition: var(--transition);
         }
 
         .social-links a:hover {
-            color: var(--primary-color);
+            color: var(--primary);
             transform: translateY(-3px);
         }
 
         /* تصميم متجاوب */
+        @media (max-width: 992px) {
+            .hero-content,
+            .skills-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-text h1 {
+                font-size: 2.8rem;
+            }
+
+            .hero-image {
+                grid-row: 1;
+            }
+        }
+
         @media (max-width: 768px) {
             .hamburger {
                 display: block;
@@ -492,32 +555,22 @@
                 left: -100%;
                 top: 70px;
                 flex-direction: column;
-                background-color: var(--white);
+                background-color: var(--nav-bg);
                 width: 100%;
                 text-align: center;
                 padding: 2rem 0;
                 box-shadow: var(--shadow);
                 transition: var(--transition);
                 gap: 1.5rem;
+                backdrop-filter: blur(10px);
             }
 
             .nav-menu.active {
                 left: 0;
             }
 
-            .hero-content,
-            .skills-content,
-            .contact-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .hero-text h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero-image {
-                grid-row: 1;
+            .nav-actions {
+                margin-left: auto;
             }
 
             .section-title {
@@ -526,22 +579,31 @@
         }
     </style>
 </head>
-<body>
+<body class="light-mode" dir="rtl">
     <header>
         <div class="container nav-bar">
             <div class="logo">Portfolio</div>
             <nav>
                 <ul class="nav-menu" id="nav-menu">
-                    <li><a href="#home" class="active">الرئيسية</a></li>
-                    <li><a href="#services">الخدمات</a></li>
-                    <li><a href="#portfolio">الأعمال</a></li>
-                    <li><a href="#skills">المهارات</a></li>
-                    <li><a href="#testimonials">الشهادات</a></li>
-                    <li><a href="#contact">اتصل بي</a></li>
+                    <li><a href="#home" class="active" data-i18n="home">الرئيسية</a></li>
+                    <li><a href="#services" data-i18n="services">الخدمات</a></li>
+                    <li><a href="#portfolio" data-i18n="portfolio">الأعمال</a></li>
+                    <li><a href="#skills" data-i18n="skills">المهارات</a></li>
+                    <li><a href="#testimonials" data-i18n="testimonials">الشهادات</a></li>
+                    <li><a href="#contact" data-i18n="contact">اتصل بي</a></li>
                 </ul>
             </nav>
-            <div class="hamburger" id="hamburger">
-                <i class="fas fa-bars"></i>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="lang-toggle" id="lang-toggle" aria-label="Toggle language">
+                    EN
+                </button>
+                <button class="cta-btn" data-i18n="hire">وظفني</button>
+                <div class="hamburger" id="hamburger">
+                    <i class="fas fa-bars"></i>
+                </div>
             </div>
         </div>
     </header>
@@ -550,12 +612,12 @@
         <!-- قسم الرئيسية -->
         <section id="home" class="hero">
             <div class="container hero-content">
-                <div class="hero-text">
-                    <h1>مرحباً، أنا <span>أحمد</span><br>مطور واجهات أمامية</h1>
-                    <p>أصمم تجارب رقمية إبداعية تجعل علامتك التجارية مميزة. مع أكثر من 5 سنوات من الخبرة في تطوير الويب.</p>
-                    <a href="#contact" class="btn">تواصل معي</a>
+                <div class="hero-text" data-aos="fade-up">
+                    <h1 data-i18n="hero_title">مرحباً، أنا <span>أحمد</span><br>مطور واجهات أمامية</h1>
+                    <p data-i18n="hero_desc">أصمم تجارب رقمية إبداعية تجعل علامتك التجارية مميزة. مع أكثر من 5 سنوات من الخبرة في تطوير الويب.</p>
+                    <a href="#contact" class="btn" data-i18n="contact_me">تواصل معي</a>
                 </div>
-                <div class="hero-image">
+                <div class="hero-image" data-aos="fade-left">
                     <img src="https://via.placeholder.com/400x400" alt="صورة شخصية">
                 </div>
             </div>
@@ -564,27 +626,27 @@
         <!-- قسم الخدمات -->
         <section id="services" class="services">
             <div class="container">
-                <h2 class="section-title">خدماتي <span>المميزة</span></h2>
+                <h2 class="section-title" data-aos="fade-up"><span data-i18n="my_services">خدماتي</span> <span data-i18n="featured">المميزة</span></h2>
                 <div class="services-grid">
-                    <div class="service-card">
+                    <div class="service-card" data-aos="zoom-in" data-aos-delay="100">
                         <i class="fas fa-code"></i>
-                        <h3>تطوير ويب</h3>
-                        <p>أطور مواقع ويب سريعة ومتجاوبة باستخدام أحدث التقنيات.</p>
+                        <h3 data-i18n="web_dev">تطوير ويب</h3>
+                        <p data-i18n="web_dev_desc">أطور مواقع ويب سريعة ومتجاوبة باستخدام أحدث التقنيات.</p>
                     </div>
-                    <div class="service-card">
+                    <div class="service-card" data-aos="zoom-in" data-aos-delay="200">
                         <i class="fas fa-paint-brush"></i>
-                        <h3>تصميم واجهات</h3>
-                        <p>تصميم واجهات مستخدم جذابة وسهلة الاستخدام.</p>
+                        <h3 data-i18n="ui_ux">تصميم واجهات</h3>
+                        <p data-i18n="ui_ux_desc">تصميم واجهات مستخدم جذابة وسهلة الاستخدام.</p>
                     </div>
-                    <div class="service-card">
+                    <div class="service-card" data-aos="zoom-in" data-aos-delay="300">
                         <i class="fas fa-mobile-alt"></i>
-                        <h3>تطبيقات الجوال</h3>
-                        <p>بناء تطبيقات جوال أصلية ومتعددة المنصات.</p>
+                        <h3 data-i18n="mobile_app">تطبيقات الجوال</h3>
+                        <p data-i18n="mobile_desc">بناء تطبيقات جوال أصلية ومتعددة المنصات.</p>
                     </div>
-                    <div class="service-card">
+                    <div class="service-card" data-aos="zoom-in" data-aos-delay="400">
                         <i class="fas fa-search"></i>
-                        <h3>تحسين محركات البحث</h3>
-                        <p>تحسين ظهور موقعك في نتائج البحث وزيادة الزوار.</p>
+                        <h3 data-i18n="seo">تحسين محركات البحث</h3>
+                        <p data-i18n="seo_desc">تحسين ظهور موقعك في نتائج البحث وزيادة الزوار.</p>
                     </div>
                 </div>
             </div>
@@ -593,34 +655,34 @@
         <!-- قسم الأعمال -->
         <section id="portfolio" class="portfolio">
             <div class="container">
-                <h2 class="section-title">أحدث <span>أعمالي</span></h2>
+                <h2 class="section-title" data-aos="fade-up"><span data-i18n="latest">أحدث</span> <span data-i18n="my_works">أعمالي</span></h2>
                 <div class="portfolio-grid">
-                    <div class="portfolio-item">
+                    <div class="portfolio-item" data-aos="flip-right">
                         <img src="https://via.placeholder.com/300x250" alt="مشروع 1">
                         <div class="portfolio-overlay">
-                            <h3>مشروع 1</h3>
-                            <p>تطبيق ويب</p>
+                            <h3 data-i18n="project1">مشروع 1</h3>
+                            <p data-i18n="web_app">تطبيق ويب</p>
                         </div>
                     </div>
-                    <div class="portfolio-item">
+                    <div class="portfolio-item" data-aos="flip-right" data-aos-delay="100">
                         <img src="https://via.placeholder.com/300x250" alt="مشروع 2">
                         <div class="portfolio-overlay">
-                            <h3>مشروع 2</h3>
-                            <p>تصميم واجهات</p>
+                            <h3 data-i18n="project2">مشروع 2</h3>
+                            <p data-i18n="ui_design">تصميم واجهات</p>
                         </div>
                     </div>
-                    <div class="portfolio-item">
+                    <div class="portfolio-item" data-aos="flip-right" data-aos-delay="200">
                         <img src="https://via.placeholder.com/300x250" alt="مشروع 3">
                         <div class="portfolio-overlay">
-                            <h3>مشروع 3</h3>
-                            <p>تطبيق جوال</p>
+                            <h3 data-i18n="project3">مشروع 3</h3>
+                            <p data-i18n="mobile_app2">تطبيق جوال</p>
                         </div>
                     </div>
-                    <div class="portfolio-item">
+                    <div class="portfolio-item" data-aos="flip-right" data-aos-delay="300">
                         <img src="https://via.placeholder.com/300x250" alt="مشروع 4">
                         <div class="portfolio-overlay">
-                            <h3>مشروع 4</h3>
-                            <p>موقع تجاري</p>
+                            <h3 data-i18n="project4">مشروع 4</h3>
+                            <p data-i18n="ecommerce">موقع تجاري</p>
                         </div>
                     </div>
                 </div>
@@ -630,8 +692,8 @@
         <!-- قسم المهارات -->
         <section id="skills" class="skills">
             <div class="container skills-content">
-                <div class="skill-bars">
-                    <h2 class="section-title" style="text-align: right;">مهاراتي <span>التقنية</span></h2>
+                <div class="skill-bars" data-aos="fade-right">
+                    <h2 class="section-title" style="text-align: right;"><span data-i18n="my_skills">مهاراتي</span> <span data-i18n="technical">التقنية</span></h2>
                     <div class="skill-item">
                         <div class="skill-info">
                             <span>HTML5 & CSS3</span>
@@ -669,7 +731,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="skills-image">
+                <div class="skills-image" data-aos="fade-left">
                     <img src="https://via.placeholder.com/500x400" alt="مهارات">
                 </div>
             </div>
@@ -678,38 +740,38 @@
         <!-- قسم الشهادات -->
         <section id="testimonials" class="testimonials">
             <div class="container">
-                <h2 class="section-title">ماذا قال <span>العملاء</span></h2>
+                <h2 class="section-title" data-aos="fade-up"><span data-i18n="what_clients">ماذا قال</span> <span data-i18n="clients">العملاء</span></h2>
                 <div class="testimonials-grid">
-                    <div class="testimonial-card">
+                    <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
                         <i class="fas fa-quote-right"></i>
-                        <p>"عمل رائع ومهنية عالية، ساعدني في تطوير موقع شركتي وأظهره بشكل احترافي."</p>
+                        <p data-i18n="testimonial1">"عمل رائع ومهنية عالية، ساعدني في تطوير موقع شركتي وأظهره بشكل احترافي."</p>
                         <div class="client-info">
                             <img src="https://via.placeholder.com/50x50" alt="عميل">
                             <div>
-                                <h4>محمد علي</h4>
-                                <p>مدير شركة تك</p>
+                                <h4 data-i18n="client1_name">محمد علي</h4>
+                                <p data-i18n="client1_title">مدير شركة تك</p>
                             </div>
                         </div>
                     </div>
-                    <div class="testimonial-card">
+                    <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
                         <i class="fas fa-quote-right"></i>
-                        <p>"التعامل مع أحمد كان سلساً جداً، والتسليم في الوقت المحدد. أنصح به بشدة."</p>
+                        <p data-i18n="testimonial2">"التعامل مع أحمد كان سلساً جداً، والتسليم في الوقت المحدد. أنصح به بشدة."</p>
                         <div class="client-info">
                             <img src="https://via.placeholder.com/50x50" alt="عميلة">
                             <div>
-                                <h4>سارة خالد</h4>
-                                <p>مصممة جرافيك</p>
+                                <h4 data-i18n="client2_name">سارة خالد</h4>
+                                <p data-i18n="client2_title">مصممة جرافيك</p>
                             </div>
                         </div>
                     </div>
-                    <div class="testimonial-card">
+                    <div class="testimonial-card" data-aos="fade-up" data-aos-delay="300">
                         <i class="fas fa-quote-right"></i>
-                        <p>"احترافية في التصميم والتطوير، تجاوز توقعاتي بمراحل. سأتعامل معه مرة أخرى."</p>
+                        <p data-i18n="testimonial3">"احترافية في التصميم والتطوير، تجاوز توقعاتي بمراحل. سأتعامل معه مرة أخرى."</p>
                         <div class="client-info">
                             <img src="https://via.placeholder.com/50x50" alt="عميل">
                             <div>
-                                <h4>أحمد حسن</h4>
-                                <p>صاحب مشروع ناشئ</p>
+                                <h4 data-i18n="client3_name">أحمد حسن</h4>
+                                <p data-i18n="client3_title">صاحب مشروع ناشئ</p>
                             </div>
                         </div>
                     </div>
@@ -720,11 +782,11 @@
         <!-- قسم الاتصال -->
         <section id="contact" class="contact">
             <div class="container contact-content">
-                <div class="contact-info">
-                    <h2 class="section-title" style="text-align: right;">دعنا <span>نتواصل</span></h2>
+                <div class="contact-info" data-aos="fade-left">
+                    <h2 class="section-title" style="text-align: right;"><span data-i18n="lets">دعنا</span> <span data-i18n="connect">نتواصل</span></h2>
                     <div class="contact-item">
                         <i class="fas fa-map-marker-alt"></i>
-                        <p>القاهرة، مصر</p>
+                        <p data-i18n="location">القاهرة، مصر</p>
                     </div>
                     <div class="contact-item">
                         <i class="fas fa-phone"></i>
@@ -735,12 +797,12 @@
                         <p>ahmed@portfolio.com</p>
                     </div>
                 </div>
-                <form class="contact-form" id="contactForm">
-                    <input type="text" placeholder="الاسم" required>
-                    <input type="email" placeholder="البريد الإلكتروني" required>
-                    <input type="text" placeholder="الموضوع">
-                    <textarea placeholder="الرسالة" required></textarea>
-                    <button type="submit" class="btn">إرسال الرسالة</button>
+                <form class="contact-form" id="contactForm" data-aos="fade-right">
+                    <input type="text" placeholder="الاسم" data-i18n-placeholder="name" required>
+                    <input type="email" placeholder="البريد الإلكتروني" data-i18n-placeholder="email" required>
+                    <input type="text" placeholder="الموضوع" data-i18n-placeholder="subject">
+                    <textarea placeholder="الرسالة" data-i18n-placeholder="message" required></textarea>
+                    <button type="submit" class="btn" data-i18n="send">إرسال الرسالة</button>
                 </form>
             </div>
         </section>
@@ -748,7 +810,7 @@
 
     <footer>
         <div class="container">
-            <p>جميع الحقوق محفوظة &copy; 2025 | أحمد</p>
+            <p data-i18n="footer">جميع الحقوق محفوظة &copy; 2025 | أحمد</p>
             <div class="social-links">
                 <a href="#"><i class="fab fa-facebook"></i></a>
                 <a href="#"><i class="fab fa-twitter"></i></a>
@@ -759,18 +821,28 @@
         </div>
     </footer>
 
+    <!-- AOS Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // JavaScript للقائمة المتنقلة والتمرير السلس
+        // تهيئة AOS
+        AOS.init({
+            duration: 800,
+            once: true,
+        });
+
+        // إدارة القائمة المتنقلة والتمرير السلس
         document.addEventListener('DOMContentLoaded', function() {
             const hamburger = document.getElementById('hamburger');
             const navMenu = document.getElementById('nav-menu');
             const navLinks = document.querySelectorAll('.nav-menu a');
             const sections = document.querySelectorAll('section');
+            const themeToggle = document.getElementById('theme-toggle');
+            const langToggle = document.getElementById('lang-toggle');
+            const body = document.body;
 
-            // فتح/غلق القائمة في الجوال
+            // قائمة الهمبرغر
             hamburger.addEventListener('click', () => {
                 navMenu.classList.toggle('active');
-                // تغيير أيقونة الهامبرغر
                 const icon = hamburger.querySelector('i');
                 if (navMenu.classList.contains('active')) {
                     icon.classList.remove('fa-bars');
@@ -787,28 +859,19 @@
                     e.preventDefault();
                     const targetId = link.getAttribute('href');
                     const targetSection = document.querySelector(targetId);
-                    
-                    // تمرير سلس إلى القسم
                     if (targetSection) {
                         window.scrollTo({
                             top: targetSection.offsetTop - 70,
                             behavior: 'smooth'
                         });
                     }
-
-                    // إغلاق القائمة في الجوال
                     navMenu.classList.remove('active');
-                    const icon = hamburger.querySelector('i');
-                    icon.classList.remove('fa-times');
-                    icon.classList.add('fa-bars');
-
-                    // تحديث الرابط النشط
-                    navLinks.forEach(l => l.classList.remove('active'));
-                    link.classList.add('active');
+                    hamburger.querySelector('i').classList.remove('fa-times');
+                    hamburger.querySelector('i').classList.add('fa-bars');
                 });
             });
 
-            // تحديد الرابط النشط أثناء التمرير
+            // تحديد الرابط النشط
             window.addEventListener('scroll', () => {
                 let current = '';
                 sections.forEach(section => {
@@ -827,12 +890,192 @@
                 });
             });
 
-            // معالجة إرسال النموذج (منع الإرسال الافتراضي)
+            // معالجة نموذج الاتصال
             const contactForm = document.getElementById('contactForm');
             contactForm.addEventListener('submit', (e) => {
                 e.preventDefault();
                 alert('تم إرسال الرسالة بنجاح (محاكاة)');
                 contactForm.reset();
+            });
+
+            // ========== الوضع الليلي ==========
+            // التحقق من الحفظ السابق
+            if (localStorage.getItem('theme') === 'dark') {
+                body.classList.remove('light-mode');
+                body.classList.add('dark-mode');
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            } else {
+                body.classList.add('light-mode');
+                body.classList.remove('dark-mode');
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+            }
+
+            themeToggle.addEventListener('click', () => {
+                if (body.classList.contains('light-mode')) {
+                    body.classList.remove('light-mode');
+                    body.classList.add('dark-mode');
+                    themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    body.classList.remove('dark-mode');
+                    body.classList.add('light-mode');
+                    themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                    localStorage.setItem('theme', 'light');
+                }
+            });
+
+            // ========== تبديل اللغة ==========
+            // كائن الترجمات (عربي - إنجليزي)
+            const translations = {
+                ar: {
+                    home: 'الرئيسية',
+                    services: 'الخدمات',
+                    portfolio: 'الأعمال',
+                    skills: 'المهارات',
+                    testimonials: 'الشهادات',
+                    contact: 'اتصل بي',
+                    hire: 'وظفني',
+                    hero_title: 'مرحباً، أنا <span>أحمد</span><br>مطور واجهات أمامية',
+                    hero_desc: 'أصمم تجارب رقمية إبداعية تجعل علامتك التجارية مميزة. مع أكثر من 5 سنوات من الخبرة في تطوير الويب.',
+                    contact_me: 'تواصل معي',
+                    my_services: 'خدماتي',
+                    featured: 'المميزة',
+                    web_dev: 'تطوير ويب',
+                    web_dev_desc: 'أطور مواقع ويب سريعة ومتجاوبة باستخدام أحدث التقنيات.',
+                    ui_ux: 'تصميم واجهات',
+                    ui_ux_desc: 'تصميم واجهات مستخدم جذابة وسهلة الاستخدام.',
+                    mobile_app: 'تطبيقات الجوال',
+                    mobile_desc: 'بناء تطبيقات جوال أصلية ومتعددة المنصات.',
+                    seo: 'تحسين محركات البحث',
+                    seo_desc: 'تحسين ظهور موقعك في نتائج البحث وزيادة الزوار.',
+                    latest: 'أحدث',
+                    my_works: 'أعمالي',
+                    project1: 'مشروع 1',
+                    project2: 'مشروع 2',
+                    project3: 'مشروع 3',
+                    project4: 'مشروع 4',
+                    web_app: 'تطبيق ويب',
+                    ui_design: 'تصميم واجهات',
+                    mobile_app2: 'تطبيق جوال',
+                    ecommerce: 'موقع تجاري',
+                    my_skills: 'مهاراتي',
+                    technical: 'التقنية',
+                    what_clients: 'ماذا قال',
+                    clients: 'العملاء',
+                    testimonial1: '"عمل رائع ومهنية عالية، ساعدني في تطوير موقع شركتي وأظهره بشكل احترافي."',
+                    testimonial2: '"التعامل مع أحمد كان سلساً جداً، والتسليم في الوقت المحدد. أنصح به بشدة."',
+                    testimonial3: '"احترافية في التصميم والتطوير، تجاوز توقعاتي بمراحل. سأتعامل معه مرة أخرى."',
+                    client1_name: 'محمد علي',
+                    client1_title: 'مدير شركة تك',
+                    client2_name: 'سارة خالد',
+                    client2_title: 'مصممة جرافيك',
+                    client3_name: 'أحمد حسن',
+                    client3_title: 'صاحب مشروع ناشئ',
+                    lets: 'دعنا',
+                    connect: 'نتواصل',
+                    location: 'القاهرة، مصر',
+                    name: 'الاسم',
+                    email: 'البريد الإلكتروني',
+                    subject: 'الموضوع',
+                    message: 'الرسالة',
+                    send: 'إرسال الرسالة',
+                    footer: 'جميع الحقوق محفوظة © 2025 | أحمد'
+                },
+                en: {
+                    home: 'Home',
+                    services: 'Services',
+                    portfolio: 'Portfolio',
+                    skills: 'Skills',
+                    testimonials: 'Testimonials',
+                    contact: 'Contact',
+                    hire: 'Hire Me',
+                    hero_title: 'Hi, I\'m <span>Ahmed</span><br>Frontend Developer',
+                    hero_desc: 'I design creative digital experiences that make your brand stand out. With over 5 years of experience in web development.',
+                    contact_me: 'Contact Me',
+                    my_services: 'My',
+                    featured: 'Services',
+                    web_dev: 'Web Development',
+                    web_dev_desc: 'I develop fast and responsive websites using the latest technologies.',
+                    ui_ux: 'UI/UX Design',
+                    ui_ux_desc: 'Design attractive and easy-to-use user interfaces.',
+                    mobile_app: 'Mobile Apps',
+                    mobile_desc: 'Build native and cross-platform mobile applications.',
+                    seo: 'SEO',
+                    seo_desc: 'Improve your site\'s visibility in search results and increase visitors.',
+                    latest: 'My',
+                    my_works: 'Works',
+                    project1: 'Project 1',
+                    project2: 'Project 2',
+                    project3: 'Project 3',
+                    project4: 'Project 4',
+                    web_app: 'Web App',
+                    ui_design: 'UI Design',
+                    mobile_app2: 'Mobile App',
+                    ecommerce: 'E-commerce',
+                    my_skills: 'My',
+                    technical: 'Skills',
+                    what_clients: 'What',
+                    clients: 'Clients Say',
+                    testimonial1: '"Great work and high professionalism, helped me develop my company\'s website and made it look professional."',
+                    testimonial2: '"Dealing with Ahmed was very smooth, and delivery was on time. Highly recommended."',
+                    testimonial3: '"Professionalism in design and development, exceeded my expectations. I will deal with him again."',
+                    client1_name: 'Mohamed Ali',
+                    client1_title: 'CEO of Tech Co.',
+                    client2_name: 'Sara Khaled',
+                    client2_title: 'Graphic Designer',
+                    client3_name: 'Ahmed Hassan',
+                    client3_title: 'Startup Owner',
+                    lets: 'Let\'s',
+                    connect: 'Connect',
+                    location: 'Cairo, Egypt',
+                    name: 'Name',
+                    email: 'Email',
+                    subject: 'Subject',
+                    message: 'Message',
+                    send: 'Send Message',
+                    footer: 'All rights reserved © 2025 | Ahmed'
+                }
+            };
+
+            // اللغة الحالية
+            let currentLang = localStorage.getItem('lang') || 'ar';
+
+            // تحديث اتجاه الصفحة والنصوص
+            function setLanguage(lang) {
+                document.documentElement.lang = lang;
+                document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+                langToggle.textContent = lang === 'ar' ? 'EN' : 'AR';
+
+                // تحديث النصوص
+                document.querySelectorAll('[data-i18n]').forEach(el => {
+                    const key = el.getAttribute('data-i18n');
+                    if (translations[lang][key]) {
+                        if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                            el.placeholder = translations[lang][key];
+                        } else {
+                            el.innerHTML = translations[lang][key];
+                        }
+                    }
+                });
+
+                // تحديث الـ placeholders
+                document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+                    const key = el.getAttribute('data-i18n-placeholder');
+                    if (translations[lang][key]) {
+                        el.placeholder = translations[lang][key];
+                    }
+                });
+
+                localStorage.setItem('lang', lang);
+            }
+
+            // تطبيق اللغة المحفوظة
+            setLanguage(currentLang);
+
+            // عند النقر على زر اللغة
+            langToggle.addEventListener('click', () => {
+                currentLang = currentLang === 'ar' ? 'en' : 'ar';
+                setLanguage(currentLang);
             });
         });
     </script>
