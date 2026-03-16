@@ -53,7 +53,7 @@
         <div class="search-bar" data-aos="fade-up" data-aos-delay="200">
           <div class="search-group">
             <i class="fas fa-map-marker-alt"></i>
-            <input type="text" placeholder="إلى أين تذهب؟" class="search-input">
+            <input type="text" placeholder="إلى أين تذهب؟" class="search-input" data-i18n-placeholder="search_placeholder">
           </div>
           <div class="search-group">
             <i class="fas fa-calendar-alt"></i>
@@ -61,15 +61,15 @@
           </div>
           <div class="search-group">
             <i class="fas fa-users"></i>
-            <select class="search-input">
-              <option value="1">1 مسافر</option>
-              <option value="2" selected>2 مسافر</option>
-              <option value="3">3 مسافر</option>
-              <option value="4">4 مسافر</option>
-              <option value="5">5+ مسافر</option>
+            <select class="search-input" data-i18n-options="travelers">
+              <option value="1" data-i18n="traveler1">1 مسافر</option>
+              <option value="2" selected data-i18n="traveler2">2 مسافر</option>
+              <option value="3" data-i18n="traveler3">3 مسافر</option>
+              <option value="4" data-i18n="traveler4">4 مسافر</option>
+              <option value="5" data-i18n="traveler5">5+ مسافر</option>
             </select>
           </div>
-          <button class="search-btn"><i class="fas fa-search"></i> بحث</button>
+          <button class="search-btn" data-i18n="search"><i class="fas fa-search"></i> بحث</button>
         </div>
         <a href="#packages" class="btn-primary" data-i18n="hero_btn">استكشف الباقات</a>
       </div>
@@ -88,7 +88,7 @@
             <div class="card-content">
               <h3>باريس</h3>
               <p data-i18n="paris_desc">مدينة النور والرومانسية</p>
-              <span class="card-price">من 799 درهم</span>
+              <span class="card-price"><span data-i18n="from">من</span> 799 <span class="currency">درهم</span></span>
             </div>
           </div>
           <!-- بالي -->
@@ -99,7 +99,7 @@
             <div class="card-content">
               <h3>بالي</h3>
               <p data-i18n="bali_desc">جنة استوائية ساحرة</p>
-              <span class="card-price">من 649 درهم</span>
+              <span class="card-price"><span data-i18n="from">من</span> 649 <span class="currency">درهم</span></span>
             </div>
           </div>
           <!-- دبي -->
@@ -110,7 +110,7 @@
             <div class="card-content">
               <h3>دبي</h3>
               <p data-i18n="dubai_desc">مدينة المستقبل والتسوق</p>
-              <span class="card-price">من 999 درهم</span>
+              <span class="card-price"><span data-i18n="from">من</span> 999 <span class="currency">درهم</span></span>
             </div>
           </div>
           <!-- المغرب -->
@@ -121,7 +121,7 @@
             <div class="card-content">
               <h3>المغرب</h3>
               <p data-i18n="morocco_desc">ثقافة وأصالة وتنوع</p>
-              <span class="card-price">من 549 درهم</span>
+              <span class="card-price"><span data-i18n="from">من</span> 549 <span class="currency">درهم</span></span>
             </div>
           </div>
           <!-- نيويورك -->
@@ -132,7 +132,7 @@
             <div class="card-content">
               <h3>نيويورك</h3>
               <p data-i18n="ny_desc">المدينة التي لا تنام</p>
-              <span class="card-price">من 1199 درهم</span>
+              <span class="card-price"><span data-i18n="from">من</span> 1199 <span class="currency">درهم</span></span>
             </div>
           </div>
         </div>
@@ -148,15 +148,15 @@
           <div class="package-card" data-aos="flip-right">
             <div class="card-image">
               <img src="package-paris.jpg" alt="باريس" width="300" height="200" loading="lazy">
-              <span class="package-badge">الأكثر مبيعاً</span>
+              <span class="package-badge" data-i18n="best_seller">الأكثر مبيعاً</span>
             </div>
             <div class="card-content">
               <h3>رحلة باريس</h3>
               <div class="package-meta">
-                <span><i class="fas fa-clock"></i> 5 أيام / 4 ليالي</span>
+                <span><i class="fas fa-clock"></i> <span data-i18n="duration_paris">5 أيام / 4 ليالي</span></span>
                 <span class="rating"><i class="fas fa-star"></i> 4.5</span>
               </div>
-              <p class="package-desc">زيارة برج إيفل، متحف اللوفر، وسهرة على نهر السين.</p>
+              <p class="package-desc" data-i18n="paris_package_desc">زيارة برج إيفل، متحف اللوفر، وسهرة على نهر السين.</p>
               <div class="package-footer">
                 <span class="price">799 <span class="currency">درهم</span></span>
                 <a href="booking.html?id=paris" class="btn-secondary" data-i18n="book_now">احجز الآن</a>
@@ -171,10 +171,10 @@
             <div class="card-content">
               <h3>عطلة بالي</h3>
               <div class="package-meta">
-                <span><i class="fas fa-clock"></i> 7 أيام / 6 ليالي</span>
+                <span><i class="fas fa-clock"></i> <span data-i18n="duration_bali">7 أيام / 6 ليالي</span></span>
                 <span class="rating"><i class="fas fa-star"></i> 4.8</span>
               </div>
-              <p class="package-desc">استرخاء على الشواطئ، زيارة المعابد، وجولات استوائية.</p>
+              <p class="package-desc" data-i18n="bali_package_desc">استرخاء على الشواطئ، زيارة المعابد، وجولات استوائية.</p>
               <div class="package-footer">
                 <span class="price">649 <span class="currency">درهم</span></span>
                 <a href="booking.html?id=bali" class="btn-secondary" data-i18n="book_now">احجز الآن</a>
@@ -185,15 +185,15 @@
           <div class="package-card" data-aos="flip-right" data-aos-delay="200">
             <div class="card-image">
               <img src="package-dubai.jpg" alt="دبي" width="300" height="200" loading="lazy">
-              <span class="package-badge">عرض خاص</span>
+              <span class="package-badge" data-i18n="special_offer">عرض خاص</span>
             </div>
             <div class="card-content">
               <h3>دبي الفاخرة</h3>
               <div class="package-meta">
-                <span><i class="fas fa-clock"></i> 4 أيام / 3 ليالي</span>
+                <span><i class="fas fa-clock"></i> <span data-i18n="duration_dubai">4 أيام / 3 ليالي</span></span>
                 <span class="rating"><i class="fas fa-star"></i> 4.9</span>
               </div>
-              <p class="package-desc">برج خليفة، سفاري في الصحراء، وتجربة تسوق فاخرة.</p>
+              <p class="package-desc" data-i18n="dubai_package_desc">برج خليفة، سفاري في الصحراء، وتجربة تسوق فاخرة.</p>
               <div class="package-footer">
                 <span class="price">999 <span class="currency">درهم</span></span>
                 <a href="booking.html?id=dubai" class="btn-secondary" data-i18n="book_now">احجز الآن</a>
@@ -208,10 +208,10 @@
             <div class="card-content">
               <h3>المغرب الساحر</h3>
               <div class="package-meta">
-                <span><i class="fas fa-clock"></i> 8 أيام / 7 ليالي</span>
+                <span><i class="fas fa-clock"></i> <span data-i18n="duration_morocco">8 أيام / 7 ليالي</span></span>
                 <span class="rating"><i class="fas fa-star"></i> 4.7</span>
               </div>
-              <p class="package-desc">جولة في مراكش، فاس، الصحراء، وأصالة الضيافة المغربية.</p>
+              <p class="package-desc" data-i18n="morocco_package_desc">جولة في مراكش، فاس، الصحراء، وأصالة الضيافة المغربية.</p>
               <div class="package-footer">
                 <span class="price">549 <span class="currency">درهم</span></span>
                 <a href="booking.html?id=morocco" class="btn-secondary" data-i18n="book_now">احجز الآن</a>
@@ -252,19 +252,19 @@
         <div class="stats-container" data-aos="fade-up">
           <div class="stat-item">
             <span class="stat-number">500+</span>
-            <span class="stat-label">رحلة منجزة</span>
+            <span class="stat-label" data-i18n="completed_trips">رحلة منجزة</span>
           </div>
           <div class="stat-item">
             <span class="stat-number">15</span>
-            <span class="stat-label">وجهة سياحية</span>
+            <span class="stat-label" data-i18n="destinations_count">وجهة سياحية</span>
           </div>
           <div class="stat-item">
             <span class="stat-number">1200+</span>
-            <span class="stat-label">عميل سعيد</span>
+            <span class="stat-label" data-i18n="happy_clients">عميل سعيد</span>
           </div>
           <div class="stat-item">
             <span class="stat-number">4.8</span>
-            <span class="stat-label">تقييم العملاء</span>
+            <span class="stat-label" data-i18n="rating">تقييم العملاء</span>
           </div>
         </div>
       </div>
@@ -275,12 +275,12 @@
       <div class="container">
         <h2 class="section-title" data-aos="fade-up" data-i18n="partners_title">شركاؤنا</h2>
         <div class="partners-grid">
-          <div class="partner-logo" data-aos="zoom-in"><i class="fas fa-plane"></i> طيران الإمارات</div>
-          <div class="partner-logo" data-aos="zoom-in" data-aos-delay="100"><i class="fas fa-hotel"></i> ماريوت</div>
-          <div class="partner-logo" data-aos="zoom-in" data-aos-delay="200"><i class="fas fa-train"></i> السكك الحديدية</div>
-          <div class="partner-logo" data-aos="zoom-in" data-aos-delay="300"><i class="fas fa-umbrella-beach"></i> منتجعات هيلتون</div>
-          <div class="partner-logo" data-aos="zoom-in" data-aos-delay="400"><i class="fas fa-car"></i> هيرتز</div>
-          <div class="partner-logo" data-aos="zoom-in" data-aos-delay="500"><i class="fas fa-ship"></i> كروز العالمي</div>
+          <div class="partner-logo" data-aos="zoom-in"><i class="fas fa-plane"></i> <span data-i18n="emirates">طيران الإمارات</span></div>
+          <div class="partner-logo" data-aos="zoom-in" data-aos-delay="100"><i class="fas fa-hotel"></i> <span data-i18n="marriott">ماريوت</span></div>
+          <div class="partner-logo" data-aos="zoom-in" data-aos-delay="200"><i class="fas fa-train"></i> <span data-i18n="railways">السكك الحديدية</span></div>
+          <div class="partner-logo" data-aos="zoom-in" data-aos-delay="300"><i class="fas fa-umbrella-beach"></i> <span data-i18n="hilton">منتجعات هيلتون</span></div>
+          <div class="partner-logo" data-aos="zoom-in" data-aos-delay="400"><i class="fas fa-car"></i> <span data-i18n="hertz">هيرتز</span></div>
+          <div class="partner-logo" data-aos="zoom-in" data-aos-delay="500"><i class="fas fa-ship"></i> <span data-i18n="cruise">كروز العالمي</span></div>
         </div>
       </div>
     </section>
@@ -340,15 +340,15 @@
         <div class="contact-wrapper">
           <form id="contactForm" data-aos="fade-left">
             <div class="form-group">
-              <input type="text" id="name" placeholder=" " required>
+              <input type="text" id="name" placeholder=" " required data-i18n-placeholder="name_placeholder">
               <label for="name" data-i18n="name">الاسم</label>
             </div>
             <div class="form-group">
-              <input type="email" id="email" placeholder=" " required>
+              <input type="email" id="email" placeholder=" " required data-i18n-placeholder="email_placeholder">
               <label for="email" data-i18n="email">البريد الإلكتروني</label>
             </div>
             <div class="form-group">
-              <textarea id="message" rows="5" placeholder=" " required></textarea>
+              <textarea id="message" rows="5" placeholder=" " required data-i18n-placeholder="message_placeholder"></textarea>
               <label for="message" data-i18n="message">رسالتك</label>
             </div>
             <button type="submit" class="btn-primary" data-i18n="send">إرسال</button>
@@ -357,7 +357,7 @@
             <h3 data-i18n="contact_info">معلومات التواصل</h3>
             <p><i class="fas fa-phone"></i> +212 123 456 789</p>
             <p><i class="fas fa-envelope"></i> info@safari.ma</p>
-            <p><i class="fas fa-map-marker-alt"></i> الدار البيضاء، المغرب</p>
+            <p><i class="fas fa-map-marker-alt"></i> <span data-i18n="address">الدار البيضاء، المغرب</span></p>
           </div>
         </div>
       </div>
