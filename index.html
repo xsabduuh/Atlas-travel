@@ -1,878 +1,840 @@
 <!DOCTYPE html>
-
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CodeCraft Academy - تعلم البرمجة من الصفر للاحتراف</title>
-<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-<style>
-/* ========================================
-   CODECRAFT ACADEMY - INDEX PAGE
-   Design: Dark futuristic, code-terminal aesthetic
-======================================== */
-:root {
-  --bg:       #060810;
-  --bg2:      #0c1018;
-  --bg3:      #111620;
-  --bg4:      #181f2e;
-  --bdr:      rgba(255,255,255,.06);
-  --bdr2:     rgba(255,255,255,.11);
-  --ac:       #00e5ff;
-  --ac2:      #7c3aed;
-  --ac3:      #f59e0b;
-  --gr:       #10b981;
-  --tx:       #dde4f0;
-  --mu:       #5a6a85;
-  --mu2:      #8896ae;
-  --font:     "Tajawal", sans-serif;
-  --mono:     "JetBrains Mono", monospace;
-}
-*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-html { scroll-behavior:smooth; }
-body {
-  font-family: var(--font);
-  background: var(--bg);
-  color: var(--tx);
-  overflow-x: hidden;
-  min-height: 100vh;
-}
-::-webkit-scrollbar { width:4px; }
-::-webkit-scrollbar-track { background:var(--bg2); }
-::-webkit-scrollbar-thumb { background:var(--ac2); border-radius:2px; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بورتفوليو احترافي</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome للايقونات -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- ملف التنسيقات -->
+    <style>
+        /* متغيرات الألوان */
+        :root {
+            --primary-color: #4f46e5;
+            --secondary-color: #818cf8;
+            --bg-dark: #0f172a;
+            --bg-light: #f8fafc;
+            --text-dark: #1e293b;
+            --text-light: #f1f5f9;
+            --gray: #94a3b8;
+            --white: #ffffff;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
 
-/* –– ANIMATED BG –– */
-.bg-grid {
-position:fixed; inset:0; z-index:0; pointer-events:none;
-background-image:
-linear-gradient(rgba(0,229,255,.025) 1px, transparent 1px),
-linear-gradient(90deg, rgba(0,229,255,.025) 1px, transparent 1px);
-background-size: 60px 60px;
-animation: gridMove 20s linear infinite;
-}
-@keyframes gridMove {
-0%   { background-position: 0 0; }
-100% { background-position: 60px 60px; }
-}
-.bg-glow1 {
-position:fixed; top:-200px; right:-200px; width:600px; height:600px;
-background: radial-gradient(ellipse, rgba(124,58,237,.12) 0%, transparent 70%);
-pointer-events:none; z-index:0;
-}
-.bg-glow2 {
-position:fixed; bottom:-200px; left:-200px; width:500px; height:500px;
-background: radial-gradient(ellipse, rgba(0,229,255,.08) 0%, transparent 70%);
-pointer-events:none; z-index:0;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-/* –– NAV –– */
-nav {
-position:sticky; top:0; z-index:100;
-background: rgba(6,8,16,.85);
-backdrop-filter: blur(20px);
-border-bottom: 1px solid var(–bdr);
-padding: 0 40px;
-height: 68px;
-display: flex;
-align-items: center;
-justify-content: space-between;
-gap: 20px;
-}
-.nav-logo {
-display:flex; align-items:center; gap:12px;
-text-decoration:none;
-}
-.nav-logo-icon {
-width:38px; height:38px; border-radius:10px;
-background: linear-gradient(135deg, var(–ac2), var(–ac));
-display:flex; align-items:center; justify-content:center;
-font-size:18px; font-weight:900; color:#fff;
-font-family: var(–mono);
-box-shadow: 0 4px 20px rgba(124,58,237,.4);
-}
-.nav-logo-text { font-size:18px; font-weight:900; color:#fff; }
-.nav-logo-sub { font-size:10px; color:var(–mu); letter-spacing:2px; text-transform:uppercase; }
-.nav-links { display:flex; align-items:center; gap:8px; }
-.nav-link {
-padding:7px 16px; border-radius:8px;
-font-size:13px; font-weight:700; color:var(–mu2);
-text-decoration:none; transition:all .2s;
-}
-.nav-link:hover { color:var(–tx); background:rgba(255,255,255,.05); }
-.nav-cta {
-padding:8px 20px; border-radius:9px;
-background: linear-gradient(135deg, var(–ac2), var(–ac));
-color:#fff; font-size:13px; font-weight:800;
-text-decoration:none; transition:all .2s;
-box-shadow: 0 3px 16px rgba(124,58,237,.35);
-}
-.nav-cta:hover { transform:translateY(-1px); box-shadow:0 5px 24px rgba(124,58,237,.5); }
-.hamburger {
-display:none; flex-direction:column; gap:5px;
-cursor:pointer; padding:8px;
-background:none; border:none;
-}
-.hamburger span {
-display:block; width:22px; height:2px;
-background:var(–tx); border-radius:1px; transition:all .3s;
-}
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
 
-/* –– HERO –– */
-.hero {
-position:relative; z-index:1;
-min-height: 92vh;
-display: flex; align-items: center; justify-content: center;
-text-align: center;
-padding: 80px 24px 60px;
-}
-.hero-inner { max-width: 780px; }
-.hero-tag {
-display:inline-flex; align-items:center; gap:8px;
-background: rgba(0,229,255,.08);
-border: 1px solid rgba(0,229,255,.2);
-color: var(–ac); font-size:11px; font-weight:800;
-padding:5px 16px; border-radius:99px;
-letter-spacing:1.5px; text-transform:uppercase;
-margin-bottom:24px;
-}
-.live-dot {
-width:7px; height:7px; border-radius:50%;
-background: var(–gr);
-box-shadow: 0 0 8px var(–gr);
-animation: livePulse 2s ease-in-out infinite;
-}
-@keyframes livePulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.3;transform:scale(.5)} }
-.hero h1 {
-font-size: clamp(32px, 6vw, 66px);
-font-weight:900;
-line-height:1.1;
-margin-bottom:20px;
-letter-spacing: -1px;
-}
-.hero h1 .line1 { display:block; color:#fff; }
-.hero h1 .line2 {
-display:block;
-background: linear-gradient(135deg, var(–ac) 0%, var(–ac2) 50%, var(–ac3) 100%);
--webkit-background-clip:text; -webkit-text-fill-color:transparent;
-background-clip:text;
-animation: gradShift 4s ease infinite;
-background-size: 200% 200%;
-}
-@keyframes gradShift {
-0%   { background-position: 0% 50%; }
-50%  { background-position: 100% 50%; }
-100% { background-position: 0% 50%; }
-}
-.hero p {
-font-size: 17px; color:var(–mu2);
-line-height:1.85; max-width:580px; margin:0 auto 36px;
-font-weight:400;
-}
-.hero-btns { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-bottom:56px; }
-.btn-main {
-display:inline-flex; align-items:center; gap:8px;
-padding:15px 36px; border-radius:12px;
-background: linear-gradient(135deg, var(–ac2), var(–ac));
-color:#fff; font-size:16px; font-weight:800;
-text-decoration:none; transition:all .25s;
-box-shadow: 0 6px 28px rgba(124,58,237,.4);
-font-family: var(–font);
-}
-.btn-main:hover { transform:translateY(-3px); box-shadow:0 10px 36px rgba(124,58,237,.55); }
-.btn-secondary {
-display:inline-flex; align-items:center; gap:8px;
-padding:15px 32px; border-radius:12px;
-background: transparent;
-border: 1.5px solid var(–bdr2);
-color:var(–tx); font-size:16px; font-weight:700;
-text-decoration:none; transition:all .25s;
-font-family: var(–font);
-}
-.btn-secondary:hover { border-color:var(–ac); color:var(–ac); transform:translateY(-2px); }
+        /* شريط التنقل */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
 
-/* TERMINAL PREVIEW */
-.terminal {
-background:var(–bg2);
-border:1px solid var(–bdr2);
-border-radius:14px;
-overflow:hidden;
-max-width:540px;
-margin:0 auto 24px;
-text-align:right;
-box-shadow: 0 24px 64px rgba(0,0,0,.5);
-}
-.terminal-bar {
-display:flex; align-items:center; gap:7px;
-padding:10px 16px;
-background:var(–bg3);
-border-bottom:1px solid var(–bdr);
-}
-.terminal-bar .dot { width:11px; height:11px; border-radius:50%; }
-.terminal-body {
-padding:20px;
-font-family:var(–mono);
-font-size:13px;
-line-height:2;
-text-align:right;
-}
-.t-cm  { color:#5a6a85; }
-.t-kw  { color:#c678dd; }
-.t-fn  { color:#61afef; }
-.t-st  { color:#98c379; }
-.t-nm  { color:#d19a66; }
-.t-tx  { color:#abb2bf; }
-.t-cursor {
-display:inline-block; width:2px; height:14px;
-background:var(–ac); vertical-align:middle;
-animation:blink2 1s step-end infinite;
-}
-@keyframes blink2 { 0%,100%{opacity:1} 50%{opacity:0} }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
 
-/* STATS BAR */
-.stats-bar {
-position:relative; z-index:1;
-display:flex; align-items:stretch; justify-content:center;
-flex-wrap:wrap; gap:0;
-border-top:1px solid var(–bdr);
-border-bottom:1px solid var(–bdr);
-background:rgba(12,16,24,.7);
-backdrop-filter:blur(12px);
-margin-bottom:80px;
-}
-.stat-item {
-flex:1; min-width:160px; max-width:220px;
-padding:28px 20px; text-align:center;
-border-left:1px solid var(–bdr);
-transition:background .2s;
-}
-.stat-item:last-child { border-left:none; }
-.stat-item:hover { background:rgba(124,58,237,.06); }
-.stat-num {
-font-family:var(–mono);
-font-size:32px; font-weight:700; color:var(–ac);
-display:block; margin-bottom:4px;
-}
-.stat-lbl { font-size:12px; color:var(–mu); font-weight:700; letter-spacing:.5px; }
+        .nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-/* SECTION */
-.section { position:relative; z-index:1; padding:80px 40px; max-width:1140px; margin:0 auto; }
-.section-tag {
-display:inline-block;
-font-size:10px; font-weight:800; color:var(–ac2);
-letter-spacing:3px; text-transform:uppercase;
-margin-bottom:10px;
-background:rgba(124,58,237,.1);
-border:1px solid rgba(124,58,237,.2);
-padding:3px 12px; border-radius:99px;
-}
-.section-title { font-size:clamp(22px,4vw,38px); font-weight:900; margin-bottom:10px; color:#fff; }
-.section-sub { font-size:15px; color:var(–mu2); line-height:1.7; max-width:560px; }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
 
-/* PHASES GRID */
-.phases { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:16px; margin-top:40px; }
-.phase-card {
-position:relative;
-background:var(–bg2);
-border:1px solid var(–bdr);
-border-radius:18px;
-padding:28px;
-text-decoration:none;
-color:inherit;
-transition:all .28s cubic-bezier(.25,.46,.45,.94);
-overflow:hidden;
-display:block;
-}
-.phase-card::before {
-content:””;
-position:absolute; inset:0;
-background:linear-gradient(135deg, var(–c1,#7c3aed), var(–c2,#00e5ff));
-opacity:0; transition:opacity .28s;
-}
-.phase-card:hover { transform:translateY(-5px); border-color:var(–bdr2); box-shadow:0 16px 50px rgba(0,0,0,.4); }
-.phase-card:hover::before { opacity:.05; }
-.pc-num {
-position:absolute; top:20px; left:20px;
-font-family:var(–mono); font-size:11px; font-weight:700;
-color:var(–mu); letter-spacing:1px;
-}
-.pc-icon { font-size:32px; margin-bottom:14px; }
-.pc-title { font-size:18px; font-weight:900; color:#fff; margin-bottom:6px; }
-.pc-desc { font-size:13px; color:var(–mu2); line-height:1.65; margin-bottom:18px; }
-.pc-lessons {
-display:flex; flex-wrap:wrap; gap:5px; margin-bottom:18px;
-}
-.pc-lesson-tag {
-font-size:10px; font-weight:700;
-padding:3px 9px; border-radius:6px;
-background:var(–bg3); border:1px solid var(–bdr2);
-color:var(–mu2);
-}
-.pc-footer {
-display:flex; align-items:center; justify-content:space-between;
-padding-top:16px; border-top:1px solid var(–bdr);
-}
-.pc-count { font-size:12px; color:var(–mu); font-weight:700; }
-.pc-arrow {
-width:34px; height:34px; border-radius:9px;
-background:linear-gradient(135deg, var(–c1,#7c3aed), var(–c2,#00e5ff));
-display:flex; align-items:center; justify-content:center;
-font-size:16px; color:#fff;
-box-shadow:0 3px 12px rgba(0,0,0,.3);
-}
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
 
-/* FEATURES */
-.features { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:14px; margin-top:40px; }
-.feat {
-background:var(–bg2); border:1px solid var(–bdr);
-border-radius:14px; padding:22px;
-transition:all .22s;
-}
-.feat:hover { border-color:var(–bdr2); transform:translateY(-3px); }
-.feat-icon { font-size:26px; margin-bottom:12px; }
-.feat-title { font-size:14px; font-weight:800; margin-bottom:5px; color:var(–tx); }
-.feat-desc { font-size:12px; color:var(–mu2); line-height:1.7; }
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
 
-/* ROADMAP */
-.roadmap { display:flex; flex-direction:column; gap:0; margin-top:40px; max-width:700px; }
-.rm-item {
-display:flex; gap:20px; align-items:flex-start;
-position:relative;
-}
-.rm-item:not(:last-child)::after {
-content:””; position:absolute;
-right:19px; top:44px; bottom:-24px;
-width:2px;
-background:linear-gradient(to bottom, var(–ac2), transparent);
-}
-.rm-dot {
-width:40px; height:40px; border-radius:12px; flex-shrink:0;
-display:flex; align-items:center; justify-content:center;
-font-size:18px; font-weight:900;
-background:var(–bg3); border:1.5px solid var(–bdr2);
-transition:all .2s; cursor:default;
-}
-.rm-item.active .rm-dot {
-background:linear-gradient(135deg,var(–ac2),var(–ac));
-border-color:var(–ac); color:#fff;
-box-shadow:0 4px 16px rgba(124,58,237,.4);
-}
-.rm-body { padding:8px 0 32px; flex:1; }
-.rm-title { font-size:16px; font-weight:800; margin-bottom:5px; color:#fff; }
-.rm-desc { font-size:13px; color:var(–mu2); line-height:1.65; }
-.rm-tags { display:flex; flex-wrap:wrap; gap:5px; margin-top:8px; }
-.rm-tag {
-font-size:10px; font-weight:700;
-padding:2px 9px; border-radius:5px;
-background:rgba(124,58,237,.12);
-border:1px solid rgba(124,58,237,.2);
-color:#a78bfa;
-}
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            color: var(--primary-color);
+        }
 
-/* CTA SECTION */
-.cta-section {
-position:relative; z-index:1;
-background:linear-gradient(135deg, rgba(124,58,237,.12), rgba(0,229,255,.06));
-border-top:1px solid var(–bdr);
-border-bottom:1px solid var(–bdr);
-padding:80px 40px;
-text-align:center;
-}
-.cta-section h2 { font-size:clamp(24px,4vw,42px); font-weight:900; color:#fff; margin-bottom:12px; }
-.cta-section p { font-size:15px; color:var(–mu2); margin-bottom:32px; max-width:520px; margin-left:auto; margin-right:auto; }
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: var(--transition);
+        }
 
-/* FOOTER */
-footer {
-position:relative; z-index:1;
-background:var(–bg2);
-border-top:1px solid var(–bdr);
-padding:40px;
-text-align:center;
-}
-.footer-logo { font-size:18px; font-weight:900; color:#fff; margin-bottom:8px; }
-.footer-sub { font-size:13px; color:var(–mu); }
+        .nav-menu a:hover::after,
+        .nav-menu a.active::after {
+            width: 100%;
+        }
 
-/* PROGRESS BANNER */
-.prog-banner {
-position:relative; z-index:1;
-background:rgba(16,185,129,.07);
-border:1px solid rgba(16,185,129,.18);
-border-radius:14px;
-padding:18px 24px;
-display:flex; align-items:center; gap:16px;
-margin:0 40px 0;
-flex-wrap:wrap;
-}
-.prog-banner-icon { font-size:24px; flex-shrink:0; }
-.prog-banner-text { flex:1; }
-.prog-banner-title { font-size:14px; font-weight:800; color:var(–gr); margin-bottom:3px; }
-.prog-banner-sub { font-size:12px; color:var(–mu2); }
-.prog-bar-wrap { width:200px; flex-shrink:0; }
-.prog-bar-bg { height:6px; background:var(–bg3); border-radius:99px; overflow:hidden; margin-bottom:4px; }
-.prog-bar-fill { height:100%; background:linear-gradient(90deg,var(–gr),var(–ac)); border-radius:99px; transition:width .5s; }
-.prog-bar-pct { font-size:11px; color:var(–mu); text-align:left; font-family:var(–mono); font-weight:700; }
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--text-dark);
+        }
 
-/* TOAST */
-#toast {
-position:fixed; bottom:22px; right:22px; z-index:9999;
-background:var(–bg4); border:1px solid var(–bdr2);
-padding:12px 18px; border-radius:12px;
-font-size:13px; font-weight:700; color:var(–tx);
-box-shadow:0 8px 32px rgba(0,0,0,.5);
-transform:translateY(80px); opacity:0;
-transition:all .3s cubic-bezier(.25,.46,.45,.94);
-pointer-events:none;
-}
-#toast.show { transform:translateY(0); opacity:1; }
+        /* قسم الهيرو */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: var(--white);
+            padding-top: 80px;
+        }
 
-/* ANIMATIONS */
-@keyframes fadeUp {
-from { opacity:0; transform:translateY(24px); }
-to   { opacity:1; transform:translateY(0); }
-}
-.fu  { animation:fadeUp .4s ease forwards; }
-.fu2 { animation:fadeUp .4s .08s ease both; }
-.fu3 { animation:fadeUp .4s .16s ease both; }
-.fu4 { animation:fadeUp .4s .24s ease both; }
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
 
-/* SCROLL REVEAL */
-.reveal { opacity:0; transform:translateY(20px); transition:all .5s ease; }
-.reveal.visible { opacity:1; transform:translateY(0); }
+        .hero-text h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
 
-/* RESPONSIVE */
-@media(max-width:900px) {
-nav { padding:0 20px; }
-.nav-links { display:none; }
-.hamburger { display:flex; }
-.section { padding:60px 20px; }
-.stats-bar .stat-item { min-width:140px; }
-.prog-banner { margin:0 20px; }
-.cta-section { padding:60px 20px; }
-footer { padding:30px 20px; }
-}
-@media(max-width:600px) {
-.hero-btns { flex-direction:column; align-items:center; }
-.hero h1 { letter-spacing:-.5px; }
-.phases { grid-template-columns:1fr; }
-.features { grid-template-columns:1fr 1fr; }
-}
-@media(max-width:400px) {
-.features { grid-template-columns:1fr; }
-.stats-bar { flex-direction:column; }
-.stat-item { max-width:100%; border-left:none; border-bottom:1px solid var(–bdr); }
-}
-</style>
+        .hero-text h1 span {
+            color: #fbbf24;
+        }
 
+        .hero-text p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: var(--transition);
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(79, 70, 229, 0.4);
+        }
+
+        .btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(79, 70, 229, 0.6);
+        }
+
+        .hero-image img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* أقسام عامة */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            color: var(--text-dark);
+        }
+
+        .section-title span {
+            color: var(--primary-color);
+        }
+
+        /* قسم الخدمات */
+        .services {
+            background-color: var(--white);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background-color: var(--bg-light);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-card i {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            color: var(--gray);
+        }
+
+        /* قسم الأعمال */
+        .portfolio {
+            background-color: var(--bg-light);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .portfolio-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(79, 70, 229, 0.9);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: var(--white);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+
+        .portfolio-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .portfolio-overlay h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* قسم المهارات */
+        .skills {
+            background-color: var(--white);
+        }
+
+        .skills-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .skill-bars {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .skill-item {
+            width: 100%;
+        }
+
+        .skill-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background-color: var(--gray);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 100%;
+            background-color: var(--primary-color);
+            border-radius: 10px;
+            width: 0%;
+            transition: width 1.5s ease;
+        }
+
+        .skills-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        /* قسم الشهادات */
+        .testimonials {
+            background-color: var(--bg-light);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .testimonial-card i {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-card p {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+        }
+
+        .client-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .client-info img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .client-info h4 {
+            font-size: 1.1rem;
+        }
+
+        .client-info p {
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin: 0;
+        }
+
+        /* قسم الاتصال */
+        .contact {
+            background-color: var(--white);
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .contact-item i {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            padding: 1rem;
+            border: 1px solid var(--gray);
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+        }
+
+        .contact-form textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        /* الفوتر */
+        footer {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: var(--text-light);
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        /* تصميم متجاوب */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background-color: var(--white);
+                width: 100%;
+                text-align: center;
+                padding: 2rem 0;
+                box-shadow: var(--shadow);
+                transition: var(--transition);
+                gap: 1.5rem;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .hero-content,
+            .skills-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-image {
+                grid-row: 1;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
 </head>
 <body>
+    <header>
+        <div class="container nav-bar">
+            <div class="logo">Portfolio</div>
+            <nav>
+                <ul class="nav-menu" id="nav-menu">
+                    <li><a href="#home" class="active">الرئيسية</a></li>
+                    <li><a href="#services">الخدمات</a></li>
+                    <li><a href="#portfolio">الأعمال</a></li>
+                    <li><a href="#skills">المهارات</a></li>
+                    <li><a href="#testimonials">الشهادات</a></li>
+                    <li><a href="#contact">اتصل بي</a></li>
+                </ul>
+            </nav>
+            <div class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
 
-<div class="bg-grid"></div>
-<div class="bg-glow1"></div>
-<div class="bg-glow2"></div>
-<div id="toast"></div>
+    <main>
+        <!-- قسم الرئيسية -->
+        <section id="home" class="hero">
+            <div class="container hero-content">
+                <div class="hero-text">
+                    <h1>مرحباً، أنا <span>أحمد</span><br>مطور واجهات أمامية</h1>
+                    <p>أصمم تجارب رقمية إبداعية تجعل علامتك التجارية مميزة. مع أكثر من 5 سنوات من الخبرة في تطوير الويب.</p>
+                    <a href="#contact" class="btn">تواصل معي</a>
+                </div>
+                <div class="hero-image">
+                    <img src="https://via.placeholder.com/400x400" alt="صورة شخصية">
+                </div>
+            </div>
+        </section>
 
-<!-- NAV -->
+        <!-- قسم الخدمات -->
+        <section id="services" class="services">
+            <div class="container">
+                <h2 class="section-title">خدماتي <span>المميزة</span></h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <i class="fas fa-code"></i>
+                        <h3>تطوير ويب</h3>
+                        <p>أطور مواقع ويب سريعة ومتجاوبة باستخدام أحدث التقنيات.</p>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-paint-brush"></i>
+                        <h3>تصميم واجهات</h3>
+                        <p>تصميم واجهات مستخدم جذابة وسهلة الاستخدام.</p>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-mobile-alt"></i>
+                        <h3>تطبيقات الجوال</h3>
+                        <p>بناء تطبيقات جوال أصلية ومتعددة المنصات.</p>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-search"></i>
+                        <h3>تحسين محركات البحث</h3>
+                        <p>تحسين ظهور موقعك في نتائج البحث وزيادة الزوار.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-<nav>
-  <a href="index.html" class="nav-logo">
-    <div class="nav-logo-icon">&lt;/&gt;</div>
-    <div>
-      <div class="nav-logo-text">CodeCraft</div>
-      <div class="nav-logo-sub">Academy</div>
-    </div>
-  </a>
-  <div class="nav-links">
-    <a href="#phases" class="nav-link">&#1575;&#1604;&#1605;&#1585;&#1575;&#1581;&#1604;</a>
-    <a href="#roadmap" class="nav-link">&#1582;&#1575;&#1585;&#1591;&#1577; &#1575;&#1604;&#1591;&#1585;&#1610;&#1602;</a>
-    <a href="#features" class="nav-link">&#1605;&#1605;&#1610;&#1586;&#1575;&#1578;</a>
-    <a href="phase1.html" class="nav-cta">&#1575;&#1576;&#1583;&#1571; &#1575;&#1604;&#1570;&#1606; &#8592;</a>
-  </div>
-  <button class="hamburger" onclick="toggleMenu()" id="hamburger" aria-label="menu">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
+        <!-- قسم الأعمال -->
+        <section id="portfolio" class="portfolio">
+            <div class="container">
+                <h2 class="section-title">أحدث <span>أعمالي</span></h2>
+                <div class="portfolio-grid">
+                    <div class="portfolio-item">
+                        <img src="https://via.placeholder.com/300x250" alt="مشروع 1">
+                        <div class="portfolio-overlay">
+                            <h3>مشروع 1</h3>
+                            <p>تطبيق ويب</p>
+                        </div>
+                    </div>
+                    <div class="portfolio-item">
+                        <img src="https://via.placeholder.com/300x250" alt="مشروع 2">
+                        <div class="portfolio-overlay">
+                            <h3>مشروع 2</h3>
+                            <p>تصميم واجهات</p>
+                        </div>
+                    </div>
+                    <div class="portfolio-item">
+                        <img src="https://via.placeholder.com/300x250" alt="مشروع 3">
+                        <div class="portfolio-overlay">
+                            <h3>مشروع 3</h3>
+                            <p>تطبيق جوال</p>
+                        </div>
+                    </div>
+                    <div class="portfolio-item">
+                        <img src="https://via.placeholder.com/300x250" alt="مشروع 4">
+                        <div class="portfolio-overlay">
+                            <h3>مشروع 4</h3>
+                            <p>موقع تجاري</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-<!-- HERO -->
+        <!-- قسم المهارات -->
+        <section id="skills" class="skills">
+            <div class="container skills-content">
+                <div class="skill-bars">
+                    <h2 class="section-title" style="text-align: right;">مهاراتي <span>التقنية</span></h2>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span>HTML5 & CSS3</span>
+                            <span>90%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 90%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span>JavaScript</span>
+                            <span>85%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 85%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span>React</span>
+                            <span>80%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 80%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span>UI/UX Design</span>
+                            <span>75%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 75%;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="skills-image">
+                    <img src="https://via.placeholder.com/500x400" alt="مهارات">
+                </div>
+            </div>
+        </section>
 
-<section class="hero">
-  <div class="hero-inner">
-    <div class="hero-tag fu">
-      <span class="live-dot"></span>
-      &#1583;&#1608;&#1585;&#1577; &#1605;&#1580;&#1575;&#1606;&#1610;&#1577; 100%
-    </div>
+        <!-- قسم الشهادات -->
+        <section id="testimonials" class="testimonials">
+            <div class="container">
+                <h2 class="section-title">ماذا قال <span>العملاء</span></h2>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <i class="fas fa-quote-right"></i>
+                        <p>"عمل رائع ومهنية عالية، ساعدني في تطوير موقع شركتي وأظهره بشكل احترافي."</p>
+                        <div class="client-info">
+                            <img src="https://via.placeholder.com/50x50" alt="عميل">
+                            <div>
+                                <h4>محمد علي</h4>
+                                <p>مدير شركة تك</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <i class="fas fa-quote-right"></i>
+                        <p>"التعامل مع أحمد كان سلساً جداً، والتسليم في الوقت المحدد. أنصح به بشدة."</p>
+                        <div class="client-info">
+                            <img src="https://via.placeholder.com/50x50" alt="عميلة">
+                            <div>
+                                <h4>سارة خالد</h4>
+                                <p>مصممة جرافيك</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <i class="fas fa-quote-right"></i>
+                        <p>"احترافية في التصميم والتطوير، تجاوز توقعاتي بمراحل. سأتعامل معه مرة أخرى."</p>
+                        <div class="client-info">
+                            <img src="https://via.placeholder.com/50x50" alt="عميل">
+                            <div>
+                                <h4>أحمد حسن</h4>
+                                <p>صاحب مشروع ناشئ</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-```
-<!-- TERMINAL -->
-<div class="terminal fu2">
-  <div class="terminal-bar">
-    <div class="dot" style="background:#ff5f57"></div>
-    <div class="dot" style="background:#febc2e"></div>
-    <div class="dot" style="background:#28c840"></div>
-    <span style="margin-right:auto;font-family:var(--mono);font-size:11px;color:var(--mu)">codecraft ~ main</span>
-  </div>
-  <div class="terminal-body">
-    <div><span class="t-cm">// &#1605;&#1585;&#1581;&#1576;&#1575; &#1576;&#1603; &#1601;&#1610; CodeCraft Academy!</span></div>
-    <div><span class="t-kw">const</span> <span class="t-fn">dev</span> <span class="t-tx">= {</span></div>
-    <div>&nbsp;&nbsp;<span class="t-fn">name</span><span class="t-tx">:</span> <span class="t-st">"&#1571;&#1606;&#1578;"</span><span class="t-tx">,</span></div>
-    <div>&nbsp;&nbsp;<span class="t-fn">level</span><span class="t-tx">:</span> <span class="t-st">"&#1605;&#1576;&#1578;&#1583;&#1574;"</span><span class="t-tx">,</span></div>
-    <div>&nbsp;&nbsp;<span class="t-fn">goal</span><span class="t-tx">:</span> <span class="t-st">"&#1605;&#1591;&#1608;&#1585; &#1575;&#1581;&#1578;&#1585;&#1575;&#1601;&#1610;"</span><span class="t-tx">,</span></div>
-    <div>&nbsp;&nbsp;<span class="t-fn">daysToGoal</span><span class="t-tx">:</span> <span class="t-nm">90</span></div>
-    <div><span class="t-tx">};</span></div>
-    <div><span class="t-fn">startLearning</span><span class="t-tx">(dev);</span> <span class="t-cursor"></span></div>
-  </div>
-</div>
+        <!-- قسم الاتصال -->
+        <section id="contact" class="contact">
+            <div class="container contact-content">
+                <div class="contact-info">
+                    <h2 class="section-title" style="text-align: right;">دعنا <span>نتواصل</span></h2>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <p>القاهرة، مصر</p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <p>+20 123 456 7890</p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <p>ahmed@portfolio.com</p>
+                    </div>
+                </div>
+                <form class="contact-form" id="contactForm">
+                    <input type="text" placeholder="الاسم" required>
+                    <input type="email" placeholder="البريد الإلكتروني" required>
+                    <input type="text" placeholder="الموضوع">
+                    <textarea placeholder="الرسالة" required></textarea>
+                    <button type="submit" class="btn">إرسال الرسالة</button>
+                </form>
+            </div>
+        </section>
+    </main>
 
-<h1 class="fu3">
-  <span class="line1">&#1578;&#1593;&#1604;&#1617;&#1605; &#1575;&#1604;&#1576;&#1585;&#1605;&#1580;&#1577;</span>
-  <span class="line2">&#1605;&#1606; &#1575;&#1604;&#1589;&#1601;&#1585; &#1604;&#1604;&#1575;&#1581;&#1578;&#1585;&#1575;&#1601;</span>
-</h1>
+    <footer>
+        <div class="container">
+            <p>جميع الحقوق محفوظة &copy; 2025 | أحمد</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+            </div>
+        </div>
+    </footer>
 
-<p class="fu4">
-  &#1583;&#1608;&#1585;&#1577; &#1588;&#1575;&#1605;&#1604;&#1577; &#1608;&#1605;&#1578;&#1603;&#1575;&#1605;&#1604;&#1577; &#1578;&#1571;&#1582;&#1584;&#1603; &#1605;&#1606; &#1604;&#1575; &#1588;&#1610;&#1569; &#1573;&#1604;&#1609; &#1605;&#1591;&#1608;&#1585; &#1608;&#1610;&#1576; &#1602;&#1575;&#1583;&#1585; &#1593;&#1604;&#1609; &#1576;&#1606;&#1575;&#1569; &#1605;&#1608;&#1575;&#1602;&#1593; &#1575;&#1581;&#1578;&#1585;&#1575;&#1601;&#1610;&#1577;
-  &#1608;&#1576;&#1610;&#1593;&#1607;&#1575;. 7 &#1605;&#1585;&#1575;&#1581;&#1604; &#1605;&#1578;&#1583;&#1585;&#1580;&#1577;&#8201;&#183;&#8201;&#1571;&#1605;&#1579;&#1604;&#1577; &#1581;&#1602;&#1610;&#1602;&#1610;&#1577;&#8201;&#183;&#8201;&#1605;&#1588;&#1575;&#1585;&#1610;&#1593; &#1603;&#1575;&#1605;&#1604;&#1577;&#8201;&#183;&#8201;&#1575;&#1582;&#1578;&#1576;&#1575;&#1585;&#1575;&#1578; &#1578;&#1601;&#1575;&#1593;&#1604;&#1610;&#1577;.
-</p>
+    <script>
+        // JavaScript للقائمة المتنقلة والتمرير السلس
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.getElementById('hamburger');
+            const navMenu = document.getElementById('nav-menu');
+            const navLinks = document.querySelectorAll('.nav-menu a');
+            const sections = document.querySelectorAll('section');
 
-<div class="hero-btns fu4">
-  <a href="phase1.html" class="btn-main">&#1575;&#1576;&#1583;&#1571; &#1575;&#1604;&#1570;&#1606; &#8592; &#1605;&#1580;&#1575;&#1606;&#1575;&#1611;</a>
-  <a href="#phases" class="btn-secondary">&#1588;&#1608;&#1601; &#1575;&#1604;&#1605;&#1606;&#1607;&#1580;</a>
-</div>
-```
+            // فتح/غلق القائمة في الجوال
+            hamburger.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                // تغيير أيقونة الهامبرغر
+                const icon = hamburger.querySelector('i');
+                if (navMenu.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
 
-  </div>
-</section>
+            // إغلاق القائمة عند النقر على رابط
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = link.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+                    
+                    // تمرير سلس إلى القسم
+                    if (targetSection) {
+                        window.scrollTo({
+                            top: targetSection.offsetTop - 70,
+                            behavior: 'smooth'
+                        });
+                    }
 
-<!-- STATS BAR -->
+                    // إغلاق القائمة في الجوال
+                    navMenu.classList.remove('active');
+                    const icon = hamburger.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
 
-<div class="stats-bar">
-  <div class="stat-item reveal">
-    <span class="stat-num" id="sLessons">0</span>
-    <span class="stat-lbl">&#1583;&#1585;&#1587; &#1605;&#1578;&#1603;&#1575;&#1605;&#1604;</span>
-  </div>
-  <div class="stat-item reveal">
-    <span class="stat-num">7</span>
-    <span class="stat-lbl">&#1605;&#1585;&#1575;&#1581;&#1604; &#1605;&#1578;&#1583;&#1585;&#1580;&#1577;</span>
-  </div>
-  <div class="stat-item reveal">
-    <span class="stat-num" id="sDone">0</span>
-    <span class="stat-lbl">&#1583;&#1585;&#1587; &#1571;&#1606;&#1580;&#1586;&#1578;&#1607;</span>
-  </div>
-  <div class="stat-item reveal">
-    <span class="stat-num" id="sPct">0%</span>
-    <span class="stat-lbl">&#1578;&#1602;&#1583;&#1605;&#1603; &#1575;&#1604;&#1603;&#1604;&#1610;</span>
-  </div>
-</div>
+                    // تحديث الرابط النشط
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    link.classList.add('active');
+                });
+            });
 
-<!-- PROGRESS BANNER (shown if has progress) -->
+            // تحديد الرابط النشط أثناء التمرير
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 80;
+                    const sectionHeight = section.clientHeight;
+                    if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
+                        current = section.getAttribute('id');
+                    }
+                });
 
-<div class="prog-banner" id="progBanner" style="display:none; margin-top:32px;">
-  <div class="prog-banner-icon">&#128293;</div>
-  <div class="prog-banner-text">
-    <div class="prog-banner-title">&#1605;&#1578;&#1575;&#1576;&#1593;&#1577; &#1585;&#1581;&#1604;&#1578;&#1603;</div>
-    <div class="prog-banner-sub" id="progBannerSub"></div>
-  </div>
-  <div class="prog-bar-wrap">
-    <div class="prog-bar-bg"><div class="prog-bar-fill" id="progBarFill" style="width:0%"></div></div>
-    <div class="prog-bar-pct" id="progBarPct">0%</div>
-  </div>
-  <a href="#" id="progContinueBtn" class="nav-cta" style="text-decoration:none;white-space:nowrap">&#1605;&#1578;&#1575;&#1576;&#1593;&#1577; &#8592;</a>
-</div>
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${current}`) {
+                        link.classList.add('active');
+                    }
+                });
+            });
 
-<!-- PHASES -->
-
-<section class="section" id="phases">
-  <div class="reveal">
-    <span class="section-tag">&#1575;&#1604;&#1605;&#1606;&#1607;&#1580;</span>
-    <h2 class="section-title">7 &#1605;&#1585;&#1575;&#1581;&#1604; &#1578;&#1571;&#1582;&#1584;&#1603; &#1604;&#1604;&#1575;&#1581;&#1578;&#1585;&#1575;&#1601;</h2>
-    <p class="section-sub">&#1603;&#1604; &#1605;&#1585;&#1581;&#1604;&#1577; &#1605;&#1604;&#1601; HTML &#1605;&#1587;&#1578;&#1602;&#1604; &#1605;&#1588;&#1576;&#1593; &#1576;&#1575;&#1604;&#1605;&#1593;&#1604;&#1608;&#1605;&#1575;&#1578; &#8212; &#1575;&#1601;&#1578;&#1581;&#1607; &#1605;&#1606; &#1575;&#1604;&#1605;&#1578;&#1589;&#1601;&#1581; &#1605;&#1576;&#1575;&#1588;&#1585;&#1577;</p>
-  </div>
-  <div class="phases" id="phasesGrid"></div>
-</section>
-
-<!-- FEATURES -->
-
-<section class="section" id="features" style="padding-top:0">
-  <div class="reveal">
-    <span class="section-tag">&#1605;&#1610;&#1586;&#1575;&#1578;</span>
-    <h2 class="section-title">&#1604;&#1605;&#1575;&#1584;&#1575; CodeCraft&#8253;</h2>
-  </div>
-  <div class="features reveal">
-    <div class="feat">
-      <div class="feat-icon">&#128218;</div>
-      <div class="feat-title">&#1605;&#1581;&#1578;&#1608;&#1609; &#1590;&#1582;&#1605; &#1576;&#1575;&#1604;&#1593;&#1585;&#1576;&#1610;&#1577;</div>
-      <div class="feat-desc">&#1603;&#1604; &#1605;&#1590;&#1608;&#1593; &#1605;&#1588;&#1585;&#1608;&#1581; &#1576;&#1575;&#1604;&#1578;&#1601;&#1589;&#1610;&#1604; &#1605;&#1593; &#1571;&#1605;&#1579;&#1604;&#1577; &#1603;&#1608;&#1583; &#1581;&#1602;&#1610;&#1602;&#1610;&#1577;</div>
-    </div>
-    <div class="feat">
-      <div class="feat-icon">&#128187;</div>
-      <div class="feat-title">&#1578;&#1591;&#1576;&#1610;&#1602;&#1575;&#1578; &#1593;&#1605;&#1604;&#1610;&#1577;</div>
-      <div class="feat-desc">&#1605;&#1588;&#1575;&#1585;&#1610;&#1593; &#1581;&#1602;&#1610;&#1602;&#1610;&#1577; &#1603;&#1575;&#1605;&#1604;&#1577; &#1578;&#1602;&#1583;&#1585; &#1578;&#1590;&#1610;&#1601;&#1607;&#1575; &#1604; GitHub &#1605;&#1576;&#1575;&#1588;&#1585;&#1577;</div>
-    </div>
-    <div class="feat">
-      <div class="feat-icon">&#128203;</div>
-      <div class="feat-title">&#1575;&#1582;&#1578;&#1576;&#1575;&#1585;&#1575;&#1578; &#1578;&#1601;&#1575;&#1593;&#1604;&#1610;&#1577;</div>
-      <div class="feat-desc">&#1576;&#1593;&#1583; &#1603;&#1604; &#1583;&#1585;&#1587; &#1575;&#1582;&#1578;&#1576;&#1575;&#1585; &#1610;&#1602;&#1610;&#1587; &#1601;&#1607;&#1605;&#1603; &#1605;&#1593; &#1578;&#1594;&#1584;&#1610;&#1577; &#1585;&#1575;&#1580;&#1593;&#1577; &#1601;&#1608;&#1585;&#1610;&#1577;</div>
-    </div>
-    <div class="feat">
-      <div class="feat-icon">&#128190;</div>
-      <div class="feat-title">&#1581;&#1601;&#1592; &#1575;&#1604;&#1578;&#1602;&#1583;&#1605;</div>
-      <div class="feat-desc">&#1578;&#1602;&#1583;&#1605;&#1603; &#1610;&#1606;&#1581;&#1601;&#1592; &#1578;&#1604;&#1602;&#1575;&#1574;&#1610;&#1575;&#1611; &#8212; &#1593;&#1608;&#1583; &#1604;&#1571;&#1610; &#1583;&#1585;&#1587; &#1608;&#1602;&#1578; &#1578;&#1588;&#1575;&#1569;</div>
-    </div>
-    <div class="feat">
-      <div class="feat-icon">&#128241;</div>
-      <div class="feat-title">&#1578;&#1589;&#1605;&#1610;&#1605; &#1605;&#1578;&#1580;&#1575;&#1608;&#1576;</div>
-      <div class="feat-desc">&#1610;&#1588;&#1578;&#1594;&#1604; &#1593;&#1604;&#1609; &#1575;&#1604;&#1607;&#1575;&#1578;&#1601; &#1608;&#1575;&#1604;&#1578;&#1575;&#1576;&#1604;&#1578; &#1608;&#1575;&#1604;&#1603;&#1605;&#1576;&#1610;&#1608;&#1578;&#1585; &#1576;&#1603;&#1601;&#1575;&#1569;&#1577;</div>
-    </div>
-    <div class="feat">
-      <div class="feat-icon">&#128640;</div>
-      <div class="feat-title">&#1605;&#1580;&#1575;&#1606;&#1610; 100%</div>
-      <div class="feat-desc">&#1604;&#1575; &#1575;&#1588;&#1578;&#1585;&#1575;&#1603;&#1575;&#1578; &#8212; &#1603;&#1604; &#1575;&#1604;&#1605;&#1581;&#1578;&#1608;&#1609; &#1605;&#1578;&#1575;&#1581; &#1604;&#1604;&#1580;&#1605;&#1610;&#1593;</div>
-    </div>
-  </div>
-</section>
-
-<!-- ROADMAP -->
-
-<section class="section" id="roadmap">
-  <div class="reveal">
-    <span class="section-tag">&#1582;&#1575;&#1585;&#1591;&#1577; &#1575;&#1604;&#1591;&#1585;&#1610;&#1602;</span>
-    <h2 class="section-title">&#1605;&#1606; &#1575;&#1604;&#1589;&#1601;&#1585; &#1573;&#1604;&#1609; &#1575;&#1604;&#1575;&#1581;&#1578;&#1585;&#1575;&#1601;</h2>
-    <p class="section-sub">&#1575;&#1578;&#1576;&#1593; &#1607;&#1584;&#1607; &#1575;&#1604;&#1582;&#1591;&#1608;&#1575;&#1578; &#1576;&#1575;&#1604;&#1578;&#1585;&#1578;&#1610;&#1576; &#8212; &#1603;&#1604; &#1605;&#1585;&#1581;&#1604;&#1577; &#1578;&#1576;&#1606;&#1610; &#1593;&#1604;&#1609; &#1575;&#1604;&#1587;&#1575;&#1576;&#1602;&#1577;</p>
-  </div>
-  <div class="roadmap reveal" id="roadmapList"></div>
-</section>
-
-<!-- CTA -->
-
-<div class="cta-section">
-  <h2 class="reveal">&#1605;&#1587;&#1578;&#1593;&#1583; &#1578;&#1576;&#1583;&#1571;&#8253; &#128640;</h2>
-  <p class="reveal">&#1575;&#1604;&#1583;&#1608;&#1585;&#1577; &#1605;&#1580;&#1575;&#1606;&#1610;&#1577; &#1576;&#1575;&#1604;&#1603;&#1575;&#1605;&#1604; &#8212; &#1601;&#1602;&#1591; &#1575;&#1601;&#1578;&#1581; &#1575;&#1604;&#1605;&#1604;&#1601; &#1608;&#1575;&#1576;&#1583;&#1571; &#1575;&#1604;&#1578;&#1593;&#1604;&#1605;</p>
-  <a href="phase1.html" class="btn-main reveal" style="display:inline-flex">
-    &#1575;&#1576;&#1583;&#1571; &#1575;&#1604;&#1605;&#1585;&#1581;&#1604;&#1577; &#1575;&#1604;&#1571;&#1608;&#1604;&#1609; &#8592;
-  </a>
-</div>
-
-<!-- FOOTER -->
-
-<footer>
-  <div class="footer-logo">&#128640; CodeCraft Academy</div>
-  <div class="footer-sub">&#1578;&#1593;&#1604;&#1617;&#1605; &#1575;&#1604;&#1576;&#1585;&#1605;&#1580;&#1577; &#1576;&#1575;&#1604;&#1593;&#1585;&#1576;&#1610;&#1577; &#8212; &#1605;&#1580;&#1575;&#1606;&#1575;&#1611; &#1604;&#1604;&#1571;&#1576;&#1583;</div>
-</footer>
-
-<script>
-"use strict";
-
-// ============================================================
-// COURSE DATA - matches the phase files
-// ============================================================
-const PHASES = [
-  {
-    id: "p1", file: "phase1.html", icon: "&#127760;",
-    title: "&#1575;&#1604;&#1573;&#1606;&#1578;&#1585;&#1606;&#1578; &#1608;&#1575;&#1604;&#1608;&#1610;&#1576;",
-    desc: "&#1603;&#1610;&#1601; &#1610;&#1593;&#1605;&#1604; &#1575;&#1604;&#1573;&#1606;&#1578;&#1585;&#1606;&#1578; - HTTP - DNS - &#1575;&#1604;&#1605;&#1578;&#1589;&#1601;&#1581;&#1575;&#1578; - &#1605;&#1581;&#1585;&#1603;&#1575;&#1578; JS",
-    c1: "#0ea5e9", c2: "#06b6d4",
-    topics: ["&#1575;&#1604;&#1573;&#1606;&#1578;&#1585;&#1606;&#1578; &#1608;&#1575;&#1604;&#1588;&#1576;&#1603;&#1577;", "HTTP/HTTPS", "DNS &#1608;&#1575;&#1604;&#1606;&#1591;&#1575;&#1602;&#1575;&#1578;", "&#1575;&#1604;&#1605;&#1578;&#1589;&#1601;&#1581;&#1575;&#1578;", "Frontend vs Backend"],
-    lessons: 8
-  },
-  {
-    id: "p2", file: "phase2.html", icon: "&#128196;",
-    title: "HTML &#1575;&#1604;&#1603;&#1575;&#1605;&#1604;",
-    desc: "&#1607;&#1610;&#1603;&#1604; &#1575;&#1604;&#1589;&#1601;&#1581;&#1575;&#1578; - &#1575;&#1604;&#1608;&#1587;&#1608;&#1605; - &#1575;&#1604;&#1606;&#1605;&#1575;&#1584;&#1580; - SEO - Accessibility",
-    c1: "#f59e0b", c2: "#ef4444",
-    topics: ["&#1608;&#1587;&#1608;&#1605; HTML5", "&#1575;&#1604;&#1606;&#1605;&#1575;&#1584;&#1580;", "&#1575;&#1604;&#1580;&#1583;&#1575;&#1608;&#1604;", "SEO", "Accessibility"],
-    lessons: 12
-  },
-  {
-    id: "p3", file: "phase3.html", icon: "&#127912;",
-    title: "CSS &#1575;&#1604;&#1603;&#1575;&#1605;&#1604;",
-    desc: "&#1578;&#1589;&#1605;&#1610;&#1605; - Flexbox - Grid - Animations - Responsive",
-    c1: "#8b5cf6", c2: "#ec4899",
-    topics: ["Flexbox", "Grid", "Animations", "Responsive", "Variables"],
-    lessons: 14
-  },
-  {
-    id: "p4", file: "phase4.html", icon: "&#9889;",
-    title: "JavaScript &#1575;&#1604;&#1603;&#1575;&#1605;&#1604;",
-    desc: "&#1605;&#1606; &#1575;&#1604;&#1571;&#1587;&#1575;&#1587;&#1610;&#1575;&#1578; &#1581;&#1578;&#1609; ES6+ - Async/Await - APIs - OOP",
-    c1: "#f59e0b", c2: "#10b981",
-    topics: ["ES6+", "DOM", "Async/Await", "Fetch API", "OOP"],
-    lessons: 16
-  },
-  {
-    id: "p5", file: "phase5.html", icon: "&#128025;",
-    title: "Git & GitHub &#1608;&#1575;&#1604;&#1606;&#1588;&#1585;",
-    desc: "&#1578;&#1578;&#1576;&#1593; &#1575;&#1604;&#1603;&#1608;&#1583; - &#1575;&#1604;&#1601;&#1585;&#1608;&#1593; - &#1575;&#1604;&#1606;&#1588;&#1585; &#1593;&#1604;&#1609; Vercel &#1608; Netlify",
-    c1: "#10b981", c2: "#0ea5e9",
-    topics: ["Git &#1571;&#1608;&#1575;&#1605;&#1585;", "&#1575;&#1604;&#1601;&#1585;&#1608;&#1593;", "GitHub", "Vercel", "Netlify"],
-    lessons: 8
-  },
-  {
-    id: "p6", file: "phase6.html", icon: "&#127959;",
-    title: "&#1605;&#1588;&#1575;&#1585;&#1610;&#1593; &#1581;&#1602;&#1610;&#1602;&#1610;&#1577; &#1603;&#1575;&#1605;&#1604;&#1577;",
-    desc: "Landing Page - Portfolio - &#1605;&#1578;&#1580;&#1585; &#1573;&#1604;&#1603;&#1578;&#1585;&#1608;&#1606;&#1610; - &#1571;&#1583;&#1608;&#1575;&#1578; AI",
-    c1: "#ec4899", c2: "#8b5cf6",
-    topics: ["Landing Page", "Portfolio", "&#1605;&#1578;&#1580;&#1585;", "&#1578;&#1603;&#1575;&#1605;&#1604; API", "&#1578;&#1589;&#1605;&#1610;&#1605; UI"],
-    lessons: 10
-  },
-  {
-    id: "p7", file: "phase7.html", icon: "&#10024;",
-    title: "UI/UX &#1608;&#1575;&#1604;&#1571;&#1583;&#1608;&#1575;&#1578;",
-    desc: "&#1578;&#1589;&#1605;&#1610;&#1605; &#1575;&#1581;&#1578;&#1585;&#1575;&#1601;&#1610; - Performance - &#1571;&#1583;&#1608;&#1575;&#1578; &#1575;&#1604;&#1605;&#1591;&#1608;&#1585;",
-    c1: "#06b6d4", c2: "#3b82f6",
-    topics: ["UI/UX", "Performance", "VS Code", "Chrome DevTools", "Figma"],
-    lessons: 10
-  }
-];
-
-const TOTAL_LESSONS = PHASES.reduce(function(a, p) { return a + p.lessons; }, 0);
-
-// ============================================================
-// PROGRESS (shared across all phase files via localStorage)
-// ============================================================
-function getProgress() {
-  try {
-    const raw = localStorage.getItem("cc_v2");
-    return raw ? JSON.parse(raw) : {};
-  } catch(e) { return {}; }
-}
-
-function countDone(prog) {
-  return Object.keys(prog).filter(function(k) { return prog[k]; }).length;
-}
-
-// ============================================================
-// RENDER PHASES GRID
-// ============================================================
-function renderPhases() {
-  const prog = getProgress();
-  const grid = document.getElementById("phasesGrid");
-  let html = "";
-  PHASES.forEach(function(ph, i) {
-    const done = Object.keys(prog).filter(function(k) {
-      return k.startsWith(ph.id) && prog[k];
-    }).length;
-    const pct = Math.round((done / ph.lessons) * 100);
-    const tagsHtml = ph.topics.slice(0,4).map(function(t) {
-      return '<span class="pc-lesson-tag">' + t + '</span>';
-    }).join("");
-    html += '<a href="' + ph.file + '" class="phase-card reveal" style="--c1:' + ph.c1 + ';--c2:' + ph.c2 + '">';
-    html += '<div class="pc-num">0' + (i+1) + '</div>';
-    html += '<div class="pc-icon">' + ph.icon + '</div>';
-    html += '<div class="pc-title">' + ph.title + '</div>';
-    html += '<div class="pc-desc">' + ph.desc + '</div>';
-    html += '<div class="pc-lessons">' + tagsHtml + '</div>';
-    html += '<div style="height:3px;background:var(--bg4);border-radius:99px;overflow:hidden;margin-bottom:14px">';
-    html += '<div style="height:100%;width:' + pct + '%;background:linear-gradient(90deg,' + ph.c1 + ',' + ph.c2 + ');border-radius:99px;transition:width .5s"></div></div>';
-    html += '<div class="pc-footer">';
-    html += '<span class="pc-count">' + ph.lessons + ' &#1583;&#1585;&#1587; &nbsp;|&nbsp; ' + pct + '% &#1605;&#1603;&#1578;&#1605;&#1604;</span>';
-    html += '<div class="pc-arrow" style="background:linear-gradient(135deg,' + ph.c1 + ',' + ph.c2 + ')">&#8592;</div>';
-    html += '</div></a>';
-  });
-  grid.innerHTML = html;
-  // re-observe new elements
-  document.querySelectorAll(".reveal:not(.visible)").forEach(function(el) { observer.observe(el); });
-}
-
-// ============================================================
-// RENDER ROADMAP
-// ============================================================
-function renderRoadmap() {
-  const prog = getProgress();
-  const list = document.getElementById("roadmapList");
-  let html = "";
-  PHASES.forEach(function(ph, i) {
-    const done = Object.keys(prog).filter(function(k) {
-      return k.startsWith(ph.id) && prog[k];
-    }).length;
-    const isActive = done > 0;
-    const tagsHtml = ph.topics.map(function(t) {
-      return '<span class="rm-tag">' + t + '</span>';
-    }).join("");
-    html += '<div class="rm-item' + (isActive ? " active" : "") + '">';
-    html += '<a href="' + ph.file + '" class="rm-dot" style="text-decoration:none">' + ph.icon + '</a>';
-    html += '<div class="rm-body">';
-    html += '<div class="rm-title">' + ph.title + '</div>';
-    html += '<div class="rm-desc">' + ph.desc + '</div>';
-    html += '<div class="rm-tags">' + tagsHtml + '</div>';
-    html += '</div></div>';
-  });
-  list.innerHTML = html;
-}
-
-// ============================================================
-// UPDATE STATS
-// ============================================================
-function updateStats() {
-  const prog = getProgress();
-  const done = countDone(prog);
-  const pct = TOTAL_LESSONS > 0 ? Math.round((done / TOTAL_LESSONS) * 100) : 0;
-
-  // Animate numbers
-  animateNum("sLessons", TOTAL_LESSONS);
-  animateNum("sDone", done);
-  document.getElementById("sPct").textContent = pct + "%";
-
-  // Progress banner
-  if (done > 0) {
-    document.getElementById("progBanner").style.display = "flex";
-    document.getElementById("progBannerSub").textContent =
-      "&#1571;&#1606;&#1580;&#1586;&#1578; " + done + " &#1583;&#1585;&#1587; &#1605;&#1606; " + TOTAL_LESSONS + " &#8212; &#1578;&#1602;&#1583;&#1605; &#1585;&#1575;&#1574;&#1593;!";
-    document.getElementById("progBarFill").style.width = pct + "%";
-    document.getElementById("progBarPct").textContent = pct + "%";
-
-    // Find continue phase
-    for (let i = 0; i < PHASES.length; i++) {
-      const ph = PHASES[i];
-      const pDone = Object.keys(prog).filter(function(k) {
-        return k.startsWith(ph.id) && prog[k];
-      }).length;
-      if (pDone < ph.lessons) {
-        document.getElementById("progContinueBtn").href = ph.file;
-        break;
-      }
-    }
-  }
-}
-
-function animateNum(id, target) {
-  const el = document.getElementById(id);
-  if (!el) return;
-  let current = 0;
-  const step = Math.max(1, Math.round(target / 40));
-  const timer = setInterval(function() {
-    current = Math.min(current + step, target);
-    el.textContent = current;
-    if (current >= target) clearInterval(timer);
-  }, 30);
-}
-
-// ============================================================
-// SCROLL REVEAL
-// ============================================================
-const observer = new IntersectionObserver(function(entries) {
-  entries.forEach(function(e) {
-    if (e.isIntersecting) { e.target.classList.add("visible"); observer.unobserve(e.target); }
-  });
-}, { threshold: 0.1 });
-
-document.querySelectorAll(".reveal").forEach(function(el) { observer.observe(el); });
-
-// ============================================================
-// MOBILE MENU
-// ============================================================
-function toggleMenu() {
-  const links = document.querySelector(".nav-links");
-  if (links.style.display === "flex") {
-    links.style.display = "none";
-  } else {
-    links.style.cssText = "display:flex;position:absolute;top:68px;right:0;left:0;flex-direction:column;background:var(--bg2);border-bottom:1px solid var(--bdr);padding:16px 20px;gap:6px;z-index:99";
-  }
-}
-
-// ============================================================
-// INIT
-// ============================================================
-renderPhases();
-renderRoadmap();
-updateStats();
-</script>
-
+            // معالجة إرسال النموذج (منع الإرسال الافتراضي)
+            const contactForm = document.getElementById('contactForm');
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                alert('تم إرسال الرسالة بنجاح (محاكاة)');
+                contactForm.reset();
+            });
+        });
+    </script>
 </body>
 </html>
