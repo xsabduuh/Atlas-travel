@@ -20,7 +20,7 @@
   --transition: all 0.3s ease;
 }
 
-/* ===== الوضع الليلي (افتراضي) ===== */
+/* الوضع الليلي (افتراضي) */
 [data-theme="dark"] {
   --bg: var(--bg-dark);
   --bg-card: var(--bg-card-dark);
@@ -29,7 +29,7 @@
   --border: var(--border-dark);
 }
 
-/* ===== الوضع النهاري ===== */
+/* الوضع النهاري */
 [data-theme="light"] {
   --bg: var(--bg-light);
   --bg-card: var(--bg-card-light);
@@ -130,7 +130,7 @@ body[dir="ltr"] {
   color: #fff;
 }
 
-/* ===== شريط التنقل (محسّن) ===== */
+/* ===== شريط التنقل ===== */
 header {
   position: fixed;
   top: 0;
@@ -138,7 +138,7 @@ header {
   background: var(--bg-card);
   border-bottom: 1px solid var(--border);
   z-index: 1000;
-  padding: 10px 0; /* تقليل padding العمودي قليلاً */
+  padding: 10px 0;
   box-shadow: var(--shadow);
 }
 
@@ -151,18 +151,11 @@ header {
   padding: 0 20px;
 }
 
-.logo {
-  display: flex;
-  align-items: center;
-  /* إزالة أي padding إضافي */
-}
-
 .logo-text {
   font-size: 2rem;
   font-weight: 900;
   color: var(--secondary);
-  line-height: 1.2; /* تحسين الخط لتجنب الاقتطاع */
-  display: block;
+  line-height: 1.2;
 }
 
 .nav-menu {
@@ -203,7 +196,7 @@ header {
 
 .nav-actions {
   display: flex;
-  gap: 12px; /* مسافة متساوية بين الأزرار */
+  gap: 12px;
   align-items: center;
 }
 
@@ -212,12 +205,12 @@ header {
   background: transparent;
   border: 2px solid var(--primary);
   color: var(--text);
-  padding: 8px 15px; /* توحيد الحجم */
+  padding: 8px 15px;
   border-radius: 30px;
   cursor: pointer;
   font-weight: 600;
   font-size: 1rem;
-  min-width: 50px; /* عرض ثابت ليكون متساوياً */
+  min-width: 50px;
   text-align: center;
   transition: var(--transition);
 }
@@ -249,7 +242,7 @@ header {
   display: none;
   flex-direction: column;
   cursor: pointer;
-  margin-right: 10px; /* إبعاده عن الحافة قليلاً */
+  margin-right: 5px;
 }
 
 .hamburger span {
@@ -293,16 +286,16 @@ header {
   transform: translateY(-5px);
 }
 
-/* ===== الهيرو (محسّن) ===== */
+/* ===== الهيرو ===== */
 .hero {
   min-height: 100vh;
-  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('hero-bg.jpg') center/cover no-repeat;
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('hero-bg.jpg') center/cover no-repeat fixed;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   color: #fff;
-  padding: 120px 20px 60px; /* زيادة padding العلوي لتعويض الشريط الثابت */
+  padding: 120px 20px 60px;
 }
 
 .hero-content {
@@ -326,9 +319,9 @@ header {
   margin-right: auto;
 }
 
-/* ===== شريط البحث (محسّن) ===== */
+/* ===== شريط البحث ===== */
 .search-bar {
-  background: rgba(0, 0, 0, 0.5); /* خلفية داكنة أكثر لتحسين التباين */
+  background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(10px);
   border-radius: 60px;
   padding: 15px 25px;
@@ -354,9 +347,6 @@ header {
 .search-group i {
   color: var(--primary);
   font-size: 1.2rem;
-  line-height: 1;
-  display: flex;
-  align-items: center;
 }
 
 .search-input {
@@ -370,11 +360,15 @@ header {
 
 .search-input::placeholder {
   color: rgba(255, 255, 255, 0.8);
-  font-size: 1rem;
 }
 
 .search-input:focus {
   outline: none;
+}
+
+.search-input option {
+  background: var(--bg-card);
+  color: var(--text);
 }
 
 .search-btn {
@@ -398,7 +392,7 @@ header {
   transform: translateY(-2px);
 }
 
-/* ===== بطاقات عامة ===== */
+/* ===== الأقسام المشتركة ===== */
 .destinations,
 .packages,
 .why-us,
@@ -434,7 +428,7 @@ header {
   gap: 30px;
 }
 
-/* بطاقة وجهة */
+/* ===== بطاقة وجهة ===== */
 .destination-card {
   background: var(--bg-card);
   border-radius: 20px;
@@ -449,9 +443,14 @@ header {
   box-shadow: var(--shadow-hover);
 }
 
+.destination-card .card-image {
+  overflow: hidden;
+  height: 200px;
+}
+
 .destination-card .card-image img {
   width: 100%;
-  height: 200px;
+  height: 100%;
   object-fit: cover;
   transition: transform 0.5s;
 }
@@ -480,7 +479,7 @@ header {
   font-size: 1.1rem;
 }
 
-/* بطاقة باقة */
+/* ===== بطاقة باقة ===== */
 .package-card {
   background: var(--bg-card);
   border-radius: 20px;
@@ -510,7 +509,6 @@ header {
 }
 
 .package-card .card-image {
-  position: relative;
   overflow: hidden;
   height: 200px;
 }
@@ -572,7 +570,7 @@ header {
   margin-right: 5px;
 }
 
-/* قسم لماذا نحن */
+/* ===== لماذا نحن ===== */
 .feature {
   background: var(--bg-card);
   border-radius: 15px;
@@ -629,7 +627,7 @@ header {
   font-size: 1.1rem;
 }
 
-/* شركاؤنا */
+/* ===== شركاؤنا ===== */
 .partners-grid {
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 20px;
@@ -662,7 +660,7 @@ header {
   box-shadow: var(--shadow);
 }
 
-/* آراء العملاء */
+/* ===== آراء العملاء ===== */
 .testimonial-card {
   background: var(--bg-card);
   border-radius: 20px;
@@ -694,7 +692,7 @@ header {
   margin-bottom: 10px;
 }
 
-/* معرض الصور */
+/* ===== معرض الصور ===== */
 .gallery-grid img {
   width: 100%;
   height: 250px;
@@ -709,7 +707,7 @@ header {
   box-shadow: var(--shadow);
 }
 
-/* قسم الاتصال */
+/* ===== الاتصال ===== */
 .contact-wrapper {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -785,7 +783,7 @@ header {
   width: 20px;
 }
 
-/* الفوتر */
+/* ===== الفوتر ===== */
 footer {
   background: var(--bg-card);
   padding: 50px 0 20px;
@@ -863,11 +861,16 @@ footer {
   color: var(--text-muted);
 }
 
-/* ===== تحسينات التجاوب للهاتف ===== */
+/* ===== تحسينات التجاوب ===== */
+@media (max-width: 992px) {
+  .hero h1 {
+    font-size: 3rem;
+  }
+}
+
 @media (max-width: 768px) {
   .hamburger {
     display: flex;
-    margin-right: 5px; /* مسافة بسيطة من الحافة */
   }
 
   .nav-menu {
@@ -895,7 +898,7 @@ footer {
   }
 
   .nav-actions {
-    gap: 8px; /* تقليل المسافة على الهاتف */
+    gap: 8px;
   }
 
   .theme-toggle,
@@ -915,7 +918,7 @@ footer {
   }
 
   .hero h1 {
-    font-size: 2.2rem; /* تصغير النص على الهاتف */
+    font-size: 2.2rem;
   }
 
   .hero p {
@@ -930,10 +933,6 @@ footer {
 
   .search-group {
     padding: 10px 15px;
-  }
-
-  .search-input {
-    font-size: 0.95rem;
   }
 
   .search-btn {
@@ -979,17 +978,18 @@ footer {
   }
 
   .nav-actions .book-now-btn {
-    display: none; /* إخفاء زر احجز الآن في الشاشات الصغيرة جداً لتوفير مساحة */
-  }
-
-  .theme-toggle,
-  .lang-switch {
-    padding: 5px 8px;
-    min-width: 40px;
-    font-size: 0.85rem;
+    display: none;
   }
 
   .logo-text {
-    font-size: 1.5rem; /* تصغير الشعار قليلاً */
+    font-size: 1.5rem;
+  }
+
+  .back-to-top {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    bottom: 20px;
+    right: 20px;
   }
 }
