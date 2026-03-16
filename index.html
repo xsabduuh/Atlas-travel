@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>سفاري | وكالة سفر وحجوزات سياحية</title>
+  <!-- تحسين SEO -->
+  <meta name="description" content="سفاري وكالة سفر رائدة تقدم أفضل باقات الرحلات السياحية، عروض حصرية، وتجارب لا تُنسى. احجز الآن واستمتع بمغامرة العمر.">
+  <meta name="keywords" content="وكالة سفر, رحلات, سياحة, باقات سفر, حجوزات فنادق, تذاكر طيران, عروض سياحية">
+  <!-- خط Cairo من Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+  <!-- AOS CSS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <!-- ربط ملف CSS -->
+  <link rel="stylesheet" href="style.css">
+  <!-- Font Awesome للأيقونات -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <!-- شريط التنقل -->
+  <header>
+    <nav class="navbar">
+      <div class="logo">
+        <span class="logo-text">سفاري</span>
+      </div>
+      <ul class="nav-menu">
+        <li><a href="#home" class="nav-link active" data-i18n="home">الرئيسية</a></li>
+        <li><a href="#destinations" class="nav-link" data-i18n="destinations">الوجهات</a></li>
+        <li><a href="#packages" class="nav-link" data-i18n="packages">الباقات</a></li>
+        <li><a href="#contact" class="nav-link" data-i18n="contact">اتصل بنا</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="تبديل الوضع">🌙</button>
+        <button class="lang-switch" id="langToggle" aria-label="تبديل اللغة">EN</button>
+        <a href="booking.html" class="book-now-btn" data-i18n="book">احجز الآن</a>
+      </div>
+      <div class="hamburger">
+        <span></span><span></span><span></span>
+      </div>
+    </nav>
+  </header>
+
+  <!-- زر العودة إلى الأعلى -->
+  <button class="back-to-top" id="backToTop" aria-label="العودة للأعلى">↑</button>
+
+  <main>
+    <!-- قسم الهيرو مع شريط البحث -->
+    <section id="home" class="hero">
+      <div class="hero-content" data-aos="fade-up">
+        <h1 data-i18n="hero_title">اكتشف جمال العالم مع سفاري</h1>
+        <p data-i18n="hero_desc">رحلات مخصصة، عروض حصرية، وتجارب لا تُنسى. احجز الآن وانطلق في مغامرتك القادمة.</p>
+        <!-- شريط البحث المتقدم -->
+        <div class="search-bar" data-aos="fade-up" data-aos-delay="200">
+          <div class="search-group">
+            <i class="fas fa-map-marker-alt"></i>
+            <input type="text" placeholder="إلى أين تذهب؟" class="search-input">
+          </div>
+          <div class="search-group">
+            <i class="fas fa-calendar-alt"></i>
+            <input type="date" class="search-input" value="2025-06-01">
+          </div>
+          <div class="search-group">
+            <i class="fas fa-users"></i>
+            <select class="search-input">
+              <option value="1">1 مسافر</option>
+              <option value="2" selected>2 مسافر</option>
+              <option value="3">3 مسافر</option>
+              <option value="4">4 مسافر</option>
+              <option value="5">5+ مسافر</option>
+            </select>
+          </div>
+          <button class="search-btn"><i class="fas fa-search"></i> بحث</button>
+        </div>
+        <a href="#packages" class="btn-primary" data-i18n="hero_btn">استكشف الباقات</a>
+      </div>
+    </section>
+
+    <!-- قسم الوجهات -->
+    <section id="destinations" class="destinations">
+      <div class="container">
+        <h2 class="section-title" data-aos="fade-up" data-i18n="destinations_title">وجهات سياحية مميزة</h2>
+        <div class="destinations-grid">
+          <!-- باريس -->
+          <div class="destination-card" data-aos="zoom-in" data-aos-delay="100">
+            <div class="card-image">
+              <img src="paris.jpg" alt="باريس" width="300" height="200" loading="lazy">
+            </div>
+            <div class="card-content">
+              <h3>باريس</h3>
+              <p data-i18n="paris_desc">مدينة النور والرومانسية</p>
+              <span class="card-price">من 799 درهم</span>
+            </div>
+          </div>
+          <!-- بالي -->
+          <div class="destination-card" data-aos="zoom-in" data-aos-delay="200">
+            <div class="card-image">
+              <img src="bali.jpg" alt="بالي" width="300" height="200" loading="lazy">
+            </div>
+            <div class="card-content">
+              <h3>بالي</h3>
+              <p data-i18n="bali_desc">جنة استوائية ساحرة</p>
+              <span class="card-price">من 649 درهم</span>
+            </div>
+          </div>
+          <!-- دبي -->
+          <div class="destination-card" data-aos="zoom-in" data-aos-delay="300">
+            <div class="card-image">
+              <img src="dubai.jpg" alt="دبي" width="300" height="200" loading="lazy">
+            </div>
+            <div class="card-content">
+              <h3>دبي</h3>
+              <p data-i18n="dubai_desc">مدينة المستقبل والتسوق</p>
+              <span class="card-price">من 999 درهم</span>
+            </div>
+          </div>
+          <!-- المغرب -->
+          <div class="destination-card" data-aos="zoom-in" data-aos-delay="400">
+            <div class="card-image">
+              <img src="morocco.jpg" alt="المغرب" width="300" height="200" loading="lazy">
+            </div>
+            <div class="card-content">
+              <h3>المغرب</h3>
+              <p data-i18n="morocco_desc">ثقافة وأصالة وتنوع</p>
+              <span class="card-price">من 549 درهم</span>
+            </div>
+          </div>
+          <!-- نيويورك -->
+          <div class="destination-card" data-aos="zoom-in" data-aos-delay="500">
+            <div class="card-image">
+              <img src="newyork.jpg" alt="نيويورك" width="300" height="200" loading="lazy">
+            </div>
+            <div class="card-content">
+              <h3>نيويورك</h3>
+              <p data-i18n="ny_desc">المدينة التي لا تنام</p>
+              <span class="card-price">من 1199 درهم</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- قسم الباقات -->
+    <section id="packages" class="packages">
+      <div class="container">
+        <h2 class="section-title" data-aos="fade-up" data-i18n="packages_title">باقات سفر مميزة</h2>
+        <div class="packages-grid">
+          <!-- باقة باريس -->
+          <div class="package-card" data-aos="flip-right">
+            <div class="card-image">
+              <img src="package-paris.jpg" alt="باريس" width="300" height="200" loading="lazy">
+              <span class="package-badge">الأكثر مبيعاً</span>
+            </div>
+            <div class="card-content">
+              <h3>رحلة باريس</h3>
+              <div class="package-meta">
+                <span><i class="fas fa-clock"></i> 5 أيام / 4 ليالي</span>
+                <span class="rating"><i class="fas fa-star"></i> 4.5</span>
+              </div>
+              <p class="package-desc">زيارة برج إيفل، متحف اللوفر، وسهرة على نهر السين.</p>
+              <div class="package-footer">
+                <span class="price">799 <span class="currency">درهم</span></span>
+                <a href="booking.html?id=paris" class="btn-secondary" data-i18n="book_now">احجز الآن</a>
+              </div>
+            </div>
+          </div>
+          <!-- باقة بالي -->
+          <div class="package-card" data-aos="flip-right" data-aos-delay="100">
+            <div class="card-image">
+              <img src="package-bali.jpg" alt="بالي" width="300" height="200" loading="lazy">
+            </div>
+            <div class="card-content">
+              <h3>عطلة بالي</h3>
+              <div class="package-meta">
+                <span><i class="fas fa-clock"></i> 7 أيام / 6 ليالي</span>
+                <span class="rating"><i class="fas fa-star"></i> 4.8</span>
+              </div>
+              <p class="package-desc">استرخاء على الشواطئ، زيارة المعابد، وجولات استوائية.</p>
+              <div class="package-footer">
+                <span class="price">649 <span class="currency">درهم</span></span>
+                <a href="booking.html?id=bali" class="btn-secondary" data-i18n="book_now">احجز الآن</a>
+              </div>
+            </div>
+          </div>
+          <!-- باقة دبي -->
+          <div class="package-card" data-aos="flip-right" data-aos-delay="200">
+            <div class="card-image">
+              <img src="package-dubai.jpg" alt="دبي" width="300" height="200" loading="lazy">
+              <span class="package-badge">عرض خاص</span>
+            </div>
+            <div class="card-content">
+              <h3>دبي الفاخرة</h3>
+              <div class="package-meta">
+                <span><i class="fas fa-clock"></i> 4 أيام / 3 ليالي</span>
+                <span class="rating"><i class="fas fa-star"></i> 4.9</span>
+              </div>
+              <p class="package-desc">برج خليفة، سفاري في الصحراء، وتجربة تسوق فاخرة.</p>
+              <div class="package-footer">
+                <span class="price">999 <span class="currency">درهم</span></span>
+                <a href="booking.html?id=dubai" class="btn-secondary" data-i18n="book_now">احجز الآن</a>
+              </div>
+            </div>
+          </div>
+          <!-- باقة المغرب -->
+          <div class="package-card" data-aos="flip-right" data-aos-delay="300">
+            <div class="card-image">
+              <img src="package-morocco.jpg" alt="المغرب" width="300" height="200" loading="lazy">
+            </div>
+            <div class="card-content">
+              <h3>المغرب الساحر</h3>
+              <div class="package-meta">
+                <span><i class="fas fa-clock"></i> 8 أيام / 7 ليالي</span>
+                <span class="rating"><i class="fas fa-star"></i> 4.7</span>
+              </div>
+              <p class="package-desc">جولة في مراكش، فاس، الصحراء، وأصالة الضيافة المغربية.</p>
+              <div class="package-footer">
+                <span class="price">549 <span class="currency">درهم</span></span>
+                <a href="booking.html?id=morocco" class="btn-secondary" data-i18n="book_now">احجز الآن</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- قسم لماذا نحن (مع إحصائيات) -->
+    <section class="why-us">
+      <div class="container">
+        <h2 class="section-title" data-aos="fade-up" data-i18n="why_title">لماذا تختار سفاري؟</h2>
+        <div class="features-grid">
+          <div class="feature" data-aos="fade-up" data-aos-delay="100">
+            <img src="why1.jpg" alt="أفضل سعر" width="80" height="80" loading="lazy">
+            <h3 data-i18n="why_price">أفضل سعر مضمون</h3>
+            <p data-i18n="why_price_desc">نضمن لك أقل الأسعار في السوق</p>
+          </div>
+          <div class="feature" data-aos="fade-up" data-aos-delay="200">
+            <img src="why2.jpg" alt="مرشدين" width="80" height="80" loading="lazy">
+            <h3 data-i18n="why_guides">مرشدين محترفين</h3>
+            <p data-i18n="why_guides_desc">مرشدون محليون بخبرة عالية</p>
+          </div>
+          <div class="feature" data-aos="fade-up" data-aos-delay="300">
+            <img src="why3.jpg" alt="دعم" width="80" height="80" loading="lazy">
+            <h3 data-i18n="why_support">دعم 24/7</h3>
+            <p data-i18n="why_support_desc">فريق دعم متاح 24/7 لمساعدتك</p>
+          </div>
+          <div class="feature" data-aos="fade-up" data-aos-delay="400">
+            <img src="why4.jpg" alt="حجز آمن" width="80" height="80" loading="lazy">
+            <h3 data-i18n="why_secure">حجز آمن وموثوق</h3>
+            <p data-i18n="why_secure_desc">بياناتك آمنة مع تقنيات التشفير</p>
+          </div>
+        </div>
+        <!-- إحصائيات -->
+        <div class="stats-container" data-aos="fade-up">
+          <div class="stat-item">
+            <span class="stat-number">500+</span>
+            <span class="stat-label">رحلة منجزة</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">15</span>
+            <span class="stat-label">وجهة سياحية</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">1200+</span>
+            <span class="stat-label">عميل سعيد</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">4.8</span>
+            <span class="stat-label">تقييم العملاء</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- قسم شركاؤنا -->
+    <section class="partners">
+      <div class="container">
+        <h2 class="section-title" data-aos="fade-up" data-i18n="partners_title">شركاؤنا</h2>
+        <div class="partners-grid">
+          <div class="partner-logo" data-aos="zoom-in"><i class="fas fa-plane"></i> طيران الإمارات</div>
+          <div class="partner-logo" data-aos="zoom-in" data-aos-delay="100"><i class="fas fa-hotel"></i> ماريوت</div>
+          <div class="partner-logo" data-aos="zoom-in" data-aos-delay="200"><i class="fas fa-train"></i> السكك الحديدية</div>
+          <div class="partner-logo" data-aos="zoom-in" data-aos-delay="300"><i class="fas fa-umbrella-beach"></i> منتجعات هيلتون</div>
+          <div class="partner-logo" data-aos="zoom-in" data-aos-delay="400"><i class="fas fa-car"></i> هيرتز</div>
+          <div class="partner-logo" data-aos="zoom-in" data-aos-delay="500"><i class="fas fa-ship"></i> كروز العالمي</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- آراء العملاء -->
+    <section class="testimonials">
+      <div class="container">
+        <h2 class="section-title" data-aos="fade-up" data-i18n="testimonials_title">آراء المسافرين</h2>
+        <div class="testimonials-grid">
+          <div class="testimonial-card" data-aos="zoom-in" data-aos-delay="100">
+            <img src="testimonial1.jpg" alt="محمد" width="100" height="100" loading="lazy">
+            <div class="testimonial-content">
+              <p data-i18n="testimonial1">"أفضل وكالة سفر تعاملت معها. الرحلة كانت رائعة والتنظيم ممتاز."</p>
+              <h4>محمد علي</h4>
+              <div class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            </div>
+          </div>
+          <div class="testimonial-card" data-aos="zoom-in" data-aos-delay="200">
+            <img src="testimonial2.jpg" alt="سارة" width="100" height="100" loading="lazy">
+            <div class="testimonial-content">
+              <p data-i18n="testimonial2">"باقات متنوعة وأسعار منافسة. سأكرر التجربة بالتأكيد."</p>
+              <h4>سارة أحمد</h4>
+              <div class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            </div>
+          </div>
+          <div class="testimonial-card" data-aos="zoom-in" data-aos-delay="300">
+            <img src="testimonial3.jpg" alt="خالد" width="100" height="100" loading="lazy">
+            <div class="testimonial-content">
+              <p data-i18n="testimonial3">"الدعم الفوري والمرشدين المحترفين جعلوا الرحلة لا تنسى."</p>
+              <h4>خالد محمود</h4>
+              <div class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- معرض الصور -->
+    <section class="gallery">
+      <div class="container">
+        <h2 class="section-title" data-aos="fade-up" data-i18n="gallery_title">معرض الصور</h2>
+        <div class="gallery-grid">
+          <img src="gallery1.jpg" alt="صورة 1" data-aos="flip-left" width="400" height="250" loading="lazy">
+          <img src="gallery2.jpg" alt="صورة 2" data-aos="flip-left" data-aos-delay="100" width="400" height="250" loading="lazy">
+          <img src="gallery3.jpg" alt="صورة 3" data-aos="flip-left" data-aos-delay="200" width="400" height="250" loading="lazy">
+          <img src="gallery4.jpg" alt="صورة 4" data-aos="flip-left" data-aos-delay="300" width="400" height="250" loading="lazy">
+          <img src="gallery5.jpg" alt="صورة 5" data-aos="flip-left" data-aos-delay="400" width="400" height="250" loading="lazy">
+          <img src="gallery6.jpg" alt="صورة 6" data-aos="flip-left" data-aos-delay="500" width="400" height="250" loading="lazy">
+        </div>
+      </div>
+    </section>
+
+    <!-- قسم الاتصال -->
+    <section id="contact" class="contact">
+      <div class="container">
+        <h2 class="section-title" data-aos="fade-up" data-i18n="contact_title">اتصل بنا</h2>
+        <div class="contact-wrapper">
+          <form id="contactForm" data-aos="fade-left">
+            <div class="form-group">
+              <input type="text" id="name" placeholder=" " required>
+              <label for="name" data-i18n="name">الاسم</label>
+            </div>
+            <div class="form-group">
+              <input type="email" id="email" placeholder=" " required>
+              <label for="email" data-i18n="email">البريد الإلكتروني</label>
+            </div>
+            <div class="form-group">
+              <textarea id="message" rows="5" placeholder=" " required></textarea>
+              <label for="message" data-i18n="message">رسالتك</label>
+            </div>
+            <button type="submit" class="btn-primary" data-i18n="send">إرسال</button>
+          </form>
+          <div class="contact-info" data-aos="fade-right">
+            <h3 data-i18n="contact_info">معلومات التواصل</h3>
+            <p><i class="fas fa-phone"></i> +212 123 456 789</p>
+            <p><i class="fas fa-envelope"></i> info@safari.ma</p>
+            <p><i class="fas fa-map-marker-alt"></i> الدار البيضاء، المغرب</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- تذييل الصفحة -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4 data-i18n="about">عن سفاري</h4>
+          <p data-i18n="about_text">نحن وكالة سفر رائدة نقدم تجارب سياحية مخصصة بأفضل الأسعار.</p>
+        </div>
+        <div class="footer-section">
+          <h4 data-i18n="quick_links">روابط سريعة</h4>
+          <ul>
+            <li><a href="#home" data-i18n="home">الرئيسية</a></li>
+            <li><a href="#destinations" data-i18n="destinations">الوجهات</a></li>
+            <li><a href="#packages" data-i18n="packages">الباقات</a></li>
+            <li><a href="#contact" data-i18n="contact">اتصل بنا</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4 data-i18n="follow_us">تابعنا</h4>
+          <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>&copy; 2025 سفاري. <span data-i18n="rights">جميع الحقوق محفوظة</span></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- AOS JS -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <!-- ربط ملف JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>
