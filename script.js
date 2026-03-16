@@ -102,19 +102,46 @@ const translations = {
     }
 };
 
-let currentLang = 'ar';
+// ===== إدارة السمات (الوضع الليلي/النهاري) =====
+const themeToggle = document.getElementById('themeToggle');
+const htmlElement = document.documentElement;
 
-// عناصر DOM
+// التحقق من السمة المحفوظة أو تعيين الوضع الليلي كافتراضي
+const savedTheme = localStorage.getItem('theme') || 'dark';
+htmlElement.setAttribute('data-theme', savedTheme);
+updateThemeIcon(savedTheme);
+
+// تحديث أيقونة الزر حسب السمة
+function updateThemeIcon(theme) {
+    themeToggle.textContent = theme === 'dark' ? '☀️' : '🌙';
+}
+
+// تبديل السمة
+function toggleTheme() {
+    const currentTheme = htmlElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    
+    htmlElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    updateThemeIcon(newTheme);
+}
+
+themeToggle.addEventListener('click', toggleTheme);
+
+// ===== إدارة اللغة =====
+let currentLang = localStorage.getItem('lang') || 'ar';
 const langToggle = document.getElementById('langToggle');
-const html = document.documentElement;
 const body = document.body;
 
-// دالة تغيير اللغة
+// تطبيق اللغة المحفوظة
+setLanguage(currentLang);
+
 function setLanguage(lang) {
     currentLang = lang;
-    html.lang = lang;
+    htmlElement.lang = lang;
     body.dir = lang === 'ar' ? 'rtl' : 'ltr';
     langToggle.textContent = lang === 'ar' ? 'EN' : 'AR';
+    localStorage.setItem('lang', lang);
 
     // تحديث جميع العناصر التي تحمل الخاصية data-i18n
     document.querySelectorAll('[data-i18n]').forEach(el => {
@@ -138,12 +165,13 @@ langToggle.addEventListener('click', () => {
     setLanguage(currentLang === 'ar' ? 'en' : 'ar');
 });
 
-// قائمة الهاتف المحمول
+// ===== القائمة المتنقلة (Hamburger Menu) =====
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
 
 hamburger.addEventListener('click', () => {
     navMenu.classList.toggle('active');
+    // تحويل شكل الهامبرغر إلى X
     hamburger.classList.toggle('active');
 });
 
@@ -155,7 +183,7 @@ document.querySelectorAll('.nav-menu a').forEach(link => {
     });
 });
 
-// تمرير سلس للروابط الداخلية
+// ===== التمرير السلس للروابط الداخلية =====
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
         e.preventDefault();
@@ -166,21 +194,25 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// معالجة إرسال نموذج الاتصال
+// ===== معالجة إرسال نموذج الاتصال =====
 document.getElementById('contactForm').addEventListener('submit', function(e) {
     e.preventDefault();
     alert(currentLang === 'ar' ? 'تم إرسال رسالتك بنجاح!' : 'Your message has been sent!');
     this.reset();
 });
 
-// تغيير خلفية الشريط عند التمرير
+// ===== تغيير خلفية الشريط عند التمرير =====
 window.addEventListener('scroll', () => {
     const header = document.querySelector('header');
     if (window.scrollY > 50) {
-        header.style.background = 'rgba(255,255,255,0.98)';
-        header.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+        header.style.boxShadow = 'var(--shadow)';
     } else {
-        header.style.background = 'rgba(255,255,255,0.95)';
         header.style.boxShadow = 'none';
     }
+});
+
+// ===== تهيئة الصفحة =====
+document.addEventListener('DOMContentLoaded', () => {
+    // أي تهيئة إضافية إذا لزم الأمر
+    console.log('Website loaded successfully with dark mode support!');
 });
