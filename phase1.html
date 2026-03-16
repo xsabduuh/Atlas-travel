@@ -11,16 +11,16 @@
    Design: Dark futuristic, code-terminal aesthetic
 ======================================== */
 :root {
-  --bg:#060810; --bg2:#0c1018; --bg3:#111620; --bg4:#181f2e;
-  --bdr:rgba(255,255,255,.06); --bdr2:rgba(255,255,255,.11);
-  --ac:#00e5ff; --ac2:#7c3aed; --ac3:#f59e0b;
-  --gr:#10b981; --tx:#dde4f0; --mu:#5a6a85; --mu2:#8896ae;
-  --font:"Tajawal", sans-serif; --mono:"JetBrains Mono", monospace;
+  --bg: #060810; --bg2: #0c1018; --bg3: #111620; --bg4: #181f2e;
+  --bdr: rgba(255,255,255,.06); --bdr2: rgba(255,255,255,.11);
+  --ac: #00e5ff; --ac2: #7c3aed; --ac3: #f59e0b;
+  --gr: #10b981; --tx: #dde4f0; --mu: #5a6a85; --mu2: #8896ae;
+  --font: "Tajawal", sans-serif; --mono: "JetBrains Mono", monospace;
 }
 *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-html { scroll-behavior:smooth; }
-body { font-family:var(--font); background:var(--bg); color:var(--tx); overflow-x:hidden; min-height:100vh; }
-::-webkit-scrollbar { width:4px; } ::-webkit-scrollbar-track { background:var(--bg2); } ::-webkit-scrollbar-thumb { background:var(--ac2); border-radius:2px; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font); background: var(--bg); color: var(--tx); overflow-x: hidden; min-height: 100vh; }
+::-webkit-scrollbar { width: 4px; } ::-webkit-scrollbar-track { background: var(--bg2); } ::-webkit-scrollbar-thumb { background: var(--ac2); border-radius: 2px; }
 /* باقي CSS يمكن نسخه من index.html مع تصحيح var(--...) */
 </style>
 </head>
@@ -80,11 +80,7 @@ body { font-family:var(--font); background:var(--bg); color:var(--tx); overflow-
       <div class="dot" style="background:#28c840"></div>
       <span style="margin-right:auto;font-family:var(--mono);font-size:11px;color:var(--mu)">codecraft ~ main</span>
     </div>
-    <div class="terminal-body">
-      <div><span class="t-cm">// مثال أول: متغير في JS</span></div>
-      <div><span class="t-kw">let</span> <span class="t-fn">name</span> <span class="t-tx">=</span> <span class="t-st">"CodeCraft";</span></div>
-      <div>console.log(<span class="t-fn">name</span>); <span class="t-cursor"></span></div>
-    </div>
+    <div class="terminal-body" id="terminalBody"></div>
   </div>
 </section>
 
@@ -92,11 +88,7 @@ body { font-family:var(--font); background:var(--bg); color:var(--tx); overflow-
 <section class="section" id="resources">
   <span class="section-tag">مصادر</span>
   <h2 class="section-title">مصادر إضافية</h2>
-  <ul>
-    <li>MDN Web Docs - الإنترنت و HTML</li>
-    <li>Codecademy - JavaScript Basics</li>
-    <li>Learn GitHub - المراجع الأولية</li>
-  </ul>
+  <ul id="resourcesList"></ul>
 </section>
 
 <!-- FOOTER -->
@@ -115,24 +107,29 @@ function toggleMenu() {
   else links.style.cssText = 'display:flex;position:absolute;top:68px;right:0;left:0;flex-direction:column;background:var(--bg2);border-bottom:1px solid var(--bdr);padding:16px 20px;gap:6px;z-index:99';
 }
 
-// الدروس الخاصة بالمرحلة 1
-const lessonsPhase1 = [
-  {id:'p1l1', title:'مقدمة عن الإنترنت', done:false},
-  {id:'p1l2', title:'HTTP و HTTPS', done:false},
-  {id:'p1l3', title:'DNS و Nameservers', done:false},
-  {id:'p1l4', title:'أساسيات JS', done:false},
-  {id:'p1l5', title:'المتغيرات والأنواع', done:false},
-  {id:'p1l6', title:'الدوال Functions', done:false},
-  {id:'p1l7', title:'الشروط Conditions', done:false},
-  {id:'p1l8', title:'الحلقات Loops', done:false}
+// ======== محتوى المرحلة 1 ========
+const lessonsPhase1 = [];
+for(let i=1; i<=50; i++) {
+  lessonsPhase1.push({id:`p1l${i}`, title:`درس ${i}: موضوع المرحلة 1`, done:false});
+}
+
+const examples = [];
+for(let i=1; i<=50; i++) {
+  examples.push(`console.log('مثال ${i}');`);
+}
+
+const resources = [
+  'MDN Web Docs - الإنترنت و HTML',
+  'Codecademy - JavaScript Basics',
+  'Learn GitHub - المراجع الأولية',
+  'W3Schools - الدروس العملية',
+  'freeCodeCamp - تمارين الإنترنت والبرمجة'
 ];
 
-// LocalStorage
 const PROG_KEY = 'cc_v2';
 function getProgress() { try { return JSON.parse(localStorage.getItem(PROG_KEY)||'{}'); } catch(e){ return {}; } }
 function saveProgress(prog){ localStorage.setItem(PROG_KEY, JSON.stringify(prog)); }
 
-// Render lessons
 function renderLessons(){
   const prog = getProgress();
   const grid = document.getElementById('lessonsGrid');
@@ -155,7 +152,25 @@ function toggleDone(id){
   renderLessons();
 }
 
+function renderExamples(){
+  const terminalBody = document.getElementById('terminalBody');
+  let html = '';
+  examples.forEach(ex=>{
+    html += `<div>${ex}</div>`;
+  });
+  terminalBody.innerHTML = html;
+}
+
+function renderResources(){
+  const list = document.getElementById('resourcesList');
+  let html = '';
+  resources.forEach(r=>{ html += `<li>${r}</li>`; });
+  list.innerHTML = html;
+}
+
 renderLessons();
+renderExamples();
+renderResources();
 </script>
 
 </body>
