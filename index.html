@@ -3,10 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>سفاري | وكالة سفر وحجوزات سياحية</title>
+  <title>سفاري | وكالة سفر وحجوزات سياحية - تجربة سفر استثنائية</title>
   <meta name="description" content="سفاري وكالة سفر رائدة تقدم أفضل باقات الرحلات السياحية، عروض حصرية، وتجارب لا تُنسى. احجز الآن واستمتع بمغامرة العمر.">
   <meta name="keywords" content="وكالة سفر, رحلات, سياحة, باقات سفر, حجوزات فنادق, تذاكر طيران, عروض سياحية">
-  <!-- الخطوط والأيقونات -->
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -93,13 +92,13 @@
       left: 0;
       width: 0%;
       height: 4px;
-      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
       z-index: 1001;
       transition: width 0.1s;
       box-shadow: 0 0 5px var(--primary);
     }
 
-    /* ========== ANIMATED BACKGROUND (CIRCLES) ========== */
+    /* ========== ANIMATED BACKGROUND (CIRCLES + PARTICLES) ========== */
     .animated-bg {
       position: fixed;
       top: 0;
@@ -132,6 +131,35 @@
     .circle-4 { width: 400px; height: 400px; bottom: -100px; left: 30%; animation-duration: 30s; animation-delay: -10s; }
     .circle-5 { width: 100px; height: 100px; top: 20%; right: 15%; animation-duration: 12s; animation-delay: -1s; }
 
+    /* Particle system */
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
+    }
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: var(--primary);
+      border-radius: 50%;
+      opacity: 0.4;
+      animation: particleMove 20s linear infinite;
+    }
+    [data-theme="dark"] .particle {
+      background: rgba(255, 255, 255, 0.3);
+    }
+    @keyframes particleMove {
+      0% { transform: translateY(100vh) translateX(0) rotate(0deg); opacity: 0; }
+      10% { opacity: 0.6; }
+      90% { opacity: 0.6; }
+      100% { transform: translateY(-100px) translateX(50px) rotate(360deg); opacity: 0; }
+    }
+
     /* ========== FLOATING CONTACT & BACK TO TOP ========== */
     .floating-contact, .back-to-top {
       position: fixed;
@@ -160,7 +188,7 @@
       transform: scale(1);
     }
     .floating-contact:hover, .back-to-top:hover {
-      transform: scale(1.1);
+      transform: scale(1.1) rotate(10deg);
       background: var(--secondary);
     }
 
@@ -317,11 +345,23 @@
       font-size: 3.5rem;
       margin-bottom: 15px;
       font-weight: 900;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.3);
     }
 
     .hero p {
       font-size: 1.2rem;
       margin-bottom: 30px;
+    }
+
+    /* Typing effect cursor */
+    .typed-cursor {
+      font-size: inherit;
+      opacity: 1;
+      animation: blink 0.7s infinite;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
     }
 
     /* ========== SEARCH BAR (MODERN) ========== */
@@ -384,6 +424,26 @@
       display: flex;
       align-items: center;
       gap: 8px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .search-btn::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: rgba(255,255,255,0.3);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+
+    .search-btn:active::after {
+      width: 200px;
+      height: 200px;
     }
 
     .search-btn:hover {
@@ -424,13 +484,39 @@
       gap: 30px;
     }
 
-    /* ========== CARDS ========== */
+    /* ========== CARDS (with 3D tilt and animated border) ========== */
     .destination-card, .package-card, .feature, .partner-logo, .testimonial-card, .contact-info {
       background: var(--bg-card);
       border-radius: 20px;
       overflow: hidden;
       transition: var(--transition);
       border: 1px solid var(--border);
+      position: relative;
+    }
+
+    /* 3D Tilt effect (will be applied via JS) */
+    .tilt-card {
+      transition: transform 0.2s ease-out;
+      transform-style: preserve-3d;
+      will-change: transform;
+    }
+
+    /* Animated border on hover */
+    .destination-card::before, .package-card::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent));
+      border-radius: 22px;
+      opacity: 0;
+      transition: opacity 0.3s;
+      z-index: -1;
+    }
+    .destination-card:hover::before, .package-card:hover::before {
+      opacity: 1;
     }
 
     .destination-card:hover, .package-card:hover {
@@ -511,6 +597,26 @@
       cursor: pointer;
       transition: 0.3s;
       display: inline-block;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: rgba(255,255,255,0.3);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+
+    .btn-primary:active::after {
+      width: 200px;
+      height: 200px;
     }
 
     .btn-primary:hover {
@@ -817,6 +923,7 @@
     <div class="circle circle-4"></div>
     <div class="circle circle-5"></div>
   </div>
+  <div class="particles" id="particlesContainer"></div>
 
   <header>
     <nav class="navbar">
@@ -852,7 +959,7 @@
     <!-- HERO SECTION -->
     <section id="home" class="hero">
       <div class="hero-content" data-aos="fade-up">
-        <h1 data-i18n="hero_title">اكتشف جمال العالم مع سفاري</h1>
+        <h1 id="typed-heading" data-i18n="hero_title">اكتشف جمال العالم مع سفاري</h1>
         <p data-i18n="hero_desc">رحلات مخصصة، عروض حصرية، وتجارب لا تُنسى. احجز الآن وانطلق في مغامرتك القادمة.</p>
         <div class="search-bar" data-aos="fade-up" data-aos-delay="200">
           <div class="search-group">
@@ -1216,7 +1323,7 @@
     // ========== THEME ==========
     const themeToggle = document.getElementById('themeToggle');
     const html = document.documentElement;
-    let theme = localStorage.getItem('theme') || 'light'; // default fresh light mode
+    let theme = localStorage.getItem('theme') || 'light';
     html.setAttribute('data-theme', theme);
     if (themeToggle) themeToggle.textContent = theme === 'dark' ? '☀️' : '🌙';
     themeToggle?.addEventListener('click', () => {
@@ -1248,9 +1355,36 @@
       document.querySelectorAll('.currency').forEach(el => {
         el.textContent = lang === 'ar' ? 'درهم' : 'MAD';
       });
+      // Update typed heading text if needed
+      const heading = document.getElementById('typed-heading');
+      if (heading && translations[lang].hero_title) {
+        heading.textContent = translations[lang].hero_title;
+      }
     }
     setLanguage(currentLang);
     langToggle?.addEventListener('click', () => setLanguage(currentLang === 'ar' ? 'en' : 'ar'));
+
+    // ========== TYPING EFFECT (only once, after language set) ==========
+    function startTyping() {
+      const heading = document.getElementById('typed-heading');
+      if (!heading) return;
+      const originalText = heading.textContent;
+      heading.textContent = '';
+      let i = 0;
+      function type() {
+        if (i < originalText.length) {
+          heading.textContent += originalText.charAt(i);
+          i++;
+          setTimeout(type, 80);
+        } else {
+          // add cursor blinking
+          heading.style.borderLeft = '2px solid var(--primary)';
+        }
+      }
+      type();
+    }
+    // delay to ensure everything loaded
+    setTimeout(startTyping, 500);
 
     // ========== MOBILE MENU ==========
     const hamburger = document.querySelector('.hamburger');
@@ -1349,6 +1483,42 @@
       once: true,
       offset: 100,
     });
+
+    // ========== 3D TILT EFFECT ON CARDS ==========
+    const tiltCards = document.querySelectorAll('.destination-card, .package-card');
+    tiltCards.forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = (y - centerY) / 20;
+        const rotateY = (centerX - x) / 20;
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px)`;
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = '';
+      });
+    });
+
+    // ========== PARTICLES GENERATOR ==========
+    function createParticles() {
+      const container = document.getElementById('particlesContainer');
+      if (!container) return;
+      const particleCount = 80;
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+        particle.style.width = Math.random() * 6 + 2 + 'px';
+        particle.style.height = particle.style.width;
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.animationDuration = Math.random() * 15 + 10 + 's';
+        particle.style.animationDelay = Math.random() * 10 + 's';
+        container.appendChild(particle);
+      }
+    }
+    createParticles();
   </script>
 </body>
 </html>
