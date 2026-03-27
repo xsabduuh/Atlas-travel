@@ -4,11 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>سفاري | وكالة سفر وحجوزات سياحية</title>
+  <meta name="description" content="سفاري وكالة سفر رائدة تقدم أفضل باقات الرحلات السياحية، عروض حصرية، وتجارب لا تُنسى. احجز الآن واستمتع بمغامرة العمر.">
+  <meta name="keywords" content="وكالة سفر, رحلات, سياحة, باقات سفر, حجوزات فنادق, تذاكر طيران, عروض سياحية">
   <!-- الخطوط والأيقونات -->
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
+    /* ========== RESET & VARIABLES ========== */
     * {
       margin: 0;
       padding: 0;
@@ -20,6 +23,8 @@
       --primary-dark: #21867a;
       --secondary: #e76f51;
       --accent: #f4a261;
+      --dark: #264653;
+      --light: #f8f9fa;
       --bg-dark: #121212;
       --bg-card-dark: #1e1e1e;
       --text-dark: #ffffff;
@@ -33,6 +38,7 @@
       --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
       --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.15);
       --transition: all 0.3s ease;
+      --glow: 0 0 20px rgba(42, 157, 143, 0.4);
     }
 
     [data-theme="dark"] {
@@ -80,7 +86,7 @@
       z-index: 2;
     }
 
-    /* Progress Bar */
+    /* ========== PROGRESS BAR ========== */
     .progress-bar {
       position: fixed;
       top: 0;
@@ -90,9 +96,10 @@
       background: linear-gradient(90deg, var(--primary), var(--secondary));
       z-index: 1001;
       transition: width 0.1s;
+      box-shadow: 0 0 5px var(--primary);
     }
 
-    /* Animated Background */
+    /* ========== ANIMATED BACKGROUND (CIRCLES) ========== */
     .animated-bg {
       position: fixed;
       top: 0;
@@ -110,8 +117,8 @@
       animation: float 15s infinite ease-in-out;
     }
 
-    [data-theme="light"] .animated-bg .circle { background: rgba(42,157,143,0.15); }
-    [data-theme="dark"] .animated-bg .circle { background: rgba(255,255,255,0.05); }
+    [data-theme="light"] .animated-bg .circle { background: rgba(42, 157, 143, 0.15); }
+    [data-theme="dark"] .animated-bg .circle { background: rgba(255, 255, 255, 0.05); }
 
     @keyframes float {
       0% { transform: translateY(0) translateX(0) scale(1); opacity: 0.3; }
@@ -125,7 +132,61 @@
     .circle-4 { width: 400px; height: 400px; bottom: -100px; left: 30%; animation-duration: 30s; animation-delay: -10s; }
     .circle-5 { width: 100px; height: 100px; top: 20%; right: 15%; animation-duration: 12s; animation-delay: -1s; }
 
-    /* Header */
+    /* ========== FLOATING CONTACT & BACK TO TOP ========== */
+    .floating-contact, .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: 0.3s;
+      z-index: 99;
+      opacity: 0;
+      visibility: hidden;
+      transform: scale(0.8);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    .floating-contact { left: 30px; }
+    .back-to-top { right: 30px; }
+    .floating-contact.show, .back-to-top.show {
+      opacity: 1;
+      visibility: visible;
+      transform: scale(1);
+    }
+    .floating-contact:hover, .back-to-top:hover {
+      transform: scale(1.1);
+      background: var(--secondary);
+    }
+
+    /* ========== LIGHTBOX ========== */
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.9);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 15px;
+      box-shadow: 0 0 30px rgba(0,0,0,0.5);
+    }
+    .lightbox.active { display: flex; }
+
+    /* ========== HEADER ========== */
     header {
       position: fixed;
       top: 0;
@@ -134,7 +195,7 @@
       backdrop-filter: blur(10px);
       border-bottom: 1px solid var(--border);
       z-index: 1000;
-      transition: 0.3s;
+      transition: var(--transition);
     }
 
     .navbar {
@@ -209,7 +270,7 @@
     }
 
     .book-now-btn {
-      background: linear-gradient(135deg, var(--secondary), #f4a261);
+      background: linear-gradient(135deg, var(--secondary), var(--accent));
       color: #fff;
       padding: 0 20px;
       height: 40px;
@@ -240,63 +301,10 @@
       transition: 0.3s;
     }
 
-    /* Floating Buttons */
-    .floating-contact, .back-to-top {
-      position: fixed;
-      bottom: 30px;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: 0.3s;
-      z-index: 99;
-      opacity: 0;
-      visibility: hidden;
-      transform: scale(0.8);
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    }
-    .floating-contact { left: 30px; }
-    .back-to-top { right: 30px; }
-    .floating-contact.show, .back-to-top.show {
-      opacity: 1;
-      visibility: visible;
-      transform: scale(1);
-    }
-    .floating-contact:hover, .back-to-top:hover {
-      transform: scale(1.1);
-      background: var(--secondary);
-    }
-
-    /* Lightbox */
-    .lightbox {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.9);
-      z-index: 2000;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-    }
-    .lightbox img {
-      max-width: 90%;
-      max-height: 90%;
-      border-radius: 15px;
-    }
-    .lightbox.active { display: flex; }
-
-    /* Hero */
+    /* ========== HERO ========== */
     .hero {
       min-height: 100vh;
-      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://picsum.photos/id/104/1920/1080') center/cover no-repeat fixed;
+      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('hero-bg.jpg') center/cover no-repeat fixed;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -304,10 +312,19 @@
       color: #fff;
       padding: 120px 15px 60px;
     }
-    .hero h1 { font-size: 3.5rem; margin-bottom: 15px; font-weight: 900; }
-    .hero p { font-size: 1.2rem; margin-bottom: 30px; }
 
-    /* Search Bar */
+    .hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 15px;
+      font-weight: 900;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+    }
+
+    /* ========== SEARCH BAR (MODERN) ========== */
     .search-bar {
       background: rgba(255,255,255,0.15);
       backdrop-filter: blur(20px);
@@ -320,7 +337,14 @@
       max-width: 800px;
       margin: 0 auto 30px;
       border: 1px solid rgba(255,255,255,0.3);
+      transition: 0.3s;
     }
+
+    .search-bar:hover {
+      background: rgba(255,255,255,0.25);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
     .search-group {
       display: flex;
       align-items: center;
@@ -331,14 +355,23 @@
       flex: 1;
       min-width: 180px;
     }
-    .search-group i { color: var(--primary); }
+
+    .search-group i {
+      color: var(--primary);
+    }
+
     .search-input {
       background: transparent;
       border: none;
       color: #fff;
       width: 100%;
+      font-size: 1rem;
     }
-    .search-input::placeholder { color: rgba(255,255,255,0.8); }
+
+    .search-input::placeholder {
+      color: rgba(255,255,255,0.8);
+    }
+
     .search-btn {
       background: linear-gradient(135deg, var(--primary), var(--primary-dark));
       border: none;
@@ -347,13 +380,18 @@
       color: #fff;
       font-weight: 700;
       cursor: pointer;
+      transition: 0.3s;
       display: flex;
       align-items: center;
       gap: 8px;
     }
-    .search-btn:hover { transform: translateY(-2px); }
 
-    /* Sections */
+    .search-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    /* ========== SECTION TITLE ========== */
     .section-title {
       font-size: 2.5rem;
       margin-bottom: 40px;
@@ -361,6 +399,7 @@
       position: relative;
       padding-bottom: 15px;
     }
+
     .section-title::after {
       content: '';
       position: absolute;
@@ -373,54 +412,77 @@
       border-radius: 2px;
     }
 
+    /* ========== SECTIONS ========== */
     .destinations, .packages, .why-us, .testimonials, .gallery, .partners, .contact {
       padding: 80px 0;
     }
 
-    /* Grids */
+    /* ========== GRIDS ========== */
     .destinations-grid, .packages-grid, .testimonials-grid, .features-grid, .partners-grid, .gallery-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 30px;
     }
 
-    /* Cards */
+    /* ========== CARDS ========== */
     .destination-card, .package-card, .feature, .partner-logo, .testimonial-card, .contact-info {
       background: var(--bg-card);
       border-radius: 20px;
       overflow: hidden;
-      transition: 0.3s;
+      transition: var(--transition);
       border: 1px solid var(--border);
     }
+
     .destination-card:hover, .package-card:hover {
       transform: translateY(-10px);
-      box-shadow: var(--shadow-hover);
+      box-shadow: var(--shadow-hover), var(--glow);
     }
+
     .destination-card img, .package-card img {
       width: 100%;
       height: 200px;
       object-fit: cover;
+      transition: transform 0.5s;
     }
-    .card-content, .package-info { padding: 20px; }
-    .card-price, .price { color: var(--secondary); font-weight: 700; font-size: 1.2rem; }
+
+    .destination-card:hover img, .package-card:hover img {
+      transform: scale(1.05);
+    }
+
+    .card-content, .package-info {
+      padding: 20px;
+    }
+
+    .card-price, .price {
+      color: var(--secondary);
+      font-weight: 700;
+      font-size: 1.2rem;
+    }
+
     .package-badge {
       position: absolute;
       top: 15px;
       right: 15px;
-      background: linear-gradient(135deg, var(--secondary), #f4a261);
+      background: linear-gradient(135deg, var(--secondary), var(--accent));
       color: #fff;
       padding: 5px 15px;
       border-radius: 30px;
       font-size: 0.8rem;
+      font-weight: 600;
       z-index: 1;
     }
+
     .package-meta {
       display: flex;
       justify-content: space-between;
       margin: 10px 0;
       color: var(--text-muted);
     }
-    .rating i { color: #ffc107; }
+
+    .rating i {
+      color: #ffc107;
+    }
+
     .btn-secondary {
       background: transparent;
       color: var(--primary);
@@ -432,10 +494,12 @@
       transition: 0.3s;
       display: inline-block;
     }
+
     .btn-secondary:hover {
       background: var(--primary);
       color: #fff;
     }
+
     .btn-primary {
       background: linear-gradient(135deg, var(--primary), var(--primary-dark));
       color: #fff;
@@ -445,19 +509,30 @@
       font-weight: 700;
       border: none;
       cursor: pointer;
-      display: inline-block;
       transition: 0.3s;
+      display: inline-block;
     }
+
     .btn-primary:hover {
       transform: translateY(-3px);
       box-shadow: 0 8px 20px rgba(42,157,143,0.4);
     }
 
-    /* Features */
-    .feature { text-align: center; padding: 30px; }
-    .feature img { width: 80px; margin-bottom: 20px; border-radius: 50%; }
+    /* ========== FEATURES ========== */
+    .feature {
+      text-align: center;
+      padding: 30px;
+    }
 
-    /* Stats */
+    .feature img {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 20px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    /* ========== STATS ========== */
     .stats-container {
       display: flex;
       justify-content: space-around;
@@ -465,6 +540,7 @@
       gap: 30px;
       margin-top: 50px;
     }
+
     .stat-item {
       background: var(--bg-card);
       padding: 20px;
@@ -472,7 +548,14 @@
       text-align: center;
       flex: 1 1 200px;
       border: 1px solid var(--border);
+      transition: 0.3s;
     }
+
+    .stat-item:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--glow);
+    }
+
     .stat-number {
       font-size: 2.5rem;
       font-weight: 900;
@@ -480,9 +563,10 @@
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
+      line-height: 1.2;
     }
 
-    /* Partners */
+    /* ========== PARTNERS ========== */
     .partner-logo {
       display: flex;
       align-items: center;
@@ -492,13 +576,18 @@
       font-size: 1.2rem;
       font-weight: 600;
     }
-    .partner-logo i { font-size: 2rem; color: var(--primary); }
 
-    /* Testimonials */
+    .partner-logo i {
+      font-size: 2rem;
+      color: var(--primary);
+    }
+
+    /* ========== TESTIMONIALS ========== */
     .testimonial-card {
       text-align: center;
       padding: 30px;
     }
+
     .testimonial-card img {
       width: 100px;
       height: 100px;
@@ -508,7 +597,7 @@
       border: 5px solid var(--primary);
     }
 
-    /* Gallery */
+    /* ========== GALLERY ========== */
     .gallery-grid img {
       width: 100%;
       height: 250px;
@@ -517,21 +606,24 @@
       transition: 0.3s;
       cursor: pointer;
     }
+
     .gallery-grid img:hover {
       transform: scale(1.05);
-      box-shadow: var(--shadow);
+      box-shadow: var(--glow);
     }
 
-    /* Contact */
+    /* ========== CONTACT ========== */
     .contact-wrapper {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 50px;
     }
+
     .form-group {
       position: relative;
       margin-bottom: 20px;
     }
+
     .form-group input, .form-group textarea {
       width: 100%;
       padding: 15px;
@@ -539,7 +631,15 @@
       border-radius: 10px;
       background: var(--bg-card);
       color: var(--text);
+      transition: 0.3s;
     }
+
+    .form-group input:focus, .form-group textarea:focus {
+      border-color: var(--primary);
+      outline: none;
+      box-shadow: 0 0 10px rgba(42,157,143,0.2);
+    }
+
     .form-group label {
       position: absolute;
       top: 15px;
@@ -550,6 +650,7 @@
       background: var(--bg-card);
       padding: 0 5px;
     }
+
     .form-group input:focus ~ label,
     .form-group textarea:focus ~ label,
     .form-group input:not(:placeholder-shown) ~ label {
@@ -558,27 +659,43 @@
       font-size: 0.8rem;
       color: var(--primary);
     }
-    .contact-info { padding: 30px; }
-    .contact-info p { margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
-    .contact-info i { width: 20px; color: var(--primary); }
 
-    /* Footer */
+    .contact-info {
+      padding: 30px;
+    }
+
+    .contact-info p {
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .contact-info i {
+      width: 20px;
+      color: var(--primary);
+    }
+
+    /* ========== FOOTER ========== */
     footer {
       background: var(--bg-card);
       padding: 50px 0 20px;
       border-top: 1px solid var(--border);
     }
+
     .footer-content {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 40px;
       margin-bottom: 40px;
     }
+
     .footer-section h4 {
       margin-bottom: 20px;
       position: relative;
       padding-bottom: 10px;
     }
+
     .footer-section h4::after {
       content: '';
       position: absolute;
@@ -588,13 +705,21 @@
       height: 2px;
       background: linear-gradient(90deg, var(--primary), var(--secondary));
     }
-    .footer-section ul { list-style: none; }
+
+    .footer-section ul {
+      list-style: none;
+    }
+
     .footer-section a {
       color: var(--text-muted);
       text-decoration: none;
       transition: 0.3s;
     }
-    .footer-section a:hover { color: var(--primary); }
+
+    .footer-section a:hover {
+      color: var(--primary);
+    }
+
     .social-icons a {
       display: inline-flex;
       width: 40px;
@@ -607,11 +732,13 @@
       margin-left: 10px;
       transition: 0.3s;
     }
+
     .social-icons a:hover {
       background: var(--primary);
       transform: translateY(-5px);
       color: #fff;
     }
+
     .copyright {
       text-align: center;
       padding-top: 20px;
@@ -619,9 +746,12 @@
       color: var(--text-muted);
     }
 
-    /* Responsive */
+    /* ========== RESPONSIVE ========== */
     @media (max-width: 768px) {
-      .hamburger { display: flex; }
+      .hamburger {
+        display: flex;
+      }
+
       .nav-menu {
         position: fixed;
         top: 70px;
@@ -632,15 +762,49 @@
         flex-direction: column;
         align-items: center;
         padding-top: 40px;
-        transition: 0.3s;
+        transition: right 0.3s;
         border-left: 1px solid var(--border);
       }
-      .nav-menu.active { right: 0; }
-      .hero h1 { font-size: 2.2rem; }
-      .search-bar { flex-direction: column; border-radius: 30px; }
-      .search-group { width: 100%; }
-      .search-btn { width: 100%; justify-content: center; }
-      .contact-wrapper { grid-template-columns: 1fr; }
+
+      .nav-menu.active {
+        right: 0;
+      }
+
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+
+      .search-bar {
+        flex-direction: column;
+        border-radius: 30px;
+      }
+
+      .search-group {
+        width: 100%;
+      }
+
+      .search-btn {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .contact-wrapper {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+
+      .logo-text {
+        font-size: 1.5rem;
+      }
+
+      .nav-actions .book-now-btn {
+        display: none;
+      }
     }
   </style>
 </head>
@@ -656,7 +820,9 @@
 
   <header>
     <nav class="navbar">
-      <div class="logo"><span class="logo-text">سفاري</span></div>
+      <div class="logo">
+        <span class="logo-text">سفاري</span>
+      </div>
       <ul class="nav-menu">
         <li><a href="#home" class="nav-link active" data-i18n="home">الرئيسية</a></li>
         <li><a href="#destinations" class="nav-link" data-i18n="destinations">الوجهات</a></li>
@@ -668,119 +834,299 @@
         <button class="lang-switch" id="langToggle">EN</button>
         <a href="booking.html" class="book-now-btn" data-i18n="book">احجز الآن</a>
       </div>
-      <div class="hamburger"><span></span><span></span><span></span></div>
+      <div class="hamburger">
+        <span></span><span></span><span></span>
+      </div>
     </nav>
   </header>
 
-  <div class="floating-contact" id="floatingContact"><i class="fas fa-headset"></i></div>
-  <div class="lightbox" id="lightbox"><img id="lightboxImg" src="" alt=""></div>
+  <div class="floating-contact" id="floatingContact">
+    <i class="fas fa-headset"></i>
+  </div>
+  <div class="lightbox" id="lightbox">
+    <img id="lightboxImg" src="" alt="">
+  </div>
   <button class="back-to-top" id="backToTop">↑</button>
 
   <main>
+    <!-- HERO SECTION -->
     <section id="home" class="hero">
       <div class="hero-content" data-aos="fade-up">
         <h1 data-i18n="hero_title">اكتشف جمال العالم مع سفاري</h1>
         <p data-i18n="hero_desc">رحلات مخصصة، عروض حصرية، وتجارب لا تُنسى. احجز الآن وانطلق في مغامرتك القادمة.</p>
         <div class="search-bar" data-aos="fade-up" data-aos-delay="200">
-          <div class="search-group"><i class="fas fa-map-marker-alt"></i><input type="text" placeholder="إلى أين تذهب؟" class="search-input" data-i18n-placeholder="search_placeholder"></div>
-          <div class="search-group"><i class="fas fa-calendar-alt"></i><input type="date" class="search-input" value="2025-06-01"></div>
-          <div class="search-group"><i class="fas fa-users"></i><select class="search-input"><option value="1" data-i18n="traveler1">1 مسافر</option><option value="2" selected data-i18n="traveler2">2 مسافر</option><option value="3" data-i18n="traveler3">3 مسافر</option><option value="4" data-i18n="traveler4">4 مسافر</option><option value="5" data-i18n="traveler5">5+ مسافر</option></select></div>
+          <div class="search-group">
+            <i class="fas fa-map-marker-alt"></i>
+            <input type="text" placeholder="إلى أين تذهب؟" class="search-input" data-i18n-placeholder="search_placeholder">
+          </div>
+          <div class="search-group">
+            <i class="fas fa-calendar-alt"></i>
+            <input type="date" class="search-input" value="2025-06-01">
+          </div>
+          <div class="search-group">
+            <i class="fas fa-users"></i>
+            <select class="search-input">
+              <option value="1" data-i18n="traveler1">1 مسافر</option>
+              <option value="2" selected data-i18n="traveler2">2 مسافر</option>
+              <option value="3" data-i18n="traveler3">3 مسافر</option>
+              <option value="4" data-i18n="traveler4">4 مسافر</option>
+              <option value="5" data-i18n="traveler5">5+ مسافر</option>
+            </select>
+          </div>
           <button class="search-btn" data-i18n="search"><i class="fas fa-search"></i> بحث</button>
         </div>
         <a href="#packages" class="btn-primary" data-i18n="hero_btn">استكشف الباقات</a>
       </div>
     </section>
 
+    <!-- DESTINATIONS SECTION -->
     <section id="destinations" class="destinations">
       <div class="container">
         <h2 class="section-title" data-aos="fade-up" data-i18n="destinations_title">وجهات سياحية مميزة</h2>
         <div class="destinations-grid">
-          <div class="destination-card" data-aos="zoom-in"><img src="https://picsum.photos/id/20/400/300" alt="باريس"><div class="card-content"><h3>باريس</h3><p data-i18n="paris_desc">مدينة النور والرومانسية</p><span class="card-price"><span data-i18n="from">من</span> 799 <span class="currency">درهم</span></span></div></div>
-          <div class="destination-card" data-aos="zoom-in" data-aos-delay="100"><img src="https://picsum.photos/id/30/400/300" alt="بالي"><div class="card-content"><h3>بالي</h3><p data-i18n="bali_desc">جنة استوائية ساحرة</p><span class="card-price"><span data-i18n="from">من</span> 649 <span class="currency">درهم</span></span></div></div>
-          <div class="destination-card" data-aos="zoom-in" data-aos-delay="200"><img src="https://picsum.photos/id/10/400/300" alt="دبي"><div class="card-content"><h3>دبي</h3><p data-i18n="dubai_desc">مدينة المستقبل والتسوق</p><span class="card-price"><span data-i18n="from">من</span> 999 <span class="currency">درهم</span></span></div></div>
-          <div class="destination-card" data-aos="zoom-in" data-aos-delay="300"><img src="https://picsum.photos/id/106/400/300" alt="المغرب"><div class="card-content"><h3>المغرب</h3><p data-i18n="morocco_desc">ثقافة وأصالة وتنوع</p><span class="card-price"><span data-i18n="from">من</span> 549 <span class="currency">درهم</span></span></div></div>
-          <div class="destination-card" data-aos="zoom-in" data-aos-delay="400"><img src="https://picsum.photos/id/42/400/300" alt="نيويورك"><div class="card-content"><h3>نيويورك</h3><p data-i18n="ny_desc">المدينة التي لا تنام</p><span class="card-price"><span data-i18n="from">من</span> 1199 <span class="currency">درهم</span></span></div></div>
+          <div class="destination-card" data-aos="zoom-in" data-aos-delay="100">
+            <img src="paris.jpg" alt="باريس" width="300" height="200" loading="lazy">
+            <div class="card-content">
+              <h3>باريس</h3>
+              <p data-i18n="paris_desc">مدينة النور والرومانسية</p>
+              <span class="card-price"><span data-i18n="from">من</span> 799 <span class="currency">درهم</span></span>
+            </div>
+          </div>
+          <div class="destination-card" data-aos="zoom-in" data-aos-delay="200">
+            <img src="bali.jpg" alt="بالي" width="300" height="200" loading="lazy">
+            <div class="card-content">
+              <h3>بالي</h3>
+              <p data-i18n="bali_desc">جنة استوائية ساحرة</p>
+              <span class="card-price"><span data-i18n="from">من</span> 649 <span class="currency">درهم</span></span>
+            </div>
+          </div>
+          <div class="destination-card" data-aos="zoom-in" data-aos-delay="300">
+            <img src="dubai.jpg" alt="دبي" width="300" height="200" loading="lazy">
+            <div class="card-content">
+              <h3>دبي</h3>
+              <p data-i18n="dubai_desc">مدينة المستقبل والتسوق</p>
+              <span class="card-price"><span data-i18n="from">من</span> 999 <span class="currency">درهم</span></span>
+            </div>
+          </div>
+          <div class="destination-card" data-aos="zoom-in" data-aos-delay="400">
+            <img src="morocco.jpg" alt="المغرب" width="300" height="200" loading="lazy">
+            <div class="card-content">
+              <h3>المغرب</h3>
+              <p data-i18n="morocco_desc">ثقافة وأصالة وتنوع</p>
+              <span class="card-price"><span data-i18n="from">من</span> 549 <span class="currency">درهم</span></span>
+            </div>
+          </div>
+          <div class="destination-card" data-aos="zoom-in" data-aos-delay="500">
+            <img src="newyork.jpg" alt="نيويورك" width="300" height="200" loading="lazy">
+            <div class="card-content">
+              <h3>نيويورك</h3>
+              <p data-i18n="ny_desc">المدينة التي لا تنام</p>
+              <span class="card-price"><span data-i18n="from">من</span> 1199 <span class="currency">درهم</span></span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
+    <!-- PACKAGES SECTION (with translated titles) -->
     <section id="packages" class="packages">
       <div class="container">
         <h2 class="section-title" data-aos="fade-up" data-i18n="packages_title">باقات سفر مميزة</h2>
         <div class="packages-grid">
-          <div class="package-card" data-aos="flip-right"><img src="https://picsum.photos/id/20/400/300"><span class="package-badge" data-i18n="best_seller">الأكثر مبيعاً</span><div class="package-info"><h3 data-i18n="package_paris_title">رحلة باريس</h3><div class="package-meta"><span><i class="fas fa-clock"></i> <span data-i18n="duration_paris">5 أيام / 4 ليالي</span></span><span class="rating"><i class="fas fa-star"></i> 4.5</span></div><p class="package-desc" data-i18n="paris_package_desc">زيارة برج إيفل، متحف اللوفر، وسهرة على نهر السين.</p><div class="package-footer"><span class="price">799 <span class="currency">درهم</span></span><a href="booking.html?id=paris" class="btn-secondary" data-i18n="book_now">احجز الآن</a></div></div></div>
-          <div class="package-card" data-aos="flip-right" data-aos-delay="100"><img src="https://picsum.photos/id/30/400/300"><div class="package-info"><h3 data-i18n="package_bali_title">عطلة بالي</h3><div class="package-meta"><span><i class="fas fa-clock"></i> <span data-i18n="duration_bali">7 أيام / 6 ليالي</span></span><span class="rating"><i class="fas fa-star"></i> 4.8</span></div><p class="package-desc" data-i18n="bali_package_desc">استرخاء على الشواطئ، زيارة المعابد، وجولات استوائية.</p><div class="package-footer"><span class="price">649 <span class="currency">درهم</span></span><a href="booking.html?id=bali" class="btn-secondary" data-i18n="book_now">احجز الآن</a></div></div></div>
-          <div class="package-card" data-aos="flip-right" data-aos-delay="200"><img src="https://picsum.photos/id/10/400/300"><span class="package-badge" data-i18n="special_offer">عرض خاص</span><div class="package-info"><h3 data-i18n="package_dubai_title">دبي الفاخرة</h3><div class="package-meta"><span><i class="fas fa-clock"></i> <span data-i18n="duration_dubai">4 أيام / 3 ليالي</span></span><span class="rating"><i class="fas fa-star"></i> 4.9</span></div><p class="package-desc" data-i18n="dubai_package_desc">برج خليفة، سفاري في الصحراء، وتجربة تسوق فاخرة.</p><div class="package-footer"><span class="price">999 <span class="currency">درهم</span></span><a href="booking.html?id=dubai" class="btn-secondary" data-i18n="book_now">احجز الآن</a></div></div></div>
-          <div class="package-card" data-aos="flip-right" data-aos-delay="300"><img src="https://picsum.photos/id/106/400/300"><div class="package-info"><h3 data-i18n="package_morocco_title">المغرب الساحر</h3><div class="package-meta"><span><i class="fas fa-clock"></i> <span data-i18n="duration_morocco">8 أيام / 7 ليالي</span></span><span class="rating"><i class="fas fa-star"></i> 4.7</span></div><p class="package-desc" data-i18n="morocco_package_desc">جولة في مراكش، فاس، الصحراء، وأصالة الضيافة المغربية.</p><div class="package-footer"><span class="price">549 <span class="currency">درهم</span></span><a href="booking.html?id=morocco" class="btn-secondary" data-i18n="book_now">احجز الآن</a></div></div></div>
+          <div class="package-card" data-aos="flip-right">
+            <img src="package-paris.jpg" alt="باريس" width="300" height="200" loading="lazy">
+            <span class="package-badge" data-i18n="best_seller">الأكثر مبيعاً</span>
+            <div class="package-info">
+              <h3 data-i18n="package_paris_title">رحلة باريس</h3>
+              <div class="package-meta">
+                <span><i class="fas fa-clock"></i> <span data-i18n="duration_paris">5 أيام / 4 ليالي</span></span>
+                <span class="rating"><i class="fas fa-star"></i> 4.5</span>
+              </div>
+              <p class="package-desc" data-i18n="paris_package_desc">زيارة برج إيفل، متحف اللوفر، وسهرة على نهر السين.</p>
+              <div class="package-footer">
+                <span class="price">799 <span class="currency">درهم</span></span>
+                <a href="booking.html?id=paris" class="btn-secondary" data-i18n="book_now">احجز الآن</a>
+              </div>
+            </div>
+          </div>
+          <div class="package-card" data-aos="flip-right" data-aos-delay="100">
+            <img src="package-bali.jpg" alt="بالي" width="300" height="200" loading="lazy">
+            <div class="package-info">
+              <h3 data-i18n="package_bali_title">عطلة بالي</h3>
+              <div class="package-meta">
+                <span><i class="fas fa-clock"></i> <span data-i18n="duration_bali">7 أيام / 6 ليالي</span></span>
+                <span class="rating"><i class="fas fa-star"></i> 4.8</span>
+              </div>
+              <p class="package-desc" data-i18n="bali_package_desc">استرخاء على الشواطئ، زيارة المعابد، وجولات استوائية.</p>
+              <div class="package-footer">
+                <span class="price">649 <span class="currency">درهم</span></span>
+                <a href="booking.html?id=bali" class="btn-secondary" data-i18n="book_now">احجز الآن</a>
+              </div>
+            </div>
+          </div>
+          <div class="package-card" data-aos="flip-right" data-aos-delay="200">
+            <img src="package-dubai.jpg" alt="دبي" width="300" height="200" loading="lazy">
+            <span class="package-badge" data-i18n="special_offer">عرض خاص</span>
+            <div class="package-info">
+              <h3 data-i18n="package_dubai_title">دبي الفاخرة</h3>
+              <div class="package-meta">
+                <span><i class="fas fa-clock"></i> <span data-i18n="duration_dubai">4 أيام / 3 ليالي</span></span>
+                <span class="rating"><i class="fas fa-star"></i> 4.9</span>
+              </div>
+              <p class="package-desc" data-i18n="dubai_package_desc">برج خليفة، سفاري في الصحراء، وتجربة تسوق فاخرة.</p>
+              <div class="package-footer">
+                <span class="price">999 <span class="currency">درهم</span></span>
+                <a href="booking.html?id=dubai" class="btn-secondary" data-i18n="book_now">احجز الآن</a>
+              </div>
+            </div>
+          </div>
+          <div class="package-card" data-aos="flip-right" data-aos-delay="300">
+            <img src="package-morocco.jpg" alt="المغرب" width="300" height="200" loading="lazy">
+            <div class="package-info">
+              <h3 data-i18n="package_morocco_title">المغرب الساحر</h3>
+              <div class="package-meta">
+                <span><i class="fas fa-clock"></i> <span data-i18n="duration_morocco">8 أيام / 7 ليالي</span></span>
+                <span class="rating"><i class="fas fa-star"></i> 4.7</span>
+              </div>
+              <p class="package-desc" data-i18n="morocco_package_desc">جولة في مراكش، فاس، الصحراء، وأصالة الضيافة المغربية.</p>
+              <div class="package-footer">
+                <span class="price">549 <span class="currency">درهم</span></span>
+                <a href="booking.html?id=morocco" class="btn-secondary" data-i18n="book_now">احجز الآن</a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
+    <!-- WHY US SECTION -->
     <section class="why-us">
       <div class="container">
         <h2 class="section-title" data-aos="fade-up" data-i18n="why_title">لماذا تختار سفاري؟</h2>
         <div class="features-grid">
-          <div class="feature" data-aos="fade-up"><img src="https://picsum.photos/id/26/100/100"><h3 data-i18n="why_price">أفضل سعر مضمون</h3><p data-i18n="why_price_desc">نضمن لك أقل الأسعار في السوق</p></div>
-          <div class="feature" data-aos="fade-up" data-aos-delay="100"><img src="https://picsum.photos/id/29/100/100"><h3 data-i18n="why_guides">مرشدين محترفين</h3><p data-i18n="why_guides_desc">مرشدون محليون بخبرة عالية</p></div>
-          <div class="feature" data-aos="fade-up" data-aos-delay="200"><img src="https://picsum.photos/id/24/100/100"><h3 data-i18n="why_support">دعم 24/7</h3><p data-i18n="why_support_desc">فريق دعم متاح 24/7 لمساعدتك</p></div>
-          <div class="feature" data-aos="fade-up" data-aos-delay="300"><img src="https://picsum.photos/id/28/100/100"><h3 data-i18n="why_secure">حجز آمن وموثوق</h3><p data-i18n="why_secure_desc">بياناتك آمنة مع تقنيات التشفير</p></div>
+          <div class="feature" data-aos="fade-up" data-aos-delay="100">
+            <img src="why1.jpg" alt="أفضل سعر" width="80" height="80" loading="lazy">
+            <h3 data-i18n="why_price">أفضل سعر مضمون</h3>
+            <p data-i18n="why_price_desc">نضمن لك أقل الأسعار في السوق</p>
+          </div>
+          <div class="feature" data-aos="fade-up" data-aos-delay="200">
+            <img src="why2.jpg" alt="مرشدين" width="80" height="80" loading="lazy">
+            <h3 data-i18n="why_guides">مرشدين محترفين</h3>
+            <p data-i18n="why_guides_desc">مرشدون محليون بخبرة عالية</p>
+          </div>
+          <div class="feature" data-aos="fade-up" data-aos-delay="300">
+            <img src="why3.jpg" alt="دعم" width="80" height="80" loading="lazy">
+            <h3 data-i18n="why_support">دعم 24/7</h3>
+            <p data-i18n="why_support_desc">فريق دعم متاح 24/7 لمساعدتك</p>
+          </div>
+          <div class="feature" data-aos="fade-up" data-aos-delay="400">
+            <img src="why4.jpg" alt="حجز آمن" width="80" height="80" loading="lazy">
+            <h3 data-i18n="why_secure">حجز آمن وموثوق</h3>
+            <p data-i18n="why_secure_desc">بياناتك آمنة مع تقنيات التشفير</p>
+          </div>
         </div>
         <div class="stats-container">
-          <div class="stat-item"><span class="stat-number" data-count="500">500+</span><span class="stat-label" data-i18n="completed_trips">رحلة منجزة</span></div>
-          <div class="stat-item"><span class="stat-number" data-count="15">15</span><span class="stat-label" data-i18n="destinations_count">وجهة سياحية</span></div>
-          <div class="stat-item"><span class="stat-number" data-count="1200">1200+</span><span class="stat-label" data-i18n="happy_clients">عميل سعيد</span></div>
-          <div class="stat-item"><span class="stat-number" data-count="4.8">4.8</span><span class="stat-label" data-i18n="rating">تقييم العملاء</span></div>
+          <div class="stat-item">
+            <span class="stat-number" data-count="500">500+</span>
+            <span class="stat-label" data-i18n="completed_trips">رحلة منجزة</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" data-count="15">15</span>
+            <span class="stat-label" data-i18n="destinations_count">وجهة سياحية</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" data-count="1200">1200+</span>
+            <span class="stat-label" data-i18n="happy_clients">عميل سعيد</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" data-count="4.8">4.8</span>
+            <span class="stat-label" data-i18n="rating">تقييم العملاء</span>
+          </div>
         </div>
       </div>
     </section>
 
+    <!-- PARTNERS SECTION -->
     <section class="partners">
       <div class="container">
         <h2 class="section-title" data-aos="fade-up" data-i18n="partners_title">شركاؤنا</h2>
         <div class="partners-grid">
-          <div class="partner-logo"><i class="fas fa-plane"></i> <span data-i18n="emirates">طيران الإمارات</span></div>
-          <div class="partner-logo"><i class="fas fa-hotel"></i> <span data-i18n="marriott">ماريوت</span></div>
-          <div class="partner-logo"><i class="fas fa-train"></i> <span data-i18n="railways">السكك الحديدية</span></div>
-          <div class="partner-logo"><i class="fas fa-umbrella-beach"></i> <span data-i18n="hilton">منتجعات هيلتون</span></div>
-          <div class="partner-logo"><i class="fas fa-car"></i> <span data-i18n="hertz">هيرتز</span></div>
-          <div class="partner-logo"><i class="fas fa-ship"></i> <span data-i18n="cruise">كروز العالمي</span></div>
+          <div class="partner-logo" data-aos="zoom-in"><i class="fas fa-plane"></i> <span data-i18n="emirates">طيران الإمارات</span></div>
+          <div class="partner-logo" data-aos="zoom-in" data-aos-delay="100"><i class="fas fa-hotel"></i> <span data-i18n="marriott">ماريوت</span></div>
+          <div class="partner-logo" data-aos="zoom-in" data-aos-delay="200"><i class="fas fa-train"></i> <span data-i18n="railways">السكك الحديدية</span></div>
+          <div class="partner-logo" data-aos="zoom-in" data-aos-delay="300"><i class="fas fa-umbrella-beach"></i> <span data-i18n="hilton">منتجعات هيلتون</span></div>
+          <div class="partner-logo" data-aos="zoom-in" data-aos-delay="400"><i class="fas fa-car"></i> <span data-i18n="hertz">هيرتز</span></div>
+          <div class="partner-logo" data-aos="zoom-in" data-aos-delay="500"><i class="fas fa-ship"></i> <span data-i18n="cruise">كروز العالمي</span></div>
         </div>
       </div>
     </section>
 
+    <!-- TESTIMONIALS SECTION -->
     <section class="testimonials">
       <div class="container">
         <h2 class="section-title" data-aos="fade-up" data-i18n="testimonials_title">آراء المسافرين</h2>
         <div class="testimonials-grid">
-          <div class="testimonial-card" data-aos="zoom-in"><img src="https://randomuser.me/api/portraits/men/1.jpg"><div><p data-i18n="testimonial1">"أفضل وكالة سفر تعاملت معها. الرحلة كانت رائعة والتنظيم ممتاز."</p><h4>محمد علي</h4><div class="rating">★★★★★</div></div></div>
-          <div class="testimonial-card" data-aos="zoom-in" data-aos-delay="100"><img src="https://randomuser.me/api/portraits/women/1.jpg"><div><p data-i18n="testimonial2">"باقات متنوعة وأسعار منافسة. سأكرر التجربة بالتأكيد."</p><h4>سارة أحمد</h4><div class="rating">★★★★★</div></div></div>
-          <div class="testimonial-card" data-aos="zoom-in" data-aos-delay="200"><img src="https://randomuser.me/api/portraits/men/2.jpg"><div><p data-i18n="testimonial3">"الدعم الفوري والمرشدين المحترفين جعلوا الرحلة لا تنسى."</p><h4>خالد محمود</h4><div class="rating">★★★★☆</div></div></div>
+          <div class="testimonial-card" data-aos="zoom-in" data-aos-delay="100">
+            <img src="testimonial1.jpg" alt="محمد" width="100" height="100" loading="lazy">
+            <div>
+              <p data-i18n="testimonial1">"أفضل وكالة سفر تعاملت معها. الرحلة كانت رائعة والتنظيم ممتاز."</p>
+              <h4>محمد علي</h4>
+              <div class="rating">★★★★★</div>
+            </div>
+          </div>
+          <div class="testimonial-card" data-aos="zoom-in" data-aos-delay="200">
+            <img src="testimonial2.jpg" alt="سارة" width="100" height="100" loading="lazy">
+            <div>
+              <p data-i18n="testimonial2">"باقات متنوعة وأسعار منافسة. سأكرر التجربة بالتأكيد."</p>
+              <h4>سارة أحمد</h4>
+              <div class="rating">★★★★★</div>
+            </div>
+          </div>
+          <div class="testimonial-card" data-aos="zoom-in" data-aos-delay="300">
+            <img src="testimonial3.jpg" alt="خالد" width="100" height="100" loading="lazy">
+            <div>
+              <p data-i18n="testimonial3">"الدعم الفوري والمرشدين المحترفين جعلوا الرحلة لا تنسى."</p>
+              <h4>خالد محمود</h4>
+              <div class="rating">★★★★☆</div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
+    <!-- GALLERY SECTION -->
     <section class="gallery">
       <div class="container">
         <h2 class="section-title" data-aos="fade-up" data-i18n="gallery_title">معرض الصور</h2>
         <div class="gallery-grid">
-          <img src="https://picsum.photos/id/104/400/300" class="gallery-img">
-          <img src="https://picsum.photos/id/20/400/300" class="gallery-img">
-          <img src="https://picsum.photos/id/30/400/300" class="gallery-img">
-          <img src="https://picsum.photos/id/106/400/300" class="gallery-img">
-          <img src="https://picsum.photos/id/42/400/300" class="gallery-img">
-          <img src="https://picsum.photos/id/24/400/300" class="gallery-img">
+          <img src="gallery1.jpg" alt="صورة 1" data-aos="flip-left" width="400" height="250" loading="lazy" class="gallery-img">
+          <img src="gallery2.jpg" alt="صورة 2" data-aos="flip-left" data-aos-delay="100" width="400" height="250" loading="lazy" class="gallery-img">
+          <img src="gallery3.jpg" alt="صورة 3" data-aos="flip-left" data-aos-delay="200" width="400" height="250" loading="lazy" class="gallery-img">
+          <img src="gallery4.jpg" alt="صورة 4" data-aos="flip-left" data-aos-delay="300" width="400" height="250" loading="lazy" class="gallery-img">
+          <img src="gallery5.jpg" alt="صورة 5" data-aos="flip-left" data-aos-delay="400" width="400" height="250" loading="lazy" class="gallery-img">
+          <img src="gallery6.jpg" alt="صورة 6" data-aos="flip-left" data-aos-delay="500" width="400" height="250" loading="lazy" class="gallery-img">
         </div>
       </div>
     </section>
 
+    <!-- CONTACT SECTION -->
     <section id="contact" class="contact">
       <div class="container">
         <h2 class="section-title" data-aos="fade-up" data-i18n="contact_title">اتصل بنا</h2>
         <div class="contact-wrapper">
           <form id="contactForm">
-            <div class="form-group"><input type="text" id="name" placeholder=" " required><label for="name" data-i18n="name">الاسم</label></div>
-            <div class="form-group"><input type="email" id="email" placeholder=" " required><label for="email" data-i18n="email">البريد الإلكتروني</label></div>
-            <div class="form-group"><textarea id="message" rows="5" placeholder=" " required></textarea><label for="message" data-i18n="message">رسالتك</label></div>
+            <div class="form-group">
+              <input type="text" id="name" placeholder=" " required data-i18n-placeholder="name_placeholder">
+              <label for="name" data-i18n="name">الاسم</label>
+            </div>
+            <div class="form-group">
+              <input type="email" id="email" placeholder=" " required data-i18n-placeholder="email_placeholder">
+              <label for="email" data-i18n="email">البريد الإلكتروني</label>
+            </div>
+            <div class="form-group">
+              <textarea id="message" rows="5" placeholder=" " required data-i18n-placeholder="message_placeholder"></textarea>
+              <label for="message" data-i18n="message">رسالتك</label>
+            </div>
             <button type="submit" class="btn-primary" data-i18n="send">إرسال</button>
           </form>
           <div class="contact-info">
@@ -794,20 +1140,42 @@
     </section>
   </main>
 
+  <!-- FOOTER -->
   <footer>
     <div class="container">
       <div class="footer-content">
-        <div class="footer-section"><h4 data-i18n="about">عن سفاري</h4><p data-i18n="about_text">نحن وكالة سفر رائدة نقدم تجارب سياحية مخصصة بأفضل الأسعار.</p></div>
-        <div class="footer-section"><h4 data-i18n="quick_links">روابط سريعة</h4><ul><li><a href="#home" data-i18n="home">الرئيسية</a></li><li><a href="#destinations" data-i18n="destinations">الوجهات</a></li><li><a href="#packages" data-i18n="packages">الباقات</a></li><li><a href="#contact" data-i18n="contact">اتصل بنا</a></li></ul></div>
-        <div class="footer-section"><h4 data-i18n="follow_us">تابعنا</h4><div class="social-icons"><a href="#"><i class="fab fa-facebook"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-youtube"></i></a></div></div>
+        <div class="footer-section">
+          <h4 data-i18n="about">عن سفاري</h4>
+          <p data-i18n="about_text">نحن وكالة سفر رائدة نقدم تجارب سياحية مخصصة بأفضل الأسعار.</p>
+        </div>
+        <div class="footer-section">
+          <h4 data-i18n="quick_links">روابط سريعة</h4>
+          <ul>
+            <li><a href="#home" data-i18n="home">الرئيسية</a></li>
+            <li><a href="#destinations" data-i18n="destinations">الوجهات</a></li>
+            <li><a href="#packages" data-i18n="packages">الباقات</a></li>
+            <li><a href="#contact" data-i18n="contact">اتصل بنا</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4 data-i18n="follow_us">تابعنا</h4>
+          <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
       </div>
-      <div class="copyright"><p>&copy; 2025 سفاري. <span data-i18n="rights">جميع الحقوق محفوظة</span></p></div>
+      <div class="copyright">
+        <p>&copy; 2025 سفاري. <span data-i18n="rights">جميع الحقوق محفوظة</span></p>
+      </div>
     </div>
   </footer>
 
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
-    // ========== قاموس الترجمة ==========
+    // ========== TRANSLATIONS ==========
     const translations = {
       ar: {
         home: 'الرئيسية', destinations: 'الوجهات', packages: 'الباقات', contact: 'اتصل بنا', book: 'احجز الآن',
@@ -845,10 +1213,10 @@
       }
     };
 
-    // Theme
+    // ========== THEME ==========
     const themeToggle = document.getElementById('themeToggle');
     const html = document.documentElement;
-    let theme = localStorage.getItem('theme') || 'light';
+    let theme = localStorage.getItem('theme') || 'light'; // default fresh light mode
     html.setAttribute('data-theme', theme);
     if (themeToggle) themeToggle.textContent = theme === 'dark' ? '☀️' : '🌙';
     themeToggle?.addEventListener('click', () => {
@@ -858,10 +1226,11 @@
       themeToggle.textContent = newTheme === 'dark' ? '☀️' : '🌙';
     });
 
-    // Language
+    // ========== LANGUAGE ==========
     let currentLang = localStorage.getItem('lang') || 'ar';
     const langToggle = document.getElementById('langToggle');
     const body = document.body;
+
     function setLanguage(lang) {
       currentLang = lang;
       html.lang = lang;
@@ -876,18 +1245,20 @@
         const key = el.getAttribute('data-i18n-placeholder');
         if (translations[lang][key]) el.placeholder = translations[lang][key];
       });
-      document.querySelectorAll('.currency').forEach(el => el.textContent = lang === 'ar' ? 'درهم' : 'MAD');
+      document.querySelectorAll('.currency').forEach(el => {
+        el.textContent = lang === 'ar' ? 'درهم' : 'MAD';
+      });
     }
     setLanguage(currentLang);
     langToggle?.addEventListener('click', () => setLanguage(currentLang === 'ar' ? 'en' : 'ar'));
 
-    // Mobile menu
+    // ========== MOBILE MENU ==========
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
     hamburger?.addEventListener('click', () => navMenu.classList.toggle('active'));
     document.querySelectorAll('.nav-menu a').forEach(link => link.addEventListener('click', () => navMenu.classList.remove('active')));
 
-    // Scroll progress
+    // ========== SCROLL PROGRESS ==========
     window.addEventListener('scroll', () => {
       const winScroll = document.documentElement.scrollTop;
       const height = document.documentElement.scrollHeight - window.innerHeight;
@@ -895,7 +1266,7 @@
       document.getElementById('progressBar').style.width = scrolled + '%';
     });
 
-    // Back to top + floating contact
+    // ========== BACK TO TOP & FLOATING CONTACT ==========
     const backToTop = document.getElementById('backToTop');
     const floating = document.getElementById('floatingContact');
     window.addEventListener('scroll', () => {
@@ -910,14 +1281,17 @@
     backToTop?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
     floating?.addEventListener('click', () => window.location.href = '#contact');
 
-    // Active nav
+    // ========== ACTIVE NAV LINK ==========
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.nav-menu a');
     window.addEventListener('scroll', () => {
       let current = '';
       sections.forEach(section => {
         const sectionTop = section.offsetTop - 100;
-        if (scrollY >= sectionTop) current = section.getAttribute('id');
+        const sectionHeight = section.clientHeight;
+        if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+          current = section.getAttribute('id');
+        }
       });
       navLinks.forEach(link => {
         link.classList.remove('active');
@@ -925,7 +1299,7 @@
       });
     });
 
-    // Counter animation
+    // ========== COUNTER ANIMATION ==========
     const counters = document.querySelectorAll('.stat-number');
     const counterObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -950,7 +1324,7 @@
     }, { threshold: 0.5 });
     counters.forEach(c => counterObserver.observe(c));
 
-    // Lightbox
+    // ========== LIGHTBOX ==========
     const galleryImages = document.querySelectorAll('.gallery-img');
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightboxImg');
@@ -962,15 +1336,19 @@
     });
     lightbox?.addEventListener('click', () => lightbox.classList.remove('active'));
 
-    // Contact form
+    // ========== CONTACT FORM ==========
     document.getElementById('contactForm')?.addEventListener('submit', e => {
       e.preventDefault();
       alert(currentLang === 'ar' ? 'تم إرسال رسالتك بنجاح!' : 'Your message has been sent!');
       e.target.reset();
     });
 
-    // AOS
-    AOS.init({ duration: 600, once: true, offset: 100 });
+    // ========== AOS INIT (faster animation) ==========
+    AOS.init({
+      duration: 600,
+      once: true,
+      offset: 100,
+    });
   </script>
 </body>
 </html>
