@@ -31,11 +31,11 @@
       --bg-card-dark: #1e1e1e;
       --text-dark: #ffffff;
       --text-muted-dark: #b0b0b0;
-      --bg-light: #f8f9fa;
-      --bg-card-light: #ffffff;
-      --text-light: #212529;
-      --text-muted-light: #6c757d;
-      --border-light: #dee2e6;
+      --bg-light: linear-gradient(135deg, #e0f7fa 0%, #c8e6e0 100%);
+      --bg-card-light: rgba(255, 255, 255, 0.9);
+      --text-light: #1e3c3c;
+      --text-muted-light: #2c5a5a;
+      --border-light: rgba(42, 157, 143, 0.2);
       --border-dark: #333;
       --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
       --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.15);
@@ -73,6 +73,7 @@
       overflow-x: hidden;
       width: 100%;
       max-width: 100%;
+      position: relative;
     }
 
     body[dir="ltr"] {
@@ -86,6 +87,88 @@
       padding: 0 20px;
       width: 100%;
       max-width: 100%;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ===== الخلفية المتحركة (دوائر عائمة) ===== */
+    .animated-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .animated-bg .circle {
+      position: absolute;
+      border-radius: 50%;
+      animation: float 15s infinite ease-in-out;
+    }
+
+    [data-theme="light"] .animated-bg .circle {
+      background: rgba(42, 157, 143, 0.15);
+    }
+    [data-theme="dark"] .animated-bg .circle {
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0) translateX(0) scale(1);
+        opacity: 0.3;
+      }
+      50% {
+        transform: translateY(-30px) translateX(20px) scale(1.05);
+        opacity: 0.6;
+      }
+      100% {
+        transform: translateY(0) translateX(0) scale(1);
+        opacity: 0.3;
+      }
+    }
+
+    .circle-1 {
+      width: 300px;
+      height: 300px;
+      top: 10%;
+      left: -100px;
+      animation-duration: 20s;
+    }
+    .circle-2 {
+      width: 200px;
+      height: 200px;
+      bottom: 20%;
+      right: -50px;
+      animation-duration: 25s;
+      animation-delay: -5s;
+    }
+    .circle-3 {
+      width: 150px;
+      height: 150px;
+      top: 60%;
+      left: 20%;
+      animation-duration: 18s;
+      animation-delay: -2s;
+    }
+    .circle-4 {
+      width: 400px;
+      height: 400px;
+      bottom: -100px;
+      left: 30%;
+      animation-duration: 30s;
+      animation-delay: -10s;
+    }
+    .circle-5 {
+      width: 100px;
+      height: 100px;
+      top: 20%;
+      right: 15%;
+      animation-duration: 12s;
+      animation-delay: -1s;
     }
 
     /* شريط التنقل */
@@ -100,6 +183,7 @@
       display: flex;
       align-items: center;
       box-shadow: var(--shadow);
+      backdrop-filter: blur(5px);
     }
 
     .navbar {
@@ -951,6 +1035,15 @@
   </style>
 </head>
 <body>
+  <!-- الخلفية المتحركة -->
+  <div class="animated-bg">
+    <div class="circle circle-1"></div>
+    <div class="circle circle-2"></div>
+    <div class="circle circle-3"></div>
+    <div class="circle circle-4"></div>
+    <div class="circle circle-5"></div>
+  </div>
+
   <!-- شريط التنقل -->
   <header>
     <nav class="navbar">
@@ -1048,7 +1141,7 @@
       </div>
     </section>
 
-    <!-- الباقات -->
+    <!-- الباقات (تم إضافة data-i18n لعناوين الباقات) -->
     <section id="packages" class="packages">
       <div class="container">
         <h2 class="section-title" data-aos="fade-up" data-i18n="packages_title">باقات سفر مميزة</h2>
@@ -1057,7 +1150,7 @@
             <img src="package-paris.jpg" alt="باريس" width="300" height="200" loading="lazy">
             <span class="package-badge" data-i18n="best_seller">الأكثر مبيعاً</span>
             <div class="package-info">
-              <h3>رحلة باريس</h3>
+              <h3 data-i18n="package_paris_title">رحلة باريس</h3>
               <div class="package-meta">
                 <span><i class="fas fa-clock"></i> <span data-i18n="duration_paris">5 أيام / 4 ليالي</span></span>
                 <span class="rating"><i class="fas fa-star"></i> 4.5</span>
@@ -1072,7 +1165,7 @@
           <div class="package-card" data-aos="flip-right" data-aos-delay="100">
             <img src="package-bali.jpg" alt="بالي" width="300" height="200" loading="lazy">
             <div class="package-info">
-              <h3>عطلة بالي</h3>
+              <h3 data-i18n="package_bali_title">عطلة بالي</h3>
               <div class="package-meta">
                 <span><i class="fas fa-clock"></i> <span data-i18n="duration_bali">7 أيام / 6 ليالي</span></span>
                 <span class="rating"><i class="fas fa-star"></i> 4.8</span>
@@ -1088,7 +1181,7 @@
             <img src="package-dubai.jpg" alt="دبي" width="300" height="200" loading="lazy">
             <span class="package-badge" data-i18n="special_offer">عرض خاص</span>
             <div class="package-info">
-              <h3>دبي الفاخرة</h3>
+              <h3 data-i18n="package_dubai_title">دبي الفاخرة</h3>
               <div class="package-meta">
                 <span><i class="fas fa-clock"></i> <span data-i18n="duration_dubai">4 أيام / 3 ليالي</span></span>
                 <span class="rating"><i class="fas fa-star"></i> 4.9</span>
@@ -1103,7 +1196,7 @@
           <div class="package-card" data-aos="flip-right" data-aos-delay="300">
             <img src="package-morocco.jpg" alt="المغرب" width="300" height="200" loading="lazy">
             <div class="package-info">
-              <h3>المغرب الساحر</h3>
+              <h3 data-i18n="package_morocco_title">المغرب الساحر</h3>
               <div class="package-meta">
                 <span><i class="fas fa-clock"></i> <span data-i18n="duration_morocco">8 أيام / 7 ليالي</span></span>
                 <span class="rating"><i class="fas fa-star"></i> 4.7</span>
@@ -1304,6 +1397,10 @@
         ny_desc: 'المدينة التي لا تنام',
         from: 'من',
         packages_title: 'باقات سفر مميزة',
+        package_paris_title: 'رحلة باريس',
+        package_bali_title: 'عطلة بالي',
+        package_dubai_title: 'دبي الفاخرة',
+        package_morocco_title: 'المغرب الساحر',
         duration_paris: '5 أيام / 4 ليالي',
         duration_bali: '7 أيام / 6 ليالي',
         duration_dubai: '4 أيام / 3 ليالي',
@@ -1380,6 +1477,10 @@
         ny_desc: 'The City That Never Sleeps',
         from: 'from',
         packages_title: 'Special Travel Packages',
+        package_paris_title: 'Paris Trip',
+        package_bali_title: 'Bali Getaway',
+        package_dubai_title: 'Luxury Dubai',
+        package_morocco_title: 'Enchanting Morocco',
         duration_paris: '5 days / 4 nights',
         duration_bali: '7 days / 6 nights',
         duration_dubai: '4 days / 3 nights',
@@ -1437,7 +1538,7 @@
     // ========== الوضع الليلي ==========
     const themeToggle = document.getElementById('themeToggle');
     const html = document.documentElement;
-    let theme = localStorage.getItem('theme') || 'dark';
+    let theme = localStorage.getItem('theme') || 'light';  // الآن الوضع الافتراضي هو النهاري المنعش
     html.setAttribute('data-theme', theme);
     themeToggle.textContent = theme === 'dark' ? '☀️' : '🌙';
 
@@ -1542,9 +1643,9 @@
       e.target.reset();
     });
 
-    // ========== تهيئة AOS ==========
+    // ========== تهيئة AOS مع تسريع الأنيميشن ==========
     AOS.init({
-      duration: 1000,
+      duration: 600,      // تسريع الحركة (كانت 1000)
       once: true,
       offset: 100,
     });
