@@ -134,7 +134,7 @@ const translations = {
     ny_desc: 'The City That Never Sleeps',
     from: 'from',
     
-    // Packages (package titles and descriptions)
+    // Packages
     packages_title: 'Special Travel Packages',
     package_paris_title: 'Paris Trip',
     package_bali_title: 'Bali Getaway',
@@ -211,7 +211,7 @@ const translations = {
 // ========== الوضع الليلي / النهاري ==========
 const themeToggle = document.getElementById('themeToggle');
 const html = document.documentElement;
-let theme = localStorage.getItem('theme') || 'light'; // افتراضي: الوضع النهاري المنعش
+let theme = localStorage.getItem('theme') || 'light'; // الوضع النهاري المنعش
 if (themeToggle) {
   html.setAttribute('data-theme', theme);
   themeToggle.textContent = theme === 'dark' ? '☀️' : '🌙';
