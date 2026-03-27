@@ -31,15 +31,27 @@
       --bg-card-dark: #1e1e1e;
       --text-dark: #ffffff;
       --text-muted-dark: #b0b0b0;
-      --bg-light: #f8f9fa;
-      --bg-card-light: #ffffff;
-      --text-light: #212529;
-      --text-muted-light: #6c757d;
-      --border-light: #dee2e6;
+      /* الوضع النهاري: تدرج منعش بدلاً من الأبيض */
+      --bg-light-gradient: linear-gradient(135deg, #e0f7fa 0%, #c8e6e0 100%);
+      --bg-card-light: rgba(255, 255, 255, 0.9);
+      --text-light: #1e3c3c;
+      --text-muted-light: #2c5a5a;
+      --border-light: rgba(42, 157, 143, 0.2);
       --border-dark: #333;
       --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
       --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.15);
       --transition: all 0.3s ease;
+    }
+
+    [data-theme="light"] {
+      --bg: var(--bg-light-gradient);
+      --bg-card: var(--bg-card-light);
+      --text: var(--text-light);
+      --text-muted: var(--text-muted-light);
+      --border: var(--border-light);
+      --primary: #2a9d8f;
+      --primary-dark: #21867a;
+      --secondary: #e76f51;
     }
 
     [data-theme="dark"] {
@@ -48,14 +60,6 @@
       --text: var(--text-dark);
       --text-muted: var(--text-muted-dark);
       --border: var(--border-dark);
-    }
-
-    [data-theme="light"] {
-      --bg: var(--bg-light);
-      --bg-card: var(--bg-card-light);
-      --text: var(--text-light);
-      --text-muted: var(--text-muted-light);
-      --border: var(--border-light);
     }
 
     html {
@@ -71,13 +75,90 @@
       text-align: right;
       transition: background 0.3s, color 0.2s;
       overflow-x: hidden;
-      width: 100%;
-      max-width: 100%;
+      position: relative;
     }
 
-    body[dir="ltr"] {
-      direction: ltr;
-      text-align: left;
+    /* خلفية متحركة (دوائر عائمة) */
+    .animated-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .animated-bg .circle {
+      position: absolute;
+      background: rgba(42, 157, 143, 0.1);
+      border-radius: 50%;
+      animation: float 15s infinite ease-in-out;
+    }
+
+    [data-theme="light"] .animated-bg .circle {
+      background: rgba(42, 157, 143, 0.15);
+    }
+
+    [data-theme="dark"] .animated-bg .circle {
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0) translateX(0) scale(1);
+        opacity: 0.3;
+      }
+      50% {
+        transform: translateY(-30px) translateX(20px) scale(1.05);
+        opacity: 0.6;
+      }
+      100% {
+        transform: translateY(0) translateX(0) scale(1);
+        opacity: 0.3;
+      }
+    }
+
+    /* تحديد أحجام ومواضع مختلفة للدوائر */
+    .circle-1 {
+      width: 300px;
+      height: 300px;
+      top: 10%;
+      left: -100px;
+      animation-duration: 20s;
+    }
+    .circle-2 {
+      width: 200px;
+      height: 200px;
+      bottom: 20%;
+      right: -50px;
+      animation-duration: 25s;
+      animation-delay: -5s;
+    }
+    .circle-3 {
+      width: 150px;
+      height: 150px;
+      top: 60%;
+      left: 20%;
+      animation-duration: 18s;
+      animation-delay: -2s;
+    }
+    .circle-4 {
+      width: 400px;
+      height: 400px;
+      bottom: -100px;
+      left: 30%;
+      animation-duration: 30s;
+      animation-delay: -10s;
+    }
+    .circle-5 {
+      width: 100px;
+      height: 100px;
+      top: 20%;
+      right: 15%;
+      animation-duration: 12s;
+      animation-delay: -1s;
     }
 
     .container {
@@ -85,7 +166,8 @@
       margin: 0 auto;
       padding: 0 20px;
       width: 100%;
-      max-width: 100%;
+      position: relative;
+      z-index: 1;
     }
 
     /* شريط التنقل */
@@ -100,6 +182,7 @@
       display: flex;
       align-items: center;
       box-shadow: var(--shadow);
+      backdrop-filter: blur(5px);
     }
 
     .navbar {
@@ -253,7 +336,7 @@
     /* الهيرو */
     .hero {
       min-height: 100vh;
-      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('hero-bg.jpg') center/cover no-repeat fixed;
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('hero-bg.jpg') center/cover no-repeat fixed;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -261,13 +344,15 @@
       color: #fff;
       padding: 120px 15px 60px;
       width: 100%;
-      max-width: 100%;
+      position: relative;
     }
 
     .hero-content {
       max-width: 900px;
       width: 100%;
       margin: 0 auto;
+      position: relative;
+      z-index: 2;
     }
 
     .hero h1 {
@@ -281,9 +366,6 @@
       font-size: 1.2rem;
       margin-bottom: 30px;
       opacity: 0.9;
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
     }
 
     /* شريط البحث */
@@ -298,8 +380,6 @@
       margin: 0 auto 30px;
       border: 1px solid rgba(255, 255, 255, 0.2);
       flex-wrap: wrap;
-      width: 100%;
-      max-width: 100%;
       justify-content: center;
     }
 
@@ -312,7 +392,6 @@
       border-radius: 40px;
       flex: 1 1 200px;
       min-width: 200px;
-      max-width: 100%;
     }
 
     .search-group i {
@@ -358,7 +437,7 @@
       transform: translateY(-2px);
     }
 
-    /* الأقسام العامة */
+    /* باقي الأقسام - كما هي مع تعديلات بسيطة للشفافية */
     .destinations,
     .packages,
     .why-us,
@@ -368,8 +447,6 @@
     .contact {
       padding: 80px 0;
       width: 100%;
-      max-width: 100%;
-      overflow: hidden;
     }
 
     .section-title {
@@ -403,8 +480,6 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 30px;
-      width: 100%;
-      max-width: 100%;
     }
 
     /* بطاقة وجهة */
@@ -415,7 +490,7 @@
       box-shadow: var(--shadow);
       transition: var(--transition);
       border: 1px solid var(--border);
-      max-width: 100%;
+      backdrop-filter: blur(5px);
     }
 
     .destination-card:hover {
@@ -461,7 +536,6 @@
       transition: var(--transition);
       border: 1px solid var(--border);
       position: relative;
-      max-width: 100%;
     }
 
     .package-card:hover {
@@ -571,6 +645,7 @@
       border: 1px solid var(--border);
       text-align: center;
       transition: var(--transition);
+      backdrop-filter: blur(5px);
     }
 
     .feature:hover {
@@ -634,6 +709,7 @@
       align-items: center;
       justify-content: center;
       gap: 10px;
+      backdrop-filter: blur(5px);
     }
 
     .partner-logo i {
@@ -658,6 +734,7 @@
       flex-direction: column;
       align-items: center;
       text-align: center;
+      backdrop-filter: blur(5px);
     }
 
     .testimonial-card img {
@@ -775,6 +852,7 @@
       border-radius: 15px;
       box-shadow: var(--shadow);
       border: 1px solid var(--border);
+      backdrop-filter: blur(5px);
     }
 
     .contact-info h3 {
@@ -799,6 +877,7 @@
       background: var(--bg-card);
       padding: 50px 0 20px;
       border-top: 1px solid var(--border);
+      backdrop-filter: blur(5px);
     }
 
     .footer-content {
@@ -951,6 +1030,15 @@
   </style>
 </head>
 <body>
+  <!-- خلفية متحركة (دوائر عائمة) -->
+  <div class="animated-bg">
+    <div class="circle circle-1"></div>
+    <div class="circle circle-2"></div>
+    <div class="circle circle-3"></div>
+    <div class="circle circle-4"></div>
+    <div class="circle circle-5"></div>
+  </div>
+
   <!-- شريط التنقل -->
   <header>
     <nav class="navbar">
@@ -1278,7 +1366,7 @@
   <!-- AOS JS -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
-    // ========== قاموس الترجمة ==========
+    // ========== قاموس الترجمة (نفس المحتوى السابق) ==========
     const translations = {
       ar: {
         home: 'الرئيسية',
@@ -1437,7 +1525,7 @@
     // ========== الوضع الليلي ==========
     const themeToggle = document.getElementById('themeToggle');
     const html = document.documentElement;
-    let theme = localStorage.getItem('theme') || 'dark';
+    let theme = localStorage.getItem('theme') || 'light'; // بدء بالوضع النهاري الجديد
     html.setAttribute('data-theme', theme);
     themeToggle.textContent = theme === 'dark' ? '☀️' : '🌙';
 
