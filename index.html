@@ -370,38 +370,51 @@
       margin-right: auto;
     }
 
-    /* شريط البحث */
+    /* ===== شريط البحث المُحسَّن ===== */
     .search-bar {
-      background: rgba(0, 0, 0, 0.5);
-      backdrop-filter: blur(10px);
-      border-radius: 60px;
-      padding: 15px;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(20px);
+      border-radius: 80px;
+      padding: 8px;
       display: flex;
       align-items: center;
-      gap: 15px;
+      gap: 8px;
       margin: 0 auto 30px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.3);
       flex-wrap: wrap;
       width: 100%;
-      max-width: 100%;
-      justify-content: center;
+      max-width: 800px;
+      justify-content: space-between;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .search-bar:hover {
+      background: rgba(255, 255, 255, 0.25);
+      border-color: rgba(255, 255, 255, 0.5);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
     }
 
     .search-group {
       display: flex;
       align-items: center;
-      gap: 10px;
-      background: rgba(255, 255, 255, 0.15);
-      padding: 12px 20px;
-      border-radius: 40px;
-      flex: 1 1 200px;
-      min-width: 200px;
-      max-width: 100%;
+      gap: 12px;
+      background: rgba(0, 0, 0, 0.3);
+      padding: 12px 24px;
+      border-radius: 60px;
+      flex: 1;
+      min-width: 180px;
+      transition: all 0.3s;
+    }
+
+    .search-group:hover {
+      background: rgba(0, 0, 0, 0.5);
     }
 
     .search-group i {
       color: var(--primary);
       font-size: 1.2rem;
+      text-shadow: 0 0 5px rgba(0,0,0,0.2);
     }
 
     .search-input {
@@ -411,14 +424,21 @@
       font-size: 1rem;
       width: 100%;
       padding: 0;
+      font-weight: 500;
     }
 
     .search-input::placeholder {
       color: rgba(255, 255, 255, 0.8);
+      font-weight: 400;
     }
 
     .search-input:focus {
       outline: none;
+    }
+
+    .search-input option {
+      background: var(--bg-card);
+      color: var(--text);
     }
 
     .search-btn {
@@ -426,20 +446,22 @@
       color: #fff;
       border: none;
       padding: 12px 35px;
-      border-radius: 40px;
+      border-radius: 60px;
       font-size: 1.1rem;
-      font-weight: 600;
+      font-weight: 700;
       cursor: pointer;
-      transition: var(--transition);
+      transition: all 0.3s ease;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
       white-space: nowrap;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     }
 
     .search-btn:hover {
       background: var(--primary-dark);
       transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
     }
 
     /* الأقسام العامة */
@@ -994,16 +1016,21 @@
       }
 
       .search-bar {
+        flex-direction: column;
+        align-items: stretch;
+        background: rgba(0, 0, 0, 0.6);
+        border-radius: 30px;
         padding: 15px;
       }
 
       .search-group {
-        flex: 1 1 100%;
-        min-width: auto;
+        width: 100%;
+        padding: 10px 16px;
       }
 
       .search-btn {
         width: 100%;
+        justify-content: center;
       }
 
       .contact-wrapper {
@@ -1076,7 +1103,7 @@
       <div class="hero-content" data-aos="fade-up">
         <h1 data-i18n="hero_title">اكتشف جمال العالم مع سفاري</h1>
         <p data-i18n="hero_desc">رحلات مخصصة، عروض حصرية، وتجارب لا تُنسى. احجز الآن وانطلق في مغامرتك القادمة.</p>
-        <!-- شريط البحث -->
+        <!-- شريط البحث المُحسَّن -->
         <div class="search-bar" data-aos="fade-up" data-aos-delay="200">
           <div class="search-group">
             <i class="fas fa-map-marker-alt"></i>
@@ -1141,7 +1168,7 @@
       </div>
     </section>
 
-    <!-- الباقات (تم إضافة data-i18n لعناوين الباقات) -->
+    <!-- الباقات -->
     <section id="packages" class="packages">
       <div class="container">
         <h2 class="section-title" data-aos="fade-up" data-i18n="packages_title">باقات سفر مميزة</h2>
@@ -1538,7 +1565,7 @@
     // ========== الوضع الليلي ==========
     const themeToggle = document.getElementById('themeToggle');
     const html = document.documentElement;
-    let theme = localStorage.getItem('theme') || 'light';  // الآن الوضع الافتراضي هو النهاري المنعش
+    let theme = localStorage.getItem('theme') || 'light';
     html.setAttribute('data-theme', theme);
     themeToggle.textContent = theme === 'dark' ? '☀️' : '🌙';
 
@@ -1645,7 +1672,7 @@
 
     // ========== تهيئة AOS مع تسريع الأنيميشن ==========
     AOS.init({
-      duration: 600,      // تسريع الحركة (كانت 1000)
+      duration: 600,
       once: true,
       offset: 100,
     });
